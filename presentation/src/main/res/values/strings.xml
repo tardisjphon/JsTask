@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">JsTask</string>
+
+    <string name="list_fragment">List Fragment</string>
+    <string name="details_empty_fragment_label">Details Empty Fragment</string>
+    <string name="details_fragment_label">Details Fragment</string>
+    <string name="select_item_from_the_list">Wybierz pozycję z listy</string>
+
+</resources>
