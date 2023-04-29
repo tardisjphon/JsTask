@@ -80,7 +80,9 @@ class ListFragment : Fragment() {
         }
 
         recyclerView?.adapter = ItemsListViewAdapter(placeHolderItems) { item ->
-            placeHolderItems.firstOrNull { it.id == item.id }?.let {
+            placeHolderItems.firstOrNull {
+                it.id == item.id && it.apiName == item.apiName
+            }?.let {
                 goToDetails(it)
             }
         }
