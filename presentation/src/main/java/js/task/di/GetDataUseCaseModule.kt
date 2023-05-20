@@ -1,16 +1,16 @@
 package js.task.di
 
 import android.content.Context
-import androidx.annotation.NonNull
 import dagger.Module
 import dagger.Provides
 import js.task.data.net.utils.NetworkStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Named
 
 
 @Module
-class GetDataUseCaseModule(@NonNull private val context : Context,
+class GetDataUseCaseModule(private val context : Context,
                            private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO))
 {
     @Provides
@@ -19,12 +19,12 @@ class GetDataUseCaseModule(@NonNull private val context : Context,
     }
 
     @Provides
-    fun provideNetworkStatus() : NetworkStatus {
-        return NetworkStatus(context)
+    fun provideCoroutineScope() : CoroutineScope {
+        return coroutineScope
     }
 
     @Provides
-    fun provideCoroutineScope() : CoroutineScope {
-        return coroutineScope
+    fun provideNetworkStatus(@Named("ValueNetworkStatus") networkStatus: NetworkStatus) : NetworkStatus {
+        return networkStatus
     }
 }

@@ -17,11 +17,12 @@ import javax.inject.Inject
 
 
 class DataViewModel @Inject constructor(
-    private val dataProvider: DataProvider,
-    private val delegateObject: DataUseCase) : ViewModel(), DataUseCase by delegateObject
-{
-    //@Inject lateinit var dataProvider: DataProvider
 
+    private val dataProvider: DataProvider,
+    private val delegateObject: DataUseCase
+)
+    : ViewModel(), DataUseCase by delegateObject
+{
     val dataList by lazy { ArrayList<DataModel>() }
     val dataObserver by lazy { MutableLiveData<DataResponse>() }
 
@@ -51,6 +52,7 @@ class DataViewModel @Inject constructor(
                 val applicationContext = checkNotNull(extras[APPLICATION_KEY]).applicationContext
 
                 val applicationGraph = DaggerApplicationGraph.builder()
+                    .dataProviderModule(DataProviderModule(applicationContext))
                     .getDataUseCaseModule(GetDataUseCaseModule(applicationContext))
                     .dataViewModelModule(DataViewModelModule(applicationContext))
                     .build()

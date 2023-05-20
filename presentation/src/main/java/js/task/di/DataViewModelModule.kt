@@ -1,7 +1,6 @@
 package js.task.di
 
 import android.content.Context
-import androidx.annotation.NonNull
 import dagger.Module
 import dagger.Provides
 import js.task.data.DbRepository
@@ -12,28 +11,30 @@ import js.task.domain.usecase.DataUseCase
 import js.task.provider.DataProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import javax.inject.Named
 
 
 @Module
-class DataViewModelModule(@NonNull private val context : Context,
+class DataViewModelModule(private val context : Context,
                           private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 )
 {
     @Provides
-    fun getDataProvider() : DataProvider
+    fun getDataProvider(@Named("ValueDbRepository") dbRepository: DbRepository,
+                        @Named("ValueRetrofitRepository") retrofitRepository: RetrofitRepository
+    ) : DataProvider
     {
-        val dbRepository = DbRepository(context, coroutineScope)
         return DataProvider(
             context,
             coroutineScope,
             dbRepository,
-            RetrofitRepository(dbRepository)
-        ) //TODO   DbRepository + RetrofitRepository ma też DataProviderModule
+            retrofitRepository
+        )
     }
 
     @Provides
-    fun getDataUseCase() : DataUseCase
+    fun getDataUseCase(@Named("ValueNetworkStatus") networkStatus: NetworkStatus) : DataUseCase
     {
-        return GetDataUseCase(NetworkStatus(context), coroutineScope)
+        return GetDataUseCase(networkStatus, coroutineScope)
     }
 }
