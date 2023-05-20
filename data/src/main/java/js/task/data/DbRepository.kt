@@ -22,11 +22,11 @@ class DbRepository @Inject constructor(
         Timber.w(message)
     }
 
-    override fun getDataModel(): Flow<List<DataModel>> {
+    override fun getData(): Flow<List<DataModel>> {
         return db.dataDao().get()
     }
 
-    override fun setDataModel(data: List<DataModel>) {
+    override fun setData(data: List<DataModel>) {
         coroutinesScope.launch {
             db.runInTransaction {
 
@@ -41,48 +41,20 @@ class DbRepository @Inject constructor(
         }
     }
 
-    override suspend fun isData() : Boolean
-    {
-        return getDataModel().firstOrNull()?.isNotEmpty() == true
+    override fun updateData(data: List<DataModel>) {
+        coroutinesScope.launch {
+            db.runInTransaction {
+                db.dataDao().apply {
+
+                    Timber.i("setDailyMotion: set")
+                    set(data)
+                }
+            }
+        }
     }
 
-
-//
-//    override fun getDailyMotion(): Flow<List<DailyMotionPage>> {
-//        return db.dailyMotionDao().get()
-//    }
-//
-//    override fun setDailyMotion(data: DailyMotionPage) {
-//        coroutinesScope.launch {
-//            db.runInTransaction {
-//
-//                db.dailyMotionDao().apply {
-//
-//                    Timber.i("setDailyMotion: deleteAll")
-//                    deleteAll()
-//                    Timber.i("setDailyMotion: set")
-//                    set(data)
-//                }
-//            }
-//        }
-//    }
-//
-//    override fun getGithub(): Flow<List<GithubPage>> {
-//        return db.githubDao().get()
-//    }
-//
-//    override fun setGithub(data: List<GithubPage>) {
-//        coroutinesScope.launch {
-//            db.runInTransaction {
-//
-//                db.githubDao().apply {
-//
-//                    Timber.i("setGithub: deleteAll")
-//                    deleteAll()
-//                    Timber.i("setGithub: set")
-//                    set(data)
-//                }
-//            }
-//        }
-//    }
+    override suspend fun isData() : Boolean
+    {
+        return getData().firstOrNull()?.isNotEmpty() == true
+    }
 }

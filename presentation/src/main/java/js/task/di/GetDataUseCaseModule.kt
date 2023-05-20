@@ -10,7 +10,7 @@ import kotlinx.coroutines.Dispatchers
 
 
 @Module
-class GetDataUseCaseModule(@NonNull val context : Context,
+class GetDataUseCaseModule(@NonNull private val context : Context,
                            private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO))
 {
     @Provides

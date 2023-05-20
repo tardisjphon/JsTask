@@ -11,7 +11,7 @@ import kotlinx.coroutines.Dispatchers
 
 
 @Module
-class DataProviderModule(@NonNull val context : Context,
+class DataProviderModule(@NonNull private val context : Context,
                          private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 )
 {

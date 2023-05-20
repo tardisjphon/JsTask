@@ -18,10 +18,9 @@ class GetDataUseCase @Inject constructor(private val networkStatus: NetworkStatu
                                          private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 ) : DataUseCase
 {
-    @Inject lateinit var dataProvider: DataProvider
 
-
-    override fun getData(dataList: ArrayList<DataModel>,
+    override fun getData(dataProvider: DataProvider,
+                         dataList: ArrayList<DataModel>,
                          onResponse: (GetDataResponse) -> Unit)
     {
         if (dataList.size == 0)
@@ -63,7 +62,8 @@ class GetDataUseCase @Inject constructor(private val networkStatus: NetworkStatu
         }
     }
 
-    override fun onNewData(dataList: ArrayList<DataModel>,
+    override fun onNewData(dataProvider: DataProvider,
+                           dataList: ArrayList<DataModel>,
                            onResponse: (DataResponse) -> Unit)
     {
         CoroutineScope(Dispatchers.IO).launch {

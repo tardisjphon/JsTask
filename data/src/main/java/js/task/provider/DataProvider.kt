@@ -12,22 +12,20 @@ import javax.inject.Inject
 
 
 class DataProvider @Inject constructor(private val applicationContext: Context,
-                                       private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO))
+                                       private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO),
+                                       private val repository: DbRepository,
+                                       private val retrofit: RetrofitRepository)
 {
-    @Inject lateinit var repository: DbRepository
-    @Inject lateinit var retrofit: RetrofitRepository
-
     fun download()
     {
         coroutineScope.launch {
-            retrofit.getGh()
-            retrofit.getDm()
+            retrofit.get()
         }
     }
 
     fun getData() : Flow<List<DataModel>>
     {
-        return repository.getDataModel()
+        return repository.getData()
     }
 
     suspend fun isRepositoryData() : Boolean

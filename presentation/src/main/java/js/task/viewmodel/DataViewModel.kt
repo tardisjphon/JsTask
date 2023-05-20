@@ -8,14 +8,20 @@ import androidx.lifecycle.viewmodel.CreationExtras
 import js.task.data.db.model.DataModel
 import js.task.di.DaggerApplicationGraph
 import js.task.di.DataProviderModule
+import js.task.di.DataViewModelModule
 import js.task.di.GetDataUseCaseModule
 import js.task.domain.model.DataResponse
 import js.task.domain.usecase.DataUseCase
+import js.task.provider.DataProvider
+import javax.inject.Inject
 
 
-
-class DataViewModel constructor(private val delegateObject: DataUseCase) : ViewModel(), DataUseCase by delegateObject
+class DataViewModel @Inject constructor(
+    private val dataProvider: DataProvider,
+    private val delegateObject: DataUseCase) : ViewModel(), DataUseCase by delegateObject
 {
+    //@Inject lateinit var dataProvider: DataProvider
+
     val dataList by lazy { ArrayList<DataModel>() }
     val dataObserver by lazy { MutableLiveData<DataResponse>() }
 
@@ -24,14 +30,14 @@ class DataViewModel constructor(private val delegateObject: DataUseCase) : ViewM
     }
 
     private fun setDataListener() {
-        delegateObject.onNewData(dataList) {
+        delegateObject.onNewData(dataProvider, dataList) {
             dataObserver.postValue(it)
         }
     }
 
     fun getData()
     {
-        delegateObject.getData(dataList){}
+        delegateObject.getData(dataProvider, dataList){}
     }
 
     companion object {
@@ -44,12 +50,14 @@ class DataViewModel constructor(private val delegateObject: DataUseCase) : ViewM
             ): T {
                 val applicationContext = checkNotNull(extras[APPLICATION_KEY]).applicationContext
 
-                val getDataUseCase = DaggerApplicationGraph.builder()
+                val applicationGraph = DaggerApplicationGraph.builder()
                     .getDataUseCaseModule(GetDataUseCaseModule(applicationContext))
-                    .dataProviderModule(DataProviderModule(applicationContext))
-                    .build().getDataUseCase()
+                    .dataViewModelModule(DataViewModelModule(applicationContext))
+                    .build()
+                val getDataProvider = applicationGraph.dataProvider()
+                val getDataUseCase = applicationGraph.getDataUseCase()
 
-                return DataViewModel(getDataUseCase) as T
+                return DataViewModel(getDataProvider, getDataUseCase) as T
             }
         }
     }

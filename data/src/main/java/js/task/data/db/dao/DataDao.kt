@@ -15,8 +15,7 @@ interface DataDao
     @Query(selectQuery)
     fun get(): Flow<List<DataModel>>
 
-   // @Insert(onConflict = OnConflictStrategy.REPLACE)
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun set(data: List<DataModel>)
 
     @Query("DELETE FROM data")
