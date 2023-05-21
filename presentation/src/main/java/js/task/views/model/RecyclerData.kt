@@ -1,4 +1,4 @@
-package js.task.model
+package js.task.views.model
 
 class RecyclerData {
     companion object {

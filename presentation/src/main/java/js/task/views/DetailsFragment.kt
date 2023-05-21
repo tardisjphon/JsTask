@@ -7,9 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import js.task.application.databinding.FragmentDetailsBinding
-import js.task.model.RecyclerData.Companion.ARGUMENTS_API
-import js.task.model.RecyclerData.Companion.ARGUMENTS_URL
-import js.task.model.RecyclerData.Companion.ARGUMENTS_USER_NAME
+import js.task.views.model.RecyclerData.Companion.ARGUMENTS_API
+import js.task.views.model.RecyclerData.Companion.ARGUMENTS_URL
+import js.task.views.model.RecyclerData.Companion.ARGUMENTS_USER_NAME
 
 
 /**

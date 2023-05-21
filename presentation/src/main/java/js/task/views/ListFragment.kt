@@ -11,9 +11,9 @@ import js.task.application.R
 import js.task.application.databinding.FragmentListBinding
 import js.task.data.db.model.DataModel
 import js.task.domain.model.DataResponse
-import js.task.itemslist.ItemsListViewAdapter
-import js.task.itemslist.PlaceholderItem
-import js.task.model.RecyclerData
+import js.task.views.itemslist.ItemsListViewAdapter
+import js.task.views.itemslist.PlaceholderItem
+import js.task.views.model.RecyclerData
 import js.task.viewmodel.DataViewModel
 import timber.log.Timber
 
@@ -100,10 +100,12 @@ class ListFragment : Fragment() {
     {
         val placeHolderItems = ArrayList<PlaceholderItem>()
         dataList.forEach {
-            placeHolderItems.add(PlaceholderItem(it.id ?: 0,
+            placeHolderItems.add(
+                PlaceholderItem(it.id ?: 0,
                 it.userName ?: "",
                 it.imageUrl ?: "",
-                it.apiName?.name ?: ""))
+                it.apiName?.name ?: "")
+            )
         }
         return placeHolderItems
     }

@@ -1,4 +1,4 @@
-package js.task.itemslist
+package js.task.views.itemslist
 
 import android.annotation.SuppressLint
 import android.view.View.OnClickListener
