@@ -4,10 +4,9 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-
 object ServiceBuilder
 {
-    private lateinit var baseUrl: String
+    private lateinit var baseUrl : String
 
     private val client by lazy {
 
@@ -16,14 +15,11 @@ object ServiceBuilder
 
     private val retrofit by lazy {
 
-        Retrofit.Builder()
-        .baseUrl(baseUrl)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(client)
-        .build()
+        Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create())
+            .client(client).build()
     }
 
-    fun <T> buildService(baseAddress: String, service: Class<T>): T
+    fun <T> buildService(baseAddress : String, service : Class<T>) : T
     {
         baseUrl = baseAddress
         return retrofit.create(service)

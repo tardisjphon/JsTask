@@ -11,26 +11,32 @@ import javax.inject.Named
 
 
 @Module
-class GetDataUseCaseModule(private val context : Context,
-                           private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO))
+class GetDataUseCaseModule(
+    private val context : Context,
+    private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
+)
 {
     @Provides
-    fun provideContext() : Context {
+    fun provideContext() : Context
+    {
         return context
     }
 
     @Provides
-    fun provideDataProvider(@Named("ValueDataProvider") dataProvider: DataProvider) : DataProvider {
+    fun provideDataProvider(@Named("ValueDataProvider") dataProvider : DataProvider) : DataProvider
+    {
         return dataProvider
     }
 
     @Provides
-    fun provideNetworkStatus(@Named("ValueNetworkStatus") networkStatus: NetworkStatus) : NetworkStatus {
+    fun provideNetworkStatus(@Named("ValueNetworkStatus") networkStatus : NetworkStatus) : NetworkStatus
+    {
         return networkStatus
     }
 
     @Provides
-    fun provideCoroutineScope() : CoroutineScope {
+    fun provideCoroutineScope() : CoroutineScope
+    {
         return coroutineScope
     }
 }

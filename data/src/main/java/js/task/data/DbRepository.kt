@@ -12,21 +12,23 @@ import javax.inject.Inject
 
 
 class DbRepository @Inject constructor(
-    private val applicationContext: Context,
-    private val coroutinesScope: CoroutineScope
+    private val applicationContext : Context, private val coroutinesScope : CoroutineScope
 ) : IRepository
 {
     private val db by lazy { AppDatabase.getInstance(applicationContext) }
 
-    override fun onFailure(message: String) {
+    override fun onFailure(message : String)
+    {
         Timber.w(message)
     }
 
-    override fun getData(): Flow<List<DataModel>> {
+    override fun getData() : Flow<List<DataModel>>
+    {
         return db.dataDao().get()
     }
 
-    override fun setData(data: List<DataModel>) {
+    override fun setData(data : List<DataModel>)
+    {
         coroutinesScope.launch {
             db.runInTransaction {
 
@@ -41,7 +43,8 @@ class DbRepository @Inject constructor(
         }
     }
 
-    override fun updateData(data: List<DataModel>) {
+    override fun updateData(data : List<DataModel>)
+    {
         coroutinesScope.launch {
             db.runInTransaction {
                 db.dataDao().apply {

@@ -6,15 +6,15 @@ import android.net.*
 import android.os.Build
 import androidx.annotation.RequiresApi
 
-
-class NetworkStatus(context: Context)
+class NetworkStatus(context : Context)
 {
-    private var mConnectivityManager: ConnectivityManager ?= null
+    private var mConnectivityManager : ConnectivityManager? = null
     val noNetworkMessage = "no network"
 
     init
     {
-        mConnectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        mConnectivityManager =
+            context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     }
 
     @SuppressLint("ObsoleteSdkInt")
@@ -36,12 +36,12 @@ class NetworkStatus(context: Context)
     }
 
     @RequiresApi(Build.VERSION_CODES.M)
-    private fun isOnlineFromAPI23(): Boolean
+    private fun isOnlineFromAPI23() : Boolean
     {
         val cm = mConnectivityManager ?: return false
         val capabilities = cm.getNetworkCapabilities(cm.activeNetwork)
-        return capabilities != null &&
-        capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) &&
-        capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED)
+        return capabilities != null && capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_INTERNET) && capabilities.hasCapability(
+                NetworkCapabilities.NET_CAPABILITY_VALIDATED
+        )
     }
 }

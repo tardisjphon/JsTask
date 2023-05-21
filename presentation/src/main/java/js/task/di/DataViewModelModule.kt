@@ -17,27 +17,27 @@ import javax.inject.Named
 
 
 @Module
-class DataViewModelModule(private val context : Context,
-                          private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
+class DataViewModelModule(
+    private val context : Context,
+    private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 )
 {
-    @Provides @Named("ValueDataProvider")
-    fun provideDataProvider(@Named("ValueDbRepository") dbRepository: DbRepository,
-                            @Named("ValueRetrofitRepository") retrofitRepository: RetrofitRepository
+    @Provides
+    @Named("ValueDataProvider")
+    fun provideDataProvider(
+        @Named("ValueDbRepository") dbRepository : DbRepository,
+        @Named("ValueRetrofitRepository") retrofitRepository : RetrofitRepository
     ) : DataProvider
     {
         return DataProvider(
-            context,
-            coroutineScope,
-            dbRepository,
-            retrofitRepository
+                context, coroutineScope, dbRepository, retrofitRepository
         )
     }
 
     @Provides
     fun getDataUseCase(
-        @Named("ValueDataProvider") dataProvider: DataProvider,
-        @Named("ValueNetworkStatus") networkStatus: NetworkStatus
+        @Named("ValueDataProvider") dataProvider : DataProvider,
+        @Named("ValueNetworkStatus") networkStatus : NetworkStatus
     ) : GetDataUseCase
     {
         return GetDataUseCaseImpl(dataProvider, networkStatus, coroutineScope)
@@ -45,7 +45,7 @@ class DataViewModelModule(private val context : Context,
 
     @Provides
     fun onNewDataUseCase(
-        @Named("ValueDataProvider") dataProvider: DataProvider,
+        @Named("ValueDataProvider") dataProvider : DataProvider,
     ) : OnNewDataUseCase
     {
         return OnNewDataUseCaseImpl(dataProvider, coroutineScope)

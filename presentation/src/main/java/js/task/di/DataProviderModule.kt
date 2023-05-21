@@ -12,23 +12,27 @@ import javax.inject.Named
 
 
 @Module
-class DataProviderModule(private val context : Context,
-                         private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
+class DataProviderModule(
+    private val context : Context,
+    private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 )
 {
-    @Provides @Named("ValueDbRepository")
+    @Provides
+    @Named("ValueDbRepository")
     fun provideDbRepository() : DbRepository
     {
         return DbRepository(context, coroutineScope)
     }
 
-    @Provides @Named("ValueRetrofitRepository")
+    @Provides
+    @Named("ValueRetrofitRepository")
     fun provideRetrofitRepository() : RetrofitRepository
     {
         return RetrofitRepository(provideDbRepository())
     }
 
-    @Provides @Named("ValueNetworkStatus")
+    @Provides
+    @Named("ValueNetworkStatus")
     fun provideNetworkStatus() : NetworkStatus
     {
         return NetworkStatus(context)

@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface OnNewDataUseCase
 {
-    suspend fun invokeOnNewData(dataList: ArrayList<DataModel>) : Flow<DataResponse>
+    suspend fun invokeOnNewData(dataList : ArrayList<DataModel>) : Flow<DataResponse>
 }

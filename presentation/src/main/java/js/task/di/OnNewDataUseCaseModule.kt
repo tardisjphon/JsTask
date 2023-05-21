@@ -8,16 +8,20 @@ import kotlinx.coroutines.Dispatchers
 
 
 @Module
-class OnNewDataUseCaseModule(private val context : Context,
-                             private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO))
+class OnNewDataUseCaseModule(
+    private val context : Context,
+    private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
+)
 {
     @Provides
-    fun provideContext() : Context {
+    fun provideContext() : Context
+    {
         return context
     }
 
     @Provides
-    fun provideCoroutineScope() : CoroutineScope {
+    fun provideCoroutineScope() : CoroutineScope
+    {
         return coroutineScope
     }
 }

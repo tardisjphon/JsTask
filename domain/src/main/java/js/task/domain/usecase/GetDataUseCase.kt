@@ -5,5 +5,5 @@ import js.task.domain.model.GetDataResponse
 
 interface GetDataUseCase
 {
-    suspend fun invokeGetData(dataList: ArrayList<DataModel>) : GetDataResponse
+    suspend fun invokeGetData(dataList : ArrayList<DataModel>) : GetDataResponse
 }

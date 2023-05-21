@@ -22,22 +22,20 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 @SmallTest
-class DbTest {
-//    @Test
-//    fun useAppContext() {
-//        // Context of the app under test.
-//        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-//        assertEquals("js.task.data.test", appContext.packageName)
-//    }
+class DbTest { //    @Test
+    //    fun useAppContext() {
+    //        // Context of the app under test.
+    //        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
+    //        assertEquals("js.task.data.test", appContext.packageName)
+    //    }
 
-    private lateinit var database: AppDatabase
-    private lateinit var dataDao: DataDao
+    private lateinit var database : AppDatabase
+    private lateinit var dataDao : DataDao
 
     @Before
     fun setupDatabase() {
         database = Room.inMemoryDatabaseBuilder(
-            ApplicationProvider.getApplicationContext(),
-            AppDatabase::class.java
+            ApplicationProvider.getApplicationContext(), AppDatabase::class.java
         ).build()
 
         dataDao = database.dataDao()
@@ -50,10 +48,10 @@ class DbTest {
         dataDao.set(listOf(dataModel))
 
         dataDao.get().test {
-                val list = awaitItem()
-                val result = list.contains(dataModel)
-                println("insertData_returnsTrue, result: $result")
-                assert(result)
+            val list = awaitItem()
+            val result = list.contains(dataModel)
+            println("insertData_returnsTrue, result: $result")
+            assert(result)
         }
     }
 }

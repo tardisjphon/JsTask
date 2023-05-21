@@ -12,14 +12,13 @@ import kotlinx.coroutines.withContext
 import timber.log.Timber
 import javax.inject.Inject
 
-
 class GetDataUseCaseImpl @Inject constructor(
-    private val dataProvider: DataProvider,
-    private val networkStatus: NetworkStatus,
-    private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
+    private val dataProvider : DataProvider,
+    private val networkStatus : NetworkStatus,
+    private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 ) : GetDataUseCase
 {
-    override suspend fun invokeGetData(dataList: ArrayList<DataModel>) : GetDataResponse
+    override suspend fun invokeGetData(dataList : ArrayList<DataModel>) : GetDataResponse
     {
         if (dataList.size == 0)
         {
@@ -36,7 +35,7 @@ class GetDataUseCaseImpl @Inject constructor(
                         Timber.i("get data from internet")
 
                         withContext(Dispatchers.Main) {
-                            return@withContext(GetDataResponse.DOWNLOAD)
+                            return@withContext (GetDataResponse.DOWNLOAD)
                         }
 
                         dataProvider.download()
@@ -44,7 +43,7 @@ class GetDataUseCaseImpl @Inject constructor(
                     else
                     {
                         withContext(Dispatchers.Main) {
-                            return@withContext(GetDataResponse.OFFLINE)
+                            return@withContext (GetDataResponse.OFFLINE)
                         }
 
                         Timber.w("offline, so can't get data from internet")
@@ -53,6 +52,6 @@ class GetDataUseCaseImpl @Inject constructor(
             }
         }
 
-        return(GetDataResponse.NOT_CHANGED)
+        return (GetDataResponse.NOT_CHANGED)
     }
 }

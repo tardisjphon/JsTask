@@ -18,21 +18,20 @@ import javax.inject.Inject
 
 
 class RetrofitRepository @Inject constructor(
-    private val delegateObject: IRepository) : IRepository by delegateObject
+    private val delegateObject : IRepository
+) : IRepository by delegateObject
 {
     private val dataConverter by lazy { DataConverter() }
 
     private val requestDailyMotion by lazy {
         ServiceBuilder.buildService(
-            DailyMotion.baseAddress,
-            DailyMotionEndpoints::class.java
+                DailyMotion.baseAddress, DailyMotionEndpoints::class.java
         )
     }
 
     private val requestGithub by lazy {
         ServiceBuilder2.buildService(
-            Github.baseAddress,
-            GithubEndpoints::class.java
+                Github.baseAddress, GithubEndpoints::class.java
         )
     }
 
@@ -46,25 +45,28 @@ class RetrofitRepository @Inject constructor(
         combineIt(dailyFlowMapped, githubFlowMapped)
     }
 
-    private fun combineIt(flow1: Flow<LinkedList<DataModel>>, flow2: Flow<LinkedList<DataModel>>)
+    private fun combineIt(
+        flow1 : Flow<LinkedList<DataModel>>, flow2 : Flow<LinkedList<DataModel>>
+    )
     {
         combine(flow1, flow2) { data1, data2 ->
             val list = LinkedList<DataModel>()
             list.addAll(data1)
             list.addAll(data2)
             delegateObject.updateData(list)
-        }.
-        catch { delegateObject.onFailure(it.message.toString()) }.
-        launchIn(CoroutineScope(Dispatchers.IO))
+        }.catch { delegateObject.onFailure(it.message.toString()) }
+            .launchIn(CoroutineScope(Dispatchers.IO))
     }
 
     @OptIn(FlowPreview::class)
-    private fun flattenMerge(flow1: Flow<LinkedList<DataModel>>, flow2: Flow<LinkedList<DataModel>>)
+    private fun flattenMerge(
+        flow1 : Flow<LinkedList<DataModel>>, flow2 : Flow<LinkedList<DataModel>>
+    )
     {
         CoroutineScope(Dispatchers.IO).launch {
-            flowOf(flow1, flow2).flattenMerge().
-                catch { delegateObject.onFailure(it.message.toString()) }.
-                collect { delegateObject.updateData(it) }
+            flowOf(flow1, flow2).flattenMerge()
+                .catch { delegateObject.onFailure(it.message.toString()) }
+                .collect { delegateObject.updateData(it) }
         }
     }
 }
