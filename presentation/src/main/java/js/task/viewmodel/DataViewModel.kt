@@ -6,22 +6,23 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.CreationExtras
 import js.task.data.db.model.DataModel
-import js.task.di.DaggerApplicationGraph
-import js.task.di.DataProviderModule
-import js.task.di.DataViewModelModule
-import js.task.di.GetDataUseCaseModule
+import js.task.di.*
 import js.task.domain.model.DataResponse
-import js.task.domain.usecase.DataUseCase
-import js.task.provider.DataProvider
+import js.task.domain.usecase.GetDataUseCase
+import js.task.domain.usecase.OnNewDataUseCase
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 class DataViewModel @Inject constructor(
-
-    private val dataProvider: DataProvider,
-    private val delegateObject: DataUseCase
-)
-    : ViewModel(), DataUseCase by delegateObject
+    val delegateGetDataUseCase: GetDataUseCase,
+    val delegateOnNewDataUseCase: OnNewDataUseCase
+) :
+    ViewModel(),
+    GetDataUseCase by delegateGetDataUseCase,
+    OnNewDataUseCase by delegateOnNewDataUseCase
 {
     val dataList by lazy { ArrayList<DataModel>() }
     val dataObserver by lazy { MutableLiveData<DataResponse>() }
@@ -31,15 +32,20 @@ class DataViewModel @Inject constructor(
     }
 
     private fun setDataListener() {
-        delegateObject.onNewData(dataProvider, dataList) {
-            dataObserver.postValue(it)
+        CoroutineScope(Dispatchers.Main).launch {
+            delegateOnNewDataUseCase.invokeOnNewData(dataList).collect {
+                dataObserver.postValue(it)
+            }
         }
     }
 
     fun getData()
     {
-        delegateObject.getData(dataProvider, dataList){}
+        CoroutineScope(Dispatchers.Main).launch {
+            delegateGetDataUseCase.invokeGetData(dataList)
+        }
     }
+
 
     companion object {
 
@@ -56,10 +62,10 @@ class DataViewModel @Inject constructor(
                     .getDataUseCaseModule(GetDataUseCaseModule(applicationContext))
                     .dataViewModelModule(DataViewModelModule(applicationContext))
                     .build()
-                val getDataProvider = applicationGraph.dataProvider()
                 val getDataUseCase = applicationGraph.getDataUseCase()
+                val onNewDataUseCase = applicationGraph.onNewDataUseCase()
 
-                return DataViewModel(getDataProvider, getDataUseCase) as T
+                return DataViewModel(getDataUseCase, onNewDataUseCase) as T
             }
         }
     }

@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import js.task.data.net.utils.NetworkStatus
+import js.task.provider.DataProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Named
@@ -19,12 +20,17 @@ class GetDataUseCaseModule(private val context : Context,
     }
 
     @Provides
-    fun provideCoroutineScope() : CoroutineScope {
-        return coroutineScope
+    fun provideDataProvider(@Named("ValueDataProvider") dataProvider: DataProvider) : DataProvider {
+        return dataProvider
     }
 
     @Provides
     fun provideNetworkStatus(@Named("ValueNetworkStatus") networkStatus: NetworkStatus) : NetworkStatus {
         return networkStatus
+    }
+
+    @Provides
+    fun provideCoroutineScope() : CoroutineScope {
+        return coroutineScope
     }
 }

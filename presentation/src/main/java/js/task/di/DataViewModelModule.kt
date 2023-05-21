@@ -6,8 +6,10 @@ import dagger.Provides
 import js.task.data.DbRepository
 import js.task.data.RetrofitRepository
 import js.task.data.net.utils.NetworkStatus
-import js.task.domain.GetDataUseCase
-import js.task.domain.usecase.DataUseCase
+import js.task.domain.GetDataUseCaseImpl
+import js.task.domain.OnNewDataUseCaseImpl
+import js.task.domain.usecase.GetDataUseCase
+import js.task.domain.usecase.OnNewDataUseCase
 import js.task.provider.DataProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -19,9 +21,9 @@ class DataViewModelModule(private val context : Context,
                           private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
 )
 {
-    @Provides
-    fun getDataProvider(@Named("ValueDbRepository") dbRepository: DbRepository,
-                        @Named("ValueRetrofitRepository") retrofitRepository: RetrofitRepository
+    @Provides @Named("ValueDataProvider")
+    fun provideDataProvider(@Named("ValueDbRepository") dbRepository: DbRepository,
+                            @Named("ValueRetrofitRepository") retrofitRepository: RetrofitRepository
     ) : DataProvider
     {
         return DataProvider(
@@ -33,8 +35,19 @@ class DataViewModelModule(private val context : Context,
     }
 
     @Provides
-    fun getDataUseCase(@Named("ValueNetworkStatus") networkStatus: NetworkStatus) : DataUseCase
+    fun getDataUseCase(
+        @Named("ValueDataProvider") dataProvider: DataProvider,
+        @Named("ValueNetworkStatus") networkStatus: NetworkStatus
+    ) : GetDataUseCase
     {
-        return GetDataUseCase(networkStatus, coroutineScope)
+        return GetDataUseCaseImpl(dataProvider, networkStatus, coroutineScope)
+    }
+
+    @Provides
+    fun onNewDataUseCase(
+        @Named("ValueDataProvider") dataProvider: DataProvider,
+    ) : OnNewDataUseCase
+    {
+        return OnNewDataUseCaseImpl(dataProvider, coroutineScope)
     }
 }

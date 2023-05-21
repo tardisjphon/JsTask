@@ -29,7 +29,7 @@ class DataProviderModule(private val context : Context,
     }
 
     @Provides @Named("ValueNetworkStatus")
-    fun getNetworkStatus() : NetworkStatus
+    fun provideNetworkStatus() : NetworkStatus
     {
         return NetworkStatus(context)
     }
