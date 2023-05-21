@@ -19,8 +19,7 @@ import timber.log.Timber
 
 class ListFragment : Fragment() {
 
-    private var _binding: FragmentListBinding? = null
-    private val binding get() = _binding!!
+
     private var recyclerView: RecyclerView ?= null
     private var placeHolderItems: List<PlaceholderItem> ?= null
 
@@ -31,7 +30,7 @@ class ListFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentListBinding.inflate(inflater, container, false)
+        val binding = FragmentListBinding.inflate(inflater, container, false)
         recyclerView = binding.itemList
         return binding.root
     }
@@ -127,10 +126,5 @@ class ListFragment : Fragment() {
         )
         val navController = (activity as MainActivity).getNavControllerDetails()
         navController.navigate(R.id.action_to_DetailsFragment, bundle)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

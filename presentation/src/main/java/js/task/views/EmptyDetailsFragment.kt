@@ -8,29 +8,14 @@ import android.view.ViewGroup
 import js.task.application.databinding.FragmentDetailsEmptyBinding
 
 
-/**
- * A simple [Fragment] subclass as the second destination in the navigation.
- */
 class EmptyDetailsFragment : Fragment() {
-
-    private var _binding: FragmentDetailsEmptyBinding? = null
-    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
-        _binding = FragmentDetailsEmptyBinding.inflate(inflater, container, false)
+        val binding = FragmentDetailsEmptyBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
