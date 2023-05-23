@@ -5,9 +5,10 @@ import js.task.domain.usecase.model.DomainModel
 import js.task.provider.DataProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
 
-class PresentationDataProvider(private val dataProvider : DataProvider) : DomainDataProvider
+class PresentationDataProvider @Inject constructor(private val dataProvider : DataProvider) : DomainDataProvider
 {
     override fun download()
     {

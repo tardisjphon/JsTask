@@ -1,9 +1,10 @@
 package js.task.di.conversion
 
-import js.task.data.net.utils.NetworkStatus
+import js.task.data.remote.utils.NetworkStatus
 import js.task.domain.model.DomainNetworkStatus
+import javax.inject.Inject
 
-class PresentationNetworkProvider(private val networkStatus : NetworkStatus) : DomainNetworkStatus
+class PresentationNetworkProvider @Inject constructor(private val networkStatus : NetworkStatus) : DomainNetworkStatus
 {
     override fun isOnline() : Boolean
     {

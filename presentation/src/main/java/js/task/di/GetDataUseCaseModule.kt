@@ -1,27 +1,17 @@
 package js.task.di
 
-import android.content.Context
 import dagger.Module
 import dagger.Provides
-import js.task.data.net.utils.NetworkStatus
+import js.task.data.remote.utils.NetworkStatus
+import js.task.di.conversion.PresentationDataProvider
+import js.task.di.conversion.PresentationNetworkProvider
 import js.task.provider.DataProvider
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Named
 
 
 @Module
-class GetDataUseCaseModule(
-    private val context : Context,
-    private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
-)
+class GetDataUseCaseModule
 {
-    @Provides
-    fun provideContext() : Context
-    {
-        return context
-    }
-
     @Provides
     fun provideDataProvider(@Named("ValueDataProvider") dataProvider : DataProvider) : DataProvider
     {
@@ -29,14 +19,16 @@ class GetDataUseCaseModule(
     }
 
     @Provides
-    fun provideNetworkStatus(@Named("ValueNetworkStatus") networkStatus : NetworkStatus) : NetworkStatus
+    @Named("ValuePresentationDataProvider")
+    fun getPresentationDataProvider(@Named("ValueDataProvider") dataProvider : DataProvider) : PresentationDataProvider
     {
-        return networkStatus
+        return PresentationDataProvider(dataProvider)
     }
 
     @Provides
-    fun provideCoroutineScope() : CoroutineScope
+    @Named("ValuePresentationNetworkProvider")
+    fun getPresentationNetworkProvider(@Named("ValueNetworkStatus") networkStatus : NetworkStatus) : PresentationNetworkProvider
     {
-        return coroutineScope
+        return PresentationNetworkProvider(networkStatus)
     }
 }

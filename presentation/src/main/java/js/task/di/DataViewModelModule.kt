@@ -1,11 +1,9 @@
 package js.task.di
 
-import android.content.Context
 import dagger.Module
 import dagger.Provides
 import js.task.data.DbRepository
 import js.task.data.RetrofitRepository
-import js.task.data.net.utils.NetworkStatus
 import js.task.di.conversion.PresentationDataProvider
 import js.task.di.conversion.PresentationNetworkProvider
 import js.task.domain.GetDataUseCaseImpl
@@ -20,21 +18,9 @@ import javax.inject.Named
 
 @Module
 class DataViewModelModule(
-    private val context : Context,
     private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 )
 {
-    @Provides
-    @Named("ValueDataProvider")
-    fun provideDataProvider(
-        @Named("ValueDbRepository") dbRepository : DbRepository,
-        @Named("ValueRetrofitRepository") retrofitRepository : RetrofitRepository
-    ) : DataProvider
-    {
-        return DataProvider(
-                context, coroutineScope, dbRepository, retrofitRepository
-        )
-    }
 
     @Provides
     fun getDataUseCase(
@@ -55,17 +41,16 @@ class DataViewModelModule(
         return OnNewDataUseCaseImpl(presentationDataProvider, coroutineScope)
     }
 
-    @Provides
-    @Named("ValuePresentationDataProvider")
-    fun getPresentationDataProvider(@Named("ValueDataProvider") dataProvider : DataProvider) : PresentationDataProvider
-    {
-        return PresentationDataProvider(dataProvider)
-    }
 
     @Provides
-    @Named("ValuePresentationNetworkProvider")
-    fun getPresentationNetworkProvider(@Named("ValueNetworkStatus") networkStatus : NetworkStatus) : PresentationNetworkProvider
+    @Named("ValueDataProvider")
+    fun provideDataProvider(
+        @Named("ValueDbRepository") dbRepository : DbRepository,
+        @Named("ValueRetrofitRepository") retrofitRepository : RetrofitRepository
+    ) : DataProvider
     {
-        return PresentationNetworkProvider(networkStatus)
+        return DataProvider(
+                coroutineScope, dbRepository, retrofitRepository
+        )
     }
 }

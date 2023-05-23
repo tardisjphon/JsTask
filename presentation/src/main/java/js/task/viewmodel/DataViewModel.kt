@@ -10,6 +10,7 @@ import js.task.domain.usecase.model.DataResponse
 import js.task.domain.usecase.GetDataUseCase
 import js.task.domain.usecase.OnNewDataUseCase
 import js.task.domain.usecase.model.DomainModel
+import js.task.provider.di.DataProviderModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -61,8 +62,8 @@ class DataViewModel @Inject constructor(
 
                 val applicationGraph = DaggerApplicationGraph.builder()
                     .dataProviderModule(DataProviderModule(applicationContext))
-                    .getDataUseCaseModule(GetDataUseCaseModule(applicationContext))
-                    .dataViewModelModule(DataViewModelModule(applicationContext)).build()
+                    .getDataUseCaseModule(GetDataUseCaseModule())
+                    .dataViewModelModule(DataViewModelModule()).build()
                 val getDataUseCase = applicationGraph.getDataUseCase()
                 val onNewDataUseCase = applicationGraph.onNewDataUseCase()
 

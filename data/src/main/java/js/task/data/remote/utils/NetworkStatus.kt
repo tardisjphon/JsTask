@@ -1,4 +1,4 @@
-package js.task.data.net.utils
+package js.task.data.remote.utils
 
 import android.annotation.SuppressLint
 import android.content.Context

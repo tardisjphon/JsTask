@@ -1,13 +1,13 @@
 package js.task.data
 
-import js.task.data.db.model.DataModel
-import js.task.data.net.ServiceBuilder
-import js.task.data.net.ServiceBuilder2
-import js.task.data.net.data.DailyMotion
-import js.task.data.net.data.Github
-import js.task.data.net.endpoints.DailyMotionEndpoints
-import js.task.data.net.endpoints.GithubEndpoints
-import js.task.provider.converter.DataConverter
+import js.task.data.local.model.DataModel
+import js.task.data.remote.ServiceBuilder
+import js.task.data.remote.ServiceBuilder2
+import js.task.data.remote.data.DailyMotion
+import js.task.data.remote.data.Github
+import js.task.data.remote.endpoints.DailyMotionEndpoints
+import js.task.data.remote.endpoints.GithubEndpoints
+import js.task.data.remote.converter.DataConverter
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview

@@ -1,10 +1,10 @@
-package js.task.data.db.model
+package js.task.data.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
-import js.task.provider.model.ApiName
+import js.task.data.remote.converter.model.ApiName
 
 @Entity(tableName = "data")
 data class DataModel

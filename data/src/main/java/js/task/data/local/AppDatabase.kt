@@ -1,13 +1,13 @@
-package js.task.data.db
+package js.task.data.local
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
-import js.task.data.db.converter.DailyMotionConverter
-import js.task.data.db.dao.DataDao
-import js.task.data.db.model.DataModel
+import js.task.data.local.converter.DailyMotionConverter
+import js.task.data.local.dao.DataDao
+import js.task.data.local.model.DataModel
 
 @Database(entities = [DataModel::class], version = 1, exportSchema = false)
 @TypeConverters(DailyMotionConverter::class)

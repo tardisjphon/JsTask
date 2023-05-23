@@ -1,4 +1,4 @@
-package js.task.data.db.model
+package js.task.data.local.model
 
 data class DailyMotion
 (

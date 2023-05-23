@@ -1,11 +1,11 @@
-package js.task.di
+package js.task.provider.di
 
 import android.content.Context
 import dagger.Module
 import dagger.Provides
 import js.task.data.DbRepository
 import js.task.data.RetrofitRepository
-import js.task.data.net.utils.NetworkStatus
+import js.task.data.remote.utils.NetworkStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Named
@@ -26,9 +26,9 @@ class DataProviderModule(
 
     @Provides
     @Named("ValueRetrofitRepository")
-    fun provideRetrofitRepository() : RetrofitRepository
+    fun provideRetrofitRepository(@Named("ValueDbRepository") dbRepository : DbRepository) : RetrofitRepository
     {
-        return RetrofitRepository(provideDbRepository())
+        return RetrofitRepository(dbRepository)
     }
 
     @Provides

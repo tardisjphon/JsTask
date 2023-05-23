@@ -1,8 +1,8 @@
 package js.task.data
 
 import android.content.Context
-import js.task.data.db.AppDatabase
-import js.task.data.db.model.DataModel
+import js.task.data.local.AppDatabase
+import js.task.data.local.model.DataModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull

@@ -1,4 +1,4 @@
-package js.task.provider.model
+package js.task.data.remote.converter.model
 
 enum class ApiName
 {

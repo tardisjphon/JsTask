@@ -1,7 +1,7 @@
-package js.task.data.net.endpoints
+package js.task.data.remote.endpoints
 
-import js.task.data.db.model.GithubPage
-import js.task.data.net.data.Github
+import js.task.data.local.model.GithubPage
+import js.task.data.remote.data.Github
 import retrofit2.http.GET
 
 interface GithubEndpoints

@@ -1,9 +1,9 @@
-package js.task.provider.converter
+package js.task.data.remote.converter
 
-import js.task.data.db.model.DailyMotionPage
-import js.task.data.db.model.DataModel
-import js.task.data.db.model.GithubPage
-import js.task.provider.model.ApiName
+import js.task.data.local.model.DailyMotionPage
+import js.task.data.local.model.DataModel
+import js.task.data.local.model.GithubPage
+import js.task.data.remote.converter.model.ApiName
 import java.util.*
 import javax.inject.Inject
 

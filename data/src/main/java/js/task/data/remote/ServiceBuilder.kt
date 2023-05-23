@@ -1,10 +1,10 @@
-package js.task.data.net
+package js.task.data.remote
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ServiceBuilder2
+object ServiceBuilder
 {
     private lateinit var baseUrl : String
 

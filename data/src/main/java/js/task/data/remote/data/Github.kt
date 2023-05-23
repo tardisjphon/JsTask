@@ -1,4 +1,4 @@
-package js.task.data.net.data
+package js.task.data.remote.data
 
 object Github
 {

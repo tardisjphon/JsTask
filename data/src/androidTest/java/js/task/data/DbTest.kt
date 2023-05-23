@@ -5,9 +5,9 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import app.cash.turbine.test
-import js.task.data.db.AppDatabase
-import js.task.data.db.dao.DataDao
-import js.task.data.db.model.DataModel
+import js.task.data.local.AppDatabase
+import js.task.data.local.dao.DataDao
+import js.task.data.local.model.DataModel
 import kotlinx.coroutines.*
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*

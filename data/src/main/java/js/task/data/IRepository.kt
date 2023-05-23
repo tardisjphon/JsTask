@@ -1,6 +1,6 @@
 package js.task.data
 
-import js.task.data.db.model.DataModel
+import js.task.data.local.model.DataModel
 import kotlinx.coroutines.flow.Flow
 
 

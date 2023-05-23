@@ -1,7 +1,7 @@
-package js.task.data.db.dao
+package js.task.data.local.dao
 
 import androidx.room.*
-import js.task.data.db.model.DataModel
+import js.task.data.local.model.DataModel
 import kotlinx.coroutines.flow.Flow
 
 @Dao
