@@ -1,9 +1,9 @@
 package js.task.domain
 
-import js.task.data.db.model.DataModel
-import js.task.domain.model.DataResponse
+import js.task.domain.model.DomainDataProvider
 import js.task.domain.usecase.OnNewDataUseCase
-import js.task.provider.DataProvider
+import js.task.domain.usecase.model.DataResponse
+import js.task.domain.usecase.model.DomainModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -14,11 +14,11 @@ import javax.inject.Inject
 
 
 class OnNewDataUseCaseImpl @Inject constructor(
-    private val dataProvider : DataProvider,
+    private val dataProvider : DomainDataProvider,
     private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 ) : OnNewDataUseCase
 {
-    override suspend fun invokeOnNewData(dataList : ArrayList<DataModel>) : Flow<DataResponse>
+    override suspend fun invokeOnNewData(dataList : List<DomainModel>) : Flow<DataResponse>
     {
         return withContext(coroutineScope.coroutineContext) {
 
@@ -31,8 +31,10 @@ class OnNewDataUseCaseImpl @Inject constructor(
                     (DataResponse.REPO_NOT_CHANGED)
                 }
 
-                dataList.clear()
-                dataList.addAll(data)
+                (dataList as ArrayList).apply {
+                    clear()
+                    addAll(data)
+                }
 
                 Timber.i("data list added")
                 (DataResponse.LOADED_FROM_REPO)

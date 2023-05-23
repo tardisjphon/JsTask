@@ -5,11 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.CreationExtras
-import js.task.data.db.model.DataModel
 import js.task.di.*
-import js.task.domain.model.DataResponse
+import js.task.domain.usecase.model.DataResponse
 import js.task.domain.usecase.GetDataUseCase
 import js.task.domain.usecase.OnNewDataUseCase
+import js.task.domain.usecase.model.DomainModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,11 +17,12 @@ import javax.inject.Inject
 
 
 class DataViewModel @Inject constructor(
-    val delegateGetDataUseCase : GetDataUseCase, val delegateOnNewDataUseCase : OnNewDataUseCase
+    private val delegateGetDataUseCase : GetDataUseCase,
+    private val delegateOnNewDataUseCase : OnNewDataUseCase
 ) : ViewModel(), GetDataUseCase by delegateGetDataUseCase,
     OnNewDataUseCase by delegateOnNewDataUseCase
 {
-    val dataList by lazy { ArrayList<DataModel>() }
+    val dataList by lazy { ArrayList<DomainModel>() }
     val dataObserver by lazy { MutableLiveData<DataResponse>() }
 
     init

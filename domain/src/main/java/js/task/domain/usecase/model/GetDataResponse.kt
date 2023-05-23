@@ -1,4 +1,4 @@
-package js.task.domain.model
+package js.task.domain.usecase.model
 
 enum class GetDataResponse
 {

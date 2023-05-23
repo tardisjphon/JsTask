@@ -1,9 +1,9 @@
 package js.task.domain.usecase
 
-import js.task.data.db.model.DataModel
-import js.task.domain.model.GetDataResponse
+import js.task.domain.usecase.model.DomainModel
+import js.task.domain.usecase.model.GetDataResponse
 
 interface GetDataUseCase
 {
-    suspend fun invokeGetData(dataList : ArrayList<DataModel>) : GetDataResponse
+    suspend fun invokeGetData(dataList : List<DomainModel>) : GetDataResponse
 }

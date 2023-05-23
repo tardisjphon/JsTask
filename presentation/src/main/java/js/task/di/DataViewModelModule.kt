@@ -6,6 +6,8 @@ import dagger.Provides
 import js.task.data.DbRepository
 import js.task.data.RetrofitRepository
 import js.task.data.net.utils.NetworkStatus
+import js.task.di.conversion.PresentationDataProvider
+import js.task.di.conversion.PresentationNetworkProvider
 import js.task.domain.GetDataUseCaseImpl
 import js.task.domain.OnNewDataUseCaseImpl
 import js.task.domain.usecase.GetDataUseCase
@@ -36,18 +38,34 @@ class DataViewModelModule(
 
     @Provides
     fun getDataUseCase(
-        @Named("ValueDataProvider") dataProvider : DataProvider,
-        @Named("ValueNetworkStatus") networkStatus : NetworkStatus
+        @Named("ValuePresentationDataProvider") presentationDataProvider : PresentationDataProvider,
+        @Named("ValuePresentationNetworkProvider") presentationNetworkProvider : PresentationNetworkProvider
     ) : GetDataUseCase
     {
-        return GetDataUseCaseImpl(dataProvider, networkStatus, coroutineScope)
+        return GetDataUseCaseImpl(
+                presentationDataProvider, presentationNetworkProvider, coroutineScope
+        )
     }
 
     @Provides
     fun onNewDataUseCase(
-        @Named("ValueDataProvider") dataProvider : DataProvider,
+        @Named("ValuePresentationDataProvider") presentationDataProvider : PresentationDataProvider,
     ) : OnNewDataUseCase
     {
-        return OnNewDataUseCaseImpl(dataProvider, coroutineScope)
+        return OnNewDataUseCaseImpl(presentationDataProvider, coroutineScope)
+    }
+
+    @Provides
+    @Named("ValuePresentationDataProvider")
+    fun getPresentationDataProvider(@Named("ValueDataProvider") dataProvider : DataProvider) : PresentationDataProvider
+    {
+        return PresentationDataProvider(dataProvider)
+    }
+
+    @Provides
+    @Named("ValuePresentationNetworkProvider")
+    fun getPresentationNetworkProvider(@Named("ValueNetworkStatus") networkStatus : NetworkStatus) : PresentationNetworkProvider
+    {
+        return PresentationNetworkProvider(networkStatus)
     }
 }

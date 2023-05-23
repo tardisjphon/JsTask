@@ -1,10 +1,10 @@
 package js.task.domain
 
-import js.task.data.db.model.DataModel
-import js.task.data.net.utils.NetworkStatus
-import js.task.domain.model.GetDataResponse
+import js.task.domain.model.DomainDataProvider
+import js.task.domain.model.DomainNetworkStatus
+import js.task.domain.usecase.model.DomainModel
+import js.task.domain.usecase.model.GetDataResponse
 import js.task.domain.usecase.GetDataUseCase
-import js.task.provider.DataProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -13,14 +13,14 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class GetDataUseCaseImpl @Inject constructor(
-    private val dataProvider : DataProvider,
-    private val networkStatus : NetworkStatus,
+    private val dataProvider : DomainDataProvider,
+    private val networkStatus : DomainNetworkStatus,
     private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 ) : GetDataUseCase
 {
-    override suspend fun invokeGetData(dataList : ArrayList<DataModel>) : GetDataResponse
+    override suspend fun invokeGetData(dataList : List<DomainModel>) : GetDataResponse
     {
-        if (dataList.size == 0)
+        if (dataList.isEmpty())
         {
             coroutineScope.launch {
 

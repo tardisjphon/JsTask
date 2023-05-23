@@ -9,7 +9,9 @@ import js.task.provider.model.ApiName
 @Entity(tableName = "data")
 data class DataModel
 (
-    @Expose(serialize = false, deserialize = false) @PrimaryKey(autoGenerate = true) @ColumnInfo(
+    @Expose(serialize = false, deserialize = false)
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(
             name = "id_auto"
     ) val idAuto : Int? = null,
 

@@ -9,8 +9,8 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import js.task.application.R
 import js.task.application.databinding.FragmentListBinding
-import js.task.data.db.model.DataModel
-import js.task.domain.model.DataResponse
+import js.task.domain.usecase.model.DataResponse
+import js.task.domain.usecase.model.DomainModel
 import js.task.viewmodel.DataViewModel
 import js.task.views.itemslist.ItemsListViewAdapter
 import js.task.views.itemslist.PlaceholderItem
@@ -77,8 +77,7 @@ class ListFragment : Fragment()
     }
 
     private fun setRecyclerView(
-        recyclerView : RecyclerView?,
-        placeHolderItems : List<PlaceholderItem>?
+        recyclerView : RecyclerView?, placeHolderItems : List<PlaceholderItem>?
     )
     {
         Timber.i("setRecyclerView")
@@ -106,14 +105,12 @@ class ListFragment : Fragment()
         } ?: { Timber.w("setDetailsFragment not set") }
     }
 
-    private fun getPlaceholderItems(dataList : ArrayList<DataModel>) : List<PlaceholderItem>
+    private fun getPlaceholderItems(dataList : ArrayList<DomainModel>) : List<PlaceholderItem>
     {
         val placeHolderItems = ArrayList<PlaceholderItem>()
         dataList.forEach {
             placeHolderItems.add(
-                    PlaceholderItem(
-                            it.id ?: 0, it.userName ?: "", it.imageUrl ?: "", it.apiName?.name ?: ""
-                    )
+                    PlaceholderItem(it.id, it.userName, it.imageUrl, it.apiName)
             )
         }
         return placeHolderItems
