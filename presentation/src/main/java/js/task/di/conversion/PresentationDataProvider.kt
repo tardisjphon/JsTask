@@ -2,7 +2,7 @@ package js.task.di.conversion
 
 import js.task.domain.model.DomainDataProvider
 import js.task.domain.usecase.model.DomainModel
-import js.task.provider.DataProvider
+import js.task.data.DataProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

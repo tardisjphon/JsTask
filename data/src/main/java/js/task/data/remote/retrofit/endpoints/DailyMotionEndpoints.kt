@@ -1,7 +1,7 @@
-package js.task.data.remote.endpoints
+package js.task.data.remote.retrofit.endpoints
 
-import js.task.data.local.model.DailyMotionPage
-import js.task.data.remote.data.DailyMotion
+import js.task.data.local.db.model.DailyMotionPage
+import js.task.data.remote.retrofit.data.DailyMotion
 import retrofit2.http.GET
 
 interface DailyMotionEndpoints

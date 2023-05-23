@@ -1,11 +1,11 @@
-package js.task.provider.di
+package js.task.data.di
 
 import android.content.Context
 import dagger.Module
 import dagger.Provides
-import js.task.data.DbRepository
-import js.task.data.RetrofitRepository
-import js.task.data.remote.utils.NetworkStatus
+import js.task.data.local.DbRepository
+import js.task.data.remote.RetrofitRepository
+import js.task.data.remote.retrofit.utils.NetworkStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Named

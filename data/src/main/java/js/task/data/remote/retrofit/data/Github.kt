@@ -1,4 +1,4 @@
-package js.task.data.remote.data
+package js.task.data.remote.retrofit.data
 
 object Github
 {

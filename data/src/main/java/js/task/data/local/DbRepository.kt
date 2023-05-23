@@ -1,8 +1,9 @@
-package js.task.data
+package js.task.data.local
 
 import android.content.Context
-import js.task.data.local.AppDatabase
-import js.task.data.local.model.DataModel
+import js.task.data.Repository
+import js.task.data.local.db.AppDatabase
+import js.task.data.local.db.model.DataModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.firstOrNull
@@ -13,7 +14,7 @@ import javax.inject.Inject
 
 class DbRepository @Inject constructor(
     private val applicationContext : Context, private val coroutinesScope : CoroutineScope
-) : IRepository
+) : Repository
 {
     private val db by lazy { AppDatabase.getInstance(applicationContext) }
 

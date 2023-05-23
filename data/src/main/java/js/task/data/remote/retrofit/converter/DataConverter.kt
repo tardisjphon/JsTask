@@ -1,9 +1,9 @@
-package js.task.data.remote.converter
+package js.task.data.remote.retrofit.converter
 
-import js.task.data.local.model.DailyMotionPage
-import js.task.data.local.model.DataModel
-import js.task.data.local.model.GithubPage
-import js.task.data.remote.converter.model.ApiName
+import js.task.data.local.db.model.DailyMotionPage
+import js.task.data.local.db.model.DataModel
+import js.task.data.local.db.model.GithubPage
+import js.task.data.remote.retrofit.converter.model.ApiName
 import java.util.*
 import javax.inject.Inject
 

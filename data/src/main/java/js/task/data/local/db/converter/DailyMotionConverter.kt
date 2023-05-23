@@ -1,11 +1,11 @@
-package js.task.data.local.converter
+package js.task.data.local.db.converter
 
 import androidx.room.TypeConverter
 
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
 import com.google.gson.reflect.TypeToken
-import js.task.data.remote.data.DailyMotion
+import js.task.data.remote.retrofit.data.DailyMotion
 import timber.log.Timber
 
 

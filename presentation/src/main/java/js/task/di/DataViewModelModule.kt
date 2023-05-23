@@ -2,15 +2,15 @@ package js.task.di
 
 import dagger.Module
 import dagger.Provides
-import js.task.data.DbRepository
-import js.task.data.RetrofitRepository
+import js.task.data.local.DbRepository
+import js.task.data.remote.RetrofitRepository
 import js.task.di.conversion.PresentationDataProvider
 import js.task.di.conversion.PresentationNetworkProvider
 import js.task.domain.GetDataUseCaseImpl
 import js.task.domain.OnNewDataUseCaseImpl
 import js.task.domain.usecase.GetDataUseCase
 import js.task.domain.usecase.OnNewDataUseCase
-import js.task.provider.DataProvider
+import js.task.data.DataProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Named

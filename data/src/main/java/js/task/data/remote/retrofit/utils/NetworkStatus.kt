@@ -1,4 +1,4 @@
-package js.task.data.remote.utils
+package js.task.data.remote.retrofit.utils
 
 import android.annotation.SuppressLint
 import android.content.Context

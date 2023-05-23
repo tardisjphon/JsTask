@@ -1,6 +1,6 @@
 package js.task.di.conversion
 
-import js.task.data.remote.utils.NetworkStatus
+import js.task.data.remote.retrofit.utils.NetworkStatus
 import js.task.domain.model.DomainNetworkStatus
 import javax.inject.Inject
 

@@ -3,8 +3,8 @@ package js.task.di
 import dagger.Component
 import js.task.domain.usecase.GetDataUseCase
 import js.task.domain.usecase.OnNewDataUseCase
-import js.task.provider.DataProvider
-import js.task.provider.di.DataProviderModule
+import js.task.data.DataProvider
+import js.task.data.di.DataProviderModule
 import js.task.viewmodel.DataViewModel
 
 @Component(modules = [

@@ -1,8 +1,8 @@
-package js.task.provider
+package js.task.data
 
-import js.task.data.DbRepository
-import js.task.data.RetrofitRepository
-import js.task.data.local.model.DataModel
+import js.task.data.local.DbRepository
+import js.task.data.remote.RetrofitRepository
+import js.task.data.local.db.model.DataModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow

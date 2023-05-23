@@ -1,10 +1,10 @@
 package js.task.data
 
-import js.task.data.local.model.DataModel
+import js.task.data.local.db.model.DataModel
 import kotlinx.coroutines.flow.Flow
 
 
-interface IRepository
+interface Repository
 {
     fun onFailure(message : String)
     fun getData() : Flow<List<DataModel>>
