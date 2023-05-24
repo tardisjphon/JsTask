@@ -1,4 +1,4 @@
-package js.task.views.itemslist
+package js.task.screens.main.itemslist
 
 import android.annotation.SuppressLint
 import android.view.View.OnClickListener
@@ -11,7 +11,6 @@ class DataViewHolder(private val binding : ListItemBinding) : RecyclerView.ViewH
     fun onBindData(item : PlaceholderItem, callBack : (PlaceholderItem) -> Unit)
     {
         binding.item = item
-
         binding.click = OnClickListener {
             callBack(item)
         }

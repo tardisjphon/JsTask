@@ -1,4 +1,4 @@
-package js.task.di.conversion
+package js.task.di.adapters
 
 import js.task.domain.model.DomainDataProvider
 import js.task.domain.usecase.model.DomainModel

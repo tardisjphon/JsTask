@@ -1,4 +1,4 @@
-package js.task.views
+package js.task.screens.details
 
 import android.os.Bundle
 import android.view.LayoutInflater

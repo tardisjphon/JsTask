@@ -1,4 +1,4 @@
-package js.task.views
+package js.task.screens.main
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,10 +11,10 @@ import js.task.application.R
 import js.task.application.databinding.FragmentListBinding
 import js.task.domain.usecase.model.DataResponse
 import js.task.domain.usecase.model.DomainModel
+import js.task.screens.details.model.ParcelableNames
 import js.task.viewmodel.DataViewModel
-import js.task.views.itemslist.ItemsListViewAdapter
-import js.task.views.itemslist.PlaceholderItem
-import js.task.views.model.RecyclerData
+import js.task.screens.main.itemslist.ItemsListViewAdapter
+import js.task.screens.main.itemslist.PlaceholderItem
 import timber.log.Timber
 
 class ListFragment : Fragment()
@@ -118,16 +118,11 @@ class ListFragment : Fragment()
 
     private fun goToDetails(item : PlaceholderItem)
     {
-        val bundle = Bundle()
-        bundle.putString(
-                RecyclerData.ARGUMENTS_USER_NAME, item.userName
-        )
-        bundle.putString(
-                RecyclerData.ARGUMENTS_URL, item.url
-        )
-        bundle.putString(
-                RecyclerData.ARGUMENTS_API, item.apiName
-        )
+
+        val bundle =  Bundle().apply {
+            putParcelable(ParcelableNames.PARCELABLE_NAME_DETAILS, item)
+        }
+
         val navController = (activity as MainActivity).getNavControllerDetails()
         navController.navigate(R.id.action_to_DetailsFragment, bundle)
     }

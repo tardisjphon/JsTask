@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/EmptyDetailsFragment"
-        android:name="js.task.views.EmptyDetailsFragment"
+        android:name="js.task.screens.details.EmptyDetailsFragment"
         android:label="@string/details_empty_fragment_label"
         tools:layout="@layout/fragment_details_empty">
 
@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/DetailsFragment"
-        android:name="js.task.views.DetailsFragment"
+        android:name="js.task.screens.details.DetailsFragment"
         android:label="@string/details_fragment_label"
         tools:layout="@layout/fragment_details">
 

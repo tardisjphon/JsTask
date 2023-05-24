@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="js.task.views.EmptyDetailsFragment">
+    tools:context="js.task.screens.details.EmptyDetailsFragment">
 
     <TextView
         android:id="@+id/textview_empty"

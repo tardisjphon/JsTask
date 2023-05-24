@@ -1,4 +1,4 @@
-package js.task.views.itemslist
+package js.task.screens.main.itemslist
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

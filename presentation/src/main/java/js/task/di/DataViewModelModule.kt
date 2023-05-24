@@ -4,8 +4,8 @@ import dagger.Module
 import dagger.Provides
 import js.task.data.local.DbRepository
 import js.task.data.remote.RetrofitRepository
-import js.task.di.conversion.PresentationDataProvider
-import js.task.di.conversion.PresentationNetworkProvider
+import js.task.di.adapters.PresentationDataProvider
+import js.task.di.adapters.PresentationNetworkProvider
 import js.task.domain.GetDataUseCaseImpl
 import js.task.domain.OnNewDataUseCaseImpl
 import js.task.domain.usecase.GetDataUseCase

@@ -1,4 +1,4 @@
-package js.task.views
+package js.task.screens.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

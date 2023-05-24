@@ -4,7 +4,7 @@
     <data>
         <variable
             name="item"
-            type="js.task.views.itemslist.PlaceholderItem" />
+            type="js.task.screens.main.itemslist.PlaceholderItem" />
 
         <variable
             name="click"
@@ -14,7 +14,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:onClick="@{click}"
         android:background="@color/teal_200">
 
@@ -41,6 +41,12 @@
             android:layout_margin="@dimen/list_text_margin"
             android:text="@{item.url}"
             android:textAppearance="?attr/textAppearanceListItem" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black"
+            />
 
     </LinearLayout>
 

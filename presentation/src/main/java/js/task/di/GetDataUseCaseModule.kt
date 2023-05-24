@@ -3,8 +3,8 @@ package js.task.di
 import dagger.Module
 import dagger.Provides
 import js.task.data.remote.retrofit.utils.NetworkStatus
-import js.task.di.conversion.PresentationDataProvider
-import js.task.di.conversion.PresentationNetworkProvider
+import js.task.di.adapters.PresentationDataProvider
+import js.task.di.adapters.PresentationNetworkProvider
 import js.task.data.DataProvider
 import javax.inject.Named
 

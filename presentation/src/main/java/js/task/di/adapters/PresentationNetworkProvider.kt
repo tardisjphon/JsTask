@@ -1,4 +1,4 @@
-package js.task.di.conversion
+package js.task.di.adapters
 
 import js.task.data.remote.retrofit.utils.NetworkStatus
 import js.task.domain.model.DomainNetworkStatus
