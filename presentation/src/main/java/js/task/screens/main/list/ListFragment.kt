@@ -1,4 +1,4 @@
-package js.task.screens.main
+package js.task.screens.main.list
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,9 +12,10 @@ import js.task.application.databinding.FragmentListBinding
 import js.task.domain.usecase.model.DataResponse
 import js.task.domain.usecase.model.DomainModel
 import js.task.screens.details.model.ParcelableNames
+import js.task.screens.main.MainActivity
 import js.task.viewmodel.DataViewModel
-import js.task.screens.main.itemslist.ItemsListViewAdapter
-import js.task.screens.main.itemslist.PlaceholderItem
+import js.task.screens.main.list.adapter.ItemsListViewAdapter
+import js.task.screens.main.list.model.PlaceholderItem
 import timber.log.Timber
 
 class ListFragment : Fragment()

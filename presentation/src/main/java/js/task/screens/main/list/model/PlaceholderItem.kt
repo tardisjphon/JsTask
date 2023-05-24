@@ -1,4 +1,4 @@
-package js.task.screens.main.itemslist
+package js.task.screens.main.list.model
 
 import android.os.Parcel
 import android.os.Parcelable

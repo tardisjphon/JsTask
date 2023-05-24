@@ -1,9 +1,11 @@
-package js.task.screens.main.itemslist
+package js.task.screens.main.list.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import js.task.application.databinding.ListItemBinding
+import js.task.screens.main.list.holder.DataViewHolder
+import js.task.screens.main.list.model.PlaceholderItem
 
 class ItemsListViewAdapter(
     private val data : List<PlaceholderItem>, private val callBack : (PlaceholderItem) -> Unit

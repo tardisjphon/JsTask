@@ -1,9 +1,10 @@
-package js.task.screens.main.itemslist
+package js.task.screens.main.list.holder
 
 import android.annotation.SuppressLint
 import android.view.View.OnClickListener
 import androidx.recyclerview.widget.RecyclerView
 import js.task.application.databinding.ListItemBinding
+import js.task.screens.main.list.model.PlaceholderItem
 
 class DataViewHolder(private val binding : ListItemBinding) : RecyclerView.ViewHolder(binding.root)
 {

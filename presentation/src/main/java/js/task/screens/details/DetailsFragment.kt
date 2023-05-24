@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import js.task.application.databinding.FragmentDetailsBinding
 import js.task.screens.details.model.ParcelableNames
-import js.task.screens.main.itemslist.PlaceholderItem
+import js.task.screens.main.list.model.PlaceholderItem
 
 class DetailsFragment : Fragment()
 {
