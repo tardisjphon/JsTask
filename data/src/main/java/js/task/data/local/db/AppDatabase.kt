@@ -9,7 +9,11 @@ import js.task.data.local.db.converter.DailyMotionConverter
 import js.task.data.local.db.dao.DataDao
 import js.task.data.local.db.model.DataModel
 
-@Database(entities = [DataModel::class], version = 1, exportSchema = false)
+@Database(
+        entities = [DataModel::class],
+        version = 1,
+        exportSchema = false
+)
 @TypeConverters(DailyMotionConverter::class)
 abstract class AppDatabase : RoomDatabase()
 {
@@ -20,13 +24,19 @@ abstract class AppDatabase : RoomDatabase()
         @Volatile
         private var INSTANCE : AppDatabase? = null
 
-        fun getInstance(context : Context) : AppDatabase = INSTANCE ?: synchronized(this) {
-            INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
-        }
+        fun getInstance(context : Context) : AppDatabase =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
+            }
 
 
         private fun buildDatabase(context : Context) =
-            Room.databaseBuilder(context.applicationContext, AppDatabase::class.java, NAME).build()
+            Room.databaseBuilder(
+                    context.applicationContext,
+                    AppDatabase::class.java,
+                    NAME
+            )
+                .build()
     }
 
     abstract fun dataDao() : DataDao

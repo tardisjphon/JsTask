@@ -11,13 +11,17 @@ class ServiceBuilder
 
     private val client by lazy {
 
-        OkHttpClient.Builder().build()
+        OkHttpClient.Builder()
+            .build()
     }
 
     private val retrofit by lazy {
 
-        Retrofit.Builder().baseUrl(baseUrl).addConverterFactory(GsonConverterFactory.create())
-            .client(client).build()
+        Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
     }
 
     fun <T> buildService(baseAddress : String, service : Class<T>) : T

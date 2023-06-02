@@ -19,7 +19,7 @@ class RemoteDataConverter @Inject constructor()
                     apiName = ApiName.DAILY_MOTION
             )
         }
-            ?.sortedByDescending { it.apiName?.name } ?: ArrayList()
+                   ?.sortedByDescending { it.apiName?.name } ?: ArrayList()
     }
 
     fun getDataModel(data : List<GithubPage>) : List<DataModel>

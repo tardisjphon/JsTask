@@ -1,8 +1,8 @@
 package js.task.data
 
 import js.task.data.local.DbRepository
-import js.task.data.remote.RetrofitRepository
 import js.task.data.local.db.model.DataModel
+import js.task.data.remote.RetrofitRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -19,19 +19,15 @@ class DataProvider @Inject constructor(
     fun download()
     {
         coroutineScope.launch {
-            remoteRepository.get().collect {
-                localRepository.updateData(it)
-            }
+            remoteRepository.get()
+                .collect {
+                    localRepository.updateData(it)
+                }
         }
     }
 
     fun getData() : Flow<List<DataModel>>
     {
         return localRepository.getData()
-    }
-
-    suspend fun isRepositoryData() : Boolean
-    {
-        return localRepository.isData()
     }
 }

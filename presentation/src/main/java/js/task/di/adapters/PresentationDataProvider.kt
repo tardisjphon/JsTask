@@ -28,9 +28,4 @@ class PresentationDataProvider @Inject constructor(private val dataProvider : Da
             }
         }
     }
-
-    override suspend fun isRepositoryData() : Boolean
-    {
-        return dataProvider.isRepositoryData()
-    }
 }

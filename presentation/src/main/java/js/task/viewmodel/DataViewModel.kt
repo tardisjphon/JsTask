@@ -5,12 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.CreationExtras
-import js.task.di.*
-import js.task.domain.usecase.model.DataResponse
-import js.task.domain.usecase.GetDataUseCase
-import js.task.domain.usecase.OnNewDataUseCase
-import js.task.domain.usecase.model.DomainModel
 import js.task.data.di.DataProviderModule
+import js.task.di.*
+import js.task.domain.usecase.IGetLocalDataUseCase
+import js.task.domain.usecase.IGetRemoteDataUseCase
+import js.task.domain.usecase.model.DomainModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,39 +17,32 @@ import javax.inject.Inject
 
 
 class DataViewModel @Inject constructor(
-    private val delegateGetDataUseCase : GetDataUseCase,
-    private val delegateOnNewDataUseCase : OnNewDataUseCase
-) : ViewModel(), GetDataUseCase by delegateGetDataUseCase,
-    OnNewDataUseCase by delegateOnNewDataUseCase
+    private val getLocalDataUseCase : IGetLocalDataUseCase,
+    private val getRemoteDataUseCase : IGetRemoteDataUseCase
+) : ViewModel(), IGetLocalDataUseCase by getLocalDataUseCase,
+    IGetRemoteDataUseCase by getRemoteDataUseCase
 {
-    val dataList by lazy { ArrayList<DomainModel>() }
-    val dataObserver by lazy { MutableLiveData<DataResponse>() }
-
-    init
-    {
-        setDataListener()
-    }
-
-    private fun setDataListener()
-    {
-        CoroutineScope(Dispatchers.Main).launch {
-            delegateOnNewDataUseCase.invokeOnNewData(dataList).collect {
-                dataObserver.postValue(it)
-            }
-        }
-    }
+    val dataList by lazy { MutableLiveData<List<DomainModel>>() }
 
     fun getData()
     {
         CoroutineScope(Dispatchers.Main).launch {
-            delegateGetDataUseCase.invokeGetData(dataList)
+            getLocalDataUseCase.invoke()
+                .collect {
+                    if (it.isEmpty())
+                    {
+                        getRemoteDataUseCase.invokeRemote()
+                    }
+                    else
+                    {
+                        dataList.postValue(it)
+                    }
+                }
         }
     }
 
-
     companion object
     {
-
         val Factory : ViewModelProvider.Factory = object : ViewModelProvider.Factory
         {
             @Suppress("UNCHECKED_CAST")
@@ -63,11 +55,15 @@ class DataViewModel @Inject constructor(
                 val applicationGraph = DaggerApplicationGraph.builder()
                     .dataProviderModule(DataProviderModule(applicationContext))
                     .getDataUseCaseModule(GetDataUseCaseModule())
-                    .dataViewModelModule(DataViewModelModule()).build()
-                val getDataUseCase = applicationGraph.getDataUseCase()
-                val onNewDataUseCase = applicationGraph.onNewDataUseCase()
+                    .dataViewModelModule(DataViewModelModule())
+                    .build()
+                val getLocalDataUseCase = applicationGraph.getLocalDataUseCase()
+                val getRemoteDataUseCase = applicationGraph.getRemoteDataUseCase()
 
-                return DataViewModel(getDataUseCase, onNewDataUseCase) as T
+                return DataViewModel(
+                        getLocalDataUseCase,
+                        getRemoteDataUseCase
+                ) as T
             }
         }
     }

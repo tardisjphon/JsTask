@@ -8,5 +8,4 @@ interface DomainDataProvider
 {
     fun download()
     fun getData() : Flow<List<DomainModel>>
-    suspend fun isRepositoryData() : Boolean
 }
