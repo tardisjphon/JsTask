@@ -33,8 +33,16 @@ android {
     }
 
     buildFeatures {
+        compose true
         viewBinding true
         dataBinding true
+    }
+
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.7"
     }
 }
 
@@ -43,26 +51,35 @@ dependencies {
     implementation project(path: ':data')
     implementation project(path: ':domain')
 
-    implementation 'androidx.core:core-ktx:1.10.1'
-    implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
+    implementation deps.androidx.core_ktx
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.material
+    implementation deps.androidx.constraintlayout
+    implementation deps.androidx.navigation_fragment_ktx
+    //implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
-    implementation "com.github.bumptech.glide:glide:$glide_version"
-    kapt "com.github.bumptech.glide:compiler:$glide_version"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glide_version"
+    implementation deps.compose.material
+    debugImplementation deps.compose.ui_tooling
+    implementation deps.compose.ui_tooling_preview
+    implementation deps.compose.activity
 
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
-    implementation "com.google.dagger:dagger-android:$dagger_version"
-    implementation "com.google.dagger:dagger-android-support:$dagger_version"
-    kapt "com.google.dagger:dagger-android-processor:$dagger_version"
+//    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
+//    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.1"
+//    debugImplementation "androidx.compose.ui:ui-tooling"
 
-    implementation "com.jakewharton.timber:timber:$timber_version"
+    implementation deps.glide.glide
+    kapt deps.glide.compiler
+    annotationProcessor deps.glide.compiler
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    implementation deps.dagger.dagger
+    kapt deps.dagger.compiler
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.android_processor
+
+    implementation deps.timber.timber
+
+    testImplementation deps.tests.junit
+    androidTestImplementation deps.tests.junit_ex
+    androidTestImplementation deps.tests.espresso_core
 }

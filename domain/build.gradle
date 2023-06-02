@@ -33,13 +33,13 @@ android {
 
 dependencies {
 
-    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation deps.androidx.appcompat
 
-    implementation "com.google.dagger:dagger:$dagger_version"
-    kapt "com.google.dagger:dagger-compiler:$dagger_version"
+    implementation deps.dagger.dagger
+    kapt deps.dagger.compiler
 
-    implementation "com.jakewharton.timber:timber:$timber_version"
+    implementation deps.timber.timber
 
-    testImplementation 'junit:junit:4.13.2'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    testImplementation deps.tests.junit
+    androidTestImplementation deps.tests.junit_ex
 }

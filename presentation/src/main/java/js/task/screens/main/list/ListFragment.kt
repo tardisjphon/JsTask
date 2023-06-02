@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
-import js.task.application.R
 import js.task.application.databinding.FragmentListBinding
 import js.task.domain.usecase.model.DataResponse
 import js.task.domain.usecase.model.DomainModel
 import js.task.screens.details.model.ParcelableNames
-import js.task.screens.main.MainActivity
 import js.task.viewmodel.DataViewModel
 import js.task.screens.main.list.adapter.ItemsListViewAdapter
 import js.task.screens.main.list.model.PlaceholderItem
@@ -124,7 +122,7 @@ class ListFragment : Fragment()
             putParcelable(ParcelableNames.PARCELABLE_NAME_DETAILS, item)
         }
 
-        val navController = (activity as MainActivity).getNavControllerDetails()
-        navController.navigate(R.id.action_to_DetailsFragment, bundle)
+//        val navController = (activity as MainActivity).getNavControllerDetails()
+//        navController.navigate(R.id.action_to_DetailsFragment, bundle)
     }
 }
