@@ -54,4 +54,11 @@ class GetDataUseCaseImpl @Inject constructor(
 
         return (GetDataResponse.NOT_CHANGED)
     }
+
+    private val domainModelList by lazy { ArrayList<DomainModel>() }
+    override suspend fun execute() : List<DomainModel>
+    {
+        //if (domainModelList.isEmpty())
+        return ArrayList() //TODO
+    }
 }

@@ -18,6 +18,7 @@ class OnNewDataUseCaseImpl @Inject constructor(
     private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 ) : OnNewDataUseCase
 {
+
     override suspend fun invokeOnNewData(dataList : List<DomainModel>) : Flow<DataResponse>
     {
         return withContext(coroutineScope.coroutineContext) {

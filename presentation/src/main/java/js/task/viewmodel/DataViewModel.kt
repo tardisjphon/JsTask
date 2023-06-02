@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
+import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.viewmodel.CreationExtras
 import js.task.di.*
 import js.task.domain.usecase.model.DataResponse
@@ -13,6 +14,8 @@ import js.task.domain.usecase.model.DomainModel
 import js.task.data.di.DataProviderModule
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -25,6 +28,16 @@ class DataViewModel @Inject constructor(
 {
     val dataList by lazy { ArrayList<DomainModel>() }
     val dataObserver by lazy { MutableLiveData<DataResponse>() }
+
+    //https://medium.com/androiddevelopers/consuming-flows-safely-in-jetpack-compose-cde014d0d5a3
+
+//    val users = flowOf()
+//        .execute()
+//        .stateIn(
+//                scope = viewModelScope,
+//                started = SharingStarted.WhileSubscribed(5000L),
+//                initialValue = emptyList()
+//        )
 
     init
     {

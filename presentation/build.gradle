@@ -56,6 +56,7 @@ dependencies {
     implementation deps.androidx.material
     implementation deps.androidx.constraintlayout
     implementation deps.androidx.navigation_fragment_ktx
+
     //implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
 
     implementation deps.compose.material
@@ -63,9 +64,9 @@ dependencies {
     implementation deps.compose.ui_tooling_preview
     implementation deps.compose.activity
 
-//    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1"
-//    implementation "androidx.lifecycle:lifecycle-runtime-compose:2.6.1"
-//    debugImplementation "androidx.compose.ui:ui-tooling"
+    implementation deps.compose.lifecycle_runtime
+    implementation deps.compose.lifecycle_viewmodel
+    //debugImplementation "androidx.compose.ui:ui-tooling"
 
     implementation deps.glide.glide
     kapt deps.glide.compiler
