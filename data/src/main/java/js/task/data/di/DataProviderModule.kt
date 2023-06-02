@@ -26,9 +26,9 @@ class DataProviderModule(
 
     @Provides
     @Named("ValueRetrofitRepository")
-    fun provideRetrofitRepository(@Named("ValueDbRepository") dbRepository : DbRepository) : RetrofitRepository
+    fun provideRetrofitRepository() : RetrofitRepository
     {
-        return RetrofitRepository(dbRepository)
+        return RetrofitRepository()
     }
 
     @Provides
