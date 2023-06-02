@@ -1,12 +1,10 @@
-package js.task.domain
+package js.task.domain.usecase
 
-import js.task.domain.model.DomainDataProvider
-import js.task.domain.usecase.IGetRemoteDataUseCase
 import javax.inject.Inject
 
 
 class GetRemoteDataUseCase @Inject constructor(
-    private val dataProvider : DomainDataProvider
+    private val dataProvider : IDomainDataProvider
 ) : IGetRemoteDataUseCase
 {
     override fun invokeRemote()
