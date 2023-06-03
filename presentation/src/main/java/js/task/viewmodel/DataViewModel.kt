@@ -27,7 +27,7 @@ class DataViewModel @Inject constructor(
     fun getData()
     {
         CoroutineScope(Dispatchers.Main).launch {
-            getLocalDataUseCase.invoke()
+            getLocalDataUseCase.invokeLocal()
                 .collect {
                     if (it.isEmpty())
                     {

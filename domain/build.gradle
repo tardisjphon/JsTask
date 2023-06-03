@@ -33,15 +33,10 @@ android {
 
 dependencies {
 
-    implementation deps.androidx.appcompat
-
     implementation deps.dagger.dagger
     kapt deps.dagger.compiler
 
-//    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1"
-//    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1'
-
-    implementation deps.timber.timber
+    implementation deps.kotlinx.coroutines_core
 
     testImplementation deps.tests.junit
     androidTestImplementation deps.tests.junit_ex

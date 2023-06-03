@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface IGetLocalDataUseCase
 {
-    fun invoke() : Flow<List<DomainModel>>
+    fun invokeLocal() : Flow<List<DomainModel>>
 }

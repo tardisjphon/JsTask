@@ -9,7 +9,7 @@ class GetLocalDataUseCase @Inject constructor(
     private val dataProvider : IDomainDataProvider
 ) : IGetLocalDataUseCase
 {
-    override fun invoke() : Flow<List<DomainModel>>
+    override fun invokeLocal() : Flow<List<DomainModel>>
     {
         return dataProvider.getData()
     }

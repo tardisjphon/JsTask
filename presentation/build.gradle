@@ -49,8 +49,6 @@ dependencies {
     implementation deps.androidx.constraintlayout
     implementation deps.androidx.navigation_fragment_ktx
 
-    //implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-
     implementation deps.glide.glide
     kapt deps.glide.compiler
     annotationProcessor deps.glide.compiler
