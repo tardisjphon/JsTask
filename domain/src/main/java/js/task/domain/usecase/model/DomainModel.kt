@@ -1,6 +1,5 @@
 package js.task.domain.usecase.model
 
-
 data class DomainModel
 (
     val id : Int,

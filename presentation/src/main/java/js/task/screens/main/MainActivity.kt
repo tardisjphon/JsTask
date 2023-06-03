@@ -1,23 +1,21 @@
 package js.task.screens.main
 
 import android.os.Bundle
-import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.viewModels
-import js.task.viewmodel.DataViewModel
-
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
+import js.task.application.R
 
 class MainActivity : AppCompatActivity()
 {
-    private val viewModel : DataViewModel by viewModels { DataViewModel.Factory }
-
     override fun onCreate(savedInstanceState : Bundle?)
     {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+    }
 
-        setContent {
-            MainScreen().setRecyclerView(viewModel)
-        }
+    fun getNavControllerDetails() : NavController
+    {
+        return findNavController(R.id.nav_host_fragment_content_details)
     }
 }

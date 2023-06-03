@@ -33,16 +33,8 @@ android {
     }
 
     buildFeatures {
-        compose true
         viewBinding true
         dataBinding true
-    }
-
-    buildFeatures {
-        compose true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.7"
     }
 }
 
@@ -58,15 +50,6 @@ dependencies {
     implementation deps.androidx.navigation_fragment_ktx
 
     //implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
-
-    implementation deps.compose.material
-    debugImplementation deps.compose.ui_tooling
-    implementation deps.compose.ui_tooling_preview
-    implementation deps.compose.activity
-
-    implementation deps.compose.lifecycle_runtime
-    implementation deps.compose.lifecycle_viewmodel
-    //debugImplementation "androidx.compose.ui:ui-tooling"
 
     implementation deps.glide.glide
     kapt deps.glide.compiler
