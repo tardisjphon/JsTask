@@ -4,8 +4,6 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import js.task.data.local.db.converter.DailyMotionConverter
 import js.task.data.local.db.dao.DataDao
 import js.task.data.local.db.model.DataModel
 
@@ -14,7 +12,6 @@ import js.task.data.local.db.model.DataModel
         version = 1,
         exportSchema = false
 )
-@TypeConverters(DailyMotionConverter::class)
 abstract class AppDatabase : RoomDatabase()
 {
     companion object

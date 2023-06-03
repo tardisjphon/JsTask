@@ -1,6 +1,5 @@
 package js.task.data.local
 
-import android.content.Context
 import js.task.data.Repository
 import js.task.data.local.db.AppDatabase
 import js.task.data.local.db.model.DataModel
@@ -12,11 +11,10 @@ import javax.inject.Inject
 
 
 class DbRepository @Inject constructor(
-    private val applicationContext : Context, private val coroutinesScope : CoroutineScope
+    private val db : AppDatabase,
+    private val coroutinesScope : CoroutineScope
 ) : Repository
 {
-    private val db by lazy { AppDatabase.getInstance(applicationContext) }
-
     override fun getData() : Flow<List<DataModel>>
     {
         return db.dataDao()

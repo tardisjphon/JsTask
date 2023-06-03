@@ -4,6 +4,7 @@ import android.content.Context
 import dagger.Module
 import dagger.Provides
 import js.task.data.local.DbRepository
+import js.task.data.local.db.AppDatabase
 import js.task.data.remote.RetrofitRepository
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -16,12 +17,17 @@ class DataProviderModule(
     private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 )
 {
+    private fun getDb() : AppDatabase
+    {
+        return AppDatabase.getInstance(context)
+    }
+
     @Provides
     @Named("ValueDbRepository")
     fun provideDbRepository() : DbRepository
     {
         return DbRepository(
-                context,
+                getDb(),
                 coroutineScope
         )
     }
