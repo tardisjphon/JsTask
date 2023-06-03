@@ -1,12 +1,11 @@
-package js.task.domain.model
+package js.task.domain.usecase
 
 import js.task.domain.usecase.model.DomainModel
 import kotlinx.coroutines.flow.Flow
 
 
-interface DomainDataProvider
+interface IDomainDataProvider
 {
     fun download()
     fun getData() : Flow<List<DomainModel>>
-    suspend fun isRepositoryData() : Boolean
 }

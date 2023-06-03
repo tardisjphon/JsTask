@@ -1,8 +1,8 @@
 package js.task.di
 
 import dagger.Component
-import js.task.domain.usecase.GetDataUseCase
-import js.task.domain.usecase.OnNewDataUseCase
+import js.task.domain.usecase.IGetLocalDataUseCase
+import js.task.domain.usecase.IGetRemoteDataUseCase
 import js.task.data.DataProvider
 import js.task.data.di.DataProviderModule
 import js.task.viewmodel.DataViewModel
@@ -20,7 +20,7 @@ interface ApplicationGraph
 
     fun dataViewModel() : DataViewModel
 
-    fun getDataUseCase() : GetDataUseCase
+    fun getLocalDataUseCase() : IGetLocalDataUseCase
 
-    fun onNewDataUseCase() : OnNewDataUseCase
+    fun getRemoteDataUseCase() : IGetRemoteDataUseCase
 }

@@ -5,7 +5,6 @@ import dagger.Module
 import dagger.Provides
 import js.task.data.local.DbRepository
 import js.task.data.remote.RetrofitRepository
-import js.task.data.remote.retrofit.utils.NetworkStatus
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Named
@@ -21,20 +20,16 @@ class DataProviderModule(
     @Named("ValueDbRepository")
     fun provideDbRepository() : DbRepository
     {
-        return DbRepository(context, coroutineScope)
+        return DbRepository(
+                context,
+                coroutineScope
+        )
     }
 
     @Provides
     @Named("ValueRetrofitRepository")
-    fun provideRetrofitRepository(@Named("ValueDbRepository") dbRepository : DbRepository) : RetrofitRepository
+    fun provideRetrofitRepository() : RetrofitRepository
     {
-        return RetrofitRepository(dbRepository)
-    }
-
-    @Provides
-    @Named("ValueNetworkStatus")
-    fun provideNetworkStatus() : NetworkStatus
-    {
-        return NetworkStatus(context)
+        return RetrofitRepository()
     }
 }

@@ -1,6 +1,6 @@
 package js.task.di.adapters
 
-import js.task.domain.model.DomainDataProvider
+import js.task.domain.usecase.IDomainDataProvider
 import js.task.domain.usecase.model.DomainModel
 import js.task.data.DataProvider
 import kotlinx.coroutines.flow.Flow
@@ -8,7 +8,8 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 
-class PresentationDataProvider @Inject constructor(private val dataProvider : DataProvider) : DomainDataProvider
+class PresentationDataProvider @Inject constructor(private val dataProvider : DataProvider) :
+    IDomainDataProvider
 {
     override fun download()
     {
@@ -27,10 +28,5 @@ class PresentationDataProvider @Inject constructor(private val dataProvider : Da
                 )
             }
         }
-    }
-
-    override suspend fun isRepositoryData() : Boolean
-    {
-        return dataProvider.isRepositoryData()
     }
 }

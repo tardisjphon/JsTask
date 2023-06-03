@@ -18,8 +18,9 @@ class DailyMotionConverter
         return try
         {
             Gson().fromJson(
-                    json, object : TypeToken<List<DailyMotion?>?>()
-            {}.type
+                    json,
+                    object : TypeToken<List<DailyMotion?>?>()
+                    {}.type
             )
         }
         catch (ex : JsonSyntaxException)

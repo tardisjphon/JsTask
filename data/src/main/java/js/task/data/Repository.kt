@@ -6,9 +6,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository
 {
-    fun onFailure(message : String)
     fun getData() : Flow<List<DataModel>>
-    suspend fun isData() : Boolean
     fun updateData(data : List<DataModel>)
     fun setData(data : List<DataModel>)
 }

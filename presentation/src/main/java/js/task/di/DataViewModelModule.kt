@@ -5,11 +5,10 @@ import dagger.Provides
 import js.task.data.local.DbRepository
 import js.task.data.remote.RetrofitRepository
 import js.task.di.adapters.PresentationDataProvider
-import js.task.di.adapters.PresentationNetworkProvider
-import js.task.domain.GetDataUseCaseImpl
-import js.task.domain.OnNewDataUseCaseImpl
-import js.task.domain.usecase.GetDataUseCase
-import js.task.domain.usecase.OnNewDataUseCase
+import js.task.domain.usecase.GetLocalDataUseCase
+import js.task.domain.usecase.GetRemoteDataUseCase
+import js.task.domain.usecase.IGetLocalDataUseCase
+import js.task.domain.usecase.IGetRemoteDataUseCase
 import js.task.data.DataProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -23,22 +22,21 @@ class DataViewModelModule(
 {
 
     @Provides
-    fun getDataUseCase(
-        @Named("ValuePresentationDataProvider") presentationDataProvider : PresentationDataProvider,
-        @Named("ValuePresentationNetworkProvider") presentationNetworkProvider : PresentationNetworkProvider
-    ) : GetDataUseCase
+    fun getLocalDataUseCase(
+        @Named("ValuePresentationDataProvider") presentationDataProvider : PresentationDataProvider
+    ) : IGetLocalDataUseCase
     {
-        return GetDataUseCaseImpl(
-                presentationDataProvider, presentationNetworkProvider, coroutineScope
+        return GetLocalDataUseCase(
+                presentationDataProvider
         )
     }
 
     @Provides
-    fun onNewDataUseCase(
+    fun getRemoteDataUseCase(
         @Named("ValuePresentationDataProvider") presentationDataProvider : PresentationDataProvider,
-    ) : OnNewDataUseCase
+    ) : IGetRemoteDataUseCase
     {
-        return OnNewDataUseCaseImpl(presentationDataProvider, coroutineScope)
+        return GetRemoteDataUseCase(presentationDataProvider)
     }
 
 

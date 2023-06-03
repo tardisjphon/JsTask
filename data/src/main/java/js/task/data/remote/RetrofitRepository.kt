@@ -1,73 +1,69 @@
 package js.task.data.remote
 
-import js.task.data.Repository
 import js.task.data.local.db.model.DataModel
 import js.task.data.remote.retrofit.ServiceBuilder
-import js.task.data.remote.retrofit.ServiceBuilder2
+import js.task.data.remote.retrofit.converter.RemoteDataConverter
 import js.task.data.remote.retrofit.data.DailyMotion
 import js.task.data.remote.retrofit.data.Github
 import js.task.data.remote.retrofit.endpoints.DailyMotionEndpoints
 import js.task.data.remote.retrofit.endpoints.GithubEndpoints
-import js.task.data.remote.retrofit.converter.DataConverter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.*
-import kotlinx.coroutines.launch
 import java.util.*
 import javax.inject.Inject
 
 
-class RetrofitRepository @Inject constructor(
-    private val delegateObject : Repository
-) : Repository by delegateObject
+/**
+ * TODO - zastąpić Ktor'em
+ * https://medium.com/backyard-programmers/replacing-retrofit-with-ktor-client-and-kotlin-serialization-for-android-5ca6bfc60648
+ */
+class RetrofitRepository @Inject constructor()
 {
-    private val dataConverter by lazy { DataConverter() }
+    private val dataConverter by lazy { RemoteDataConverter() }
 
     private val requestDailyMotion by lazy {
-        ServiceBuilder.buildService(
-                DailyMotion.baseAddress, DailyMotionEndpoints::class.java
+        ServiceBuilder().buildService(
+                DailyMotion.baseAddress,
+                DailyMotionEndpoints::class.java
         )
     }
 
     private val requestGithub by lazy {
-        ServiceBuilder2.buildService(
-                Github.baseAddress, GithubEndpoints::class.java
+        ServiceBuilder().buildService(
+                Github.baseAddress,
+                GithubEndpoints::class.java
         )
     }
 
-    fun get()
+    suspend fun get() : Flow<List<DataModel>>
     {
         val dailyFlow = flow { emit(requestDailyMotion.getDailyMotionPage()) }
         val githubFlow = flow { emit(requestGithub.getGithubPage()) }
-        val dailyFlowMapped = dailyFlow.map { dataConverter.dailyMotionToDataModelList(it) }
-        val githubFlowMapped = githubFlow.map { dataConverter.gitHubToDataModelList(it) }
 
-        combineIt(dailyFlowMapped, githubFlowMapped)
+        return combineIt(dailyFlow.map { dataConverter.getDataModel(it) },
+                         githubFlow.map { dataConverter.getDataModel(it) })
     }
 
     private fun combineIt(
-        flow1 : Flow<LinkedList<DataModel>>, flow2 : Flow<LinkedList<DataModel>>
-    )
+        flow1 : Flow<List<DataModel>>, flow2 : Flow<List<DataModel>>
+    ) : Flow<List<DataModel>>
     {
-        combine(flow1, flow2) { data1, data2 ->
-            val list = LinkedList<DataModel>()
-            list.addAll(data1)
-            list.addAll(data2)
-            delegateObject.updateData(list)
-        }.catch { delegateObject.onFailure(it.message.toString()) }
-            .launchIn(CoroutineScope(Dispatchers.IO))
+        return combine(
+                flow1,
+                flow2
+        ) { data1, data2 ->
+            return@combine data1 + data2
+        }
     }
 
     @OptIn(FlowPreview::class)
     private fun flattenMerge(
-        flow1 : Flow<LinkedList<DataModel>>, flow2 : Flow<LinkedList<DataModel>>
-    )
+        flow1 : Flow<List<DataModel>>, flow2 : Flow<List<DataModel>>
+    ) : Flow<List<DataModel>>
     {
-        CoroutineScope(Dispatchers.IO).launch {
-            flowOf(flow1, flow2).flattenMerge()
-                .catch { delegateObject.onFailure(it.message.toString()) }
-                .collect { delegateObject.updateData(it) }
-        }
+        return flowOf(
+                flow1,
+                flow2
+        ).flattenMerge()
     }
 }

@@ -8,13 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import js.task.application.databinding.FragmentListBinding
-import js.task.domain.usecase.model.DataResponse
 import js.task.domain.usecase.model.DomainModel
 import js.task.screens.details.model.ParcelableNames
 import js.task.viewmodel.DataViewModel
 import js.task.screens.main.list.adapter.ItemsListViewAdapter
 import js.task.screens.main.list.model.PlaceholderItem
 import timber.log.Timber
+
 
 class ListFragment : Fragment()
 {
@@ -44,33 +44,20 @@ class ListFragment : Fragment()
 
     private fun setObservers()
     {
-        viewModel.dataObserver.observe(viewLifecycleOwner) { response ->
+        viewModel.dataList.observe(viewLifecycleOwner) { data ->
 
-            if (placeHolderItems == null || response == DataResponse.LOADED_FROM_REPO)
+            if (placeHolderItems == null)
             {
-                placeHolderItems = getPlaceholderItems(viewModel.dataList)
+                placeHolderItems = getPlaceholderItems(data)
             }
 
-            if (recyclerView?.adapter == null || response == DataResponse.LOADED_FROM_REPO)
+            if (recyclerView?.adapter == null)
             {
                 setRecyclerView(recyclerView, placeHolderItems)
             }
 
-            when (response)
-            {
-                DataResponse.REPO_NOT_CHANGED ->
-                {
-                    Timber.i("repo not changed")
-                }
-                DataResponse.LOADED_FROM_REPO ->
-                {
-                    placeHolderItems?.let {
-                        setDetailsFragment(placeHolderItems)
-                    }
-                }
-                else ->
-                {
-                }
+            placeHolderItems?.let {
+                setDetailsFragment(placeHolderItems)
             }
         }
     }
@@ -104,7 +91,7 @@ class ListFragment : Fragment()
         } ?: { Timber.w("setDetailsFragment not set") }
     }
 
-    private fun getPlaceholderItems(dataList : ArrayList<DomainModel>) : List<PlaceholderItem>
+    private fun getPlaceholderItems(dataList : List<DomainModel>) : List<PlaceholderItem>
     {
         val placeHolderItems = ArrayList<PlaceholderItem>()
         dataList.forEach {
