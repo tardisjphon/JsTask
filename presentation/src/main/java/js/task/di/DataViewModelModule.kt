@@ -2,6 +2,8 @@ package js.task.di
 
 import dagger.Module
 import dagger.Provides
+import io.reactivex.disposables.CompositeDisposable
+import js.task.data.DataProvider
 import js.task.data.local.DbRepository
 import js.task.data.remote.RetrofitRepository
 import js.task.di.adapters.PresentationDataProvider
@@ -9,21 +11,19 @@ import js.task.domain.usecase.GetLocalDataUseCase
 import js.task.domain.usecase.GetRemoteDataUseCase
 import js.task.domain.usecase.IGetLocalDataUseCase
 import js.task.domain.usecase.IGetRemoteDataUseCase
-import js.task.data.DataProvider
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Named
 
 
 @Module
 class DataViewModelModule(
-    private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
+    private val compositeDisposable : CompositeDisposable
 )
 {
 
     @Provides
     fun getLocalDataUseCase(
-        @Named("ValuePresentationDataProvider") presentationDataProvider : PresentationDataProvider
+        @Named("ValuePresentationDataProvider")
+        presentationDataProvider : PresentationDataProvider
     ) : IGetLocalDataUseCase
     {
         return GetLocalDataUseCase(
@@ -33,7 +33,8 @@ class DataViewModelModule(
 
     @Provides
     fun getRemoteDataUseCase(
-        @Named("ValuePresentationDataProvider") presentationDataProvider : PresentationDataProvider,
+        @Named("ValuePresentationDataProvider")
+        presentationDataProvider : PresentationDataProvider,
     ) : IGetRemoteDataUseCase
     {
         return GetRemoteDataUseCase(presentationDataProvider)
@@ -43,12 +44,16 @@ class DataViewModelModule(
     @Provides
     @Named("ValueDataProvider")
     fun provideDataProvider(
-        @Named("ValueDbRepository") dbRepository : DbRepository,
-        @Named("ValueRetrofitRepository") retrofitRepository : RetrofitRepository
+        @Named("ValueDbRepository")
+        dbRepository : DbRepository,
+        @Named("ValueRetrofitRepository")
+        retrofitRepository : RetrofitRepository
     ) : DataProvider
     {
         return DataProvider(
-                coroutineScope, dbRepository, retrofitRepository
+                compositeDisposable,
+                dbRepository,
+                retrofitRepository
         )
     }
 }

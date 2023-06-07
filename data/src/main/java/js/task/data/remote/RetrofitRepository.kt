@@ -1,5 +1,7 @@
 package js.task.data.remote
 
+import io.reactivex.Observable
+import io.reactivex.schedulers.Schedulers
 import js.task.data.local.db.model.DataModel
 import js.task.data.remote.retrofit.ServiceBuilder
 import js.task.data.remote.retrofit.converter.RemoteDataConverter
@@ -7,15 +9,15 @@ import js.task.data.remote.retrofit.data.DailyMotion
 import js.task.data.remote.retrofit.data.Github
 import js.task.data.remote.retrofit.endpoints.DailyMotionEndpoints
 import js.task.data.remote.retrofit.endpoints.GithubEndpoints
-import kotlinx.coroutines.FlowPreview
-import kotlinx.coroutines.flow.*
-import java.util.*
+import timber.log.Timber
 import javax.inject.Inject
 
 
 /**
  * TODO - zastąpić Ktor'em
  * https://medium.com/backyard-programmers/replacing-retrofit-with-ktor-client-and-kotlin-serialization-for-android-5ca6bfc60648
+ *
+ * https://www.digitalocean.com/community/tutorials/android-rxjava-retrofit
  */
 class RetrofitRepository @Inject constructor()
 {
@@ -35,35 +37,42 @@ class RetrofitRepository @Inject constructor()
         )
     }
 
-    suspend fun get() : Flow<List<DataModel>>
+    fun get() : Observable<List<DataModel>>
     {
-        val dailyFlow = flow { emit(requestDailyMotion.getDailyMotionPage()) }
-        val githubFlow = flow { emit(requestGithub.getGithubPage()) }
+        val dailyFlow = requestDailyMotion.getDailyMotionPage()
+        val githubFlow = requestGithub.getGithubPage()
 
-        return combineIt(dailyFlow.map { dataConverter.getDataModel(it) },
-                         githubFlow.map { dataConverter.getDataModel(it) })
+        return merge(
+                dailyFlow.map { dataConverter.getDataModel(it) },
+                githubFlow.map { dataConverter.getDataModel(it) }
+        )
     }
 
-    private fun combineIt(
-        flow1 : Flow<List<DataModel>>, flow2 : Flow<List<DataModel>>
-    ) : Flow<List<DataModel>>
+    private fun merge(
+        observable1 : Observable<List<DataModel>>, observable2 : Observable<List<DataModel>>
+    ) : Observable<List<DataModel>>
     {
-        return combine(
-                flow1,
-                flow2
-        ) { data1, data2 ->
-            return@combine data1 + data2
-        }
+        return Observable.merge(
+                observable1,
+                observable2
+        )
+            .subscribeOn(Schedulers.computation())
+            .doOnError {
+                Timber.e("exception: ${it.message}")
+            }
     }
 
-    @OptIn(FlowPreview::class)
-    private fun flattenMerge(
-        flow1 : Flow<List<DataModel>>, flow2 : Flow<List<DataModel>>
-    ) : Flow<List<DataModel>>
+    private fun zip(
+        observable1 : Observable<List<DataModel>>, observable2 : Observable<List<DataModel>>
+    ) : Observable<List<DataModel>>
     {
-        return flowOf(
-                flow1,
-                flow2
-        ).flattenMerge()
+        return Observable.zip(
+                observable1,
+                observable2
+        ) { str1, str2 -> str1 + str2 }
+            .subscribeOn(Schedulers.computation())
+            .doOnError {
+                Timber.e("exception: ${it.message}")
+            }
     }
 }

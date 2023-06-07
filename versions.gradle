@@ -2,6 +2,7 @@ ext.versions = [
         compose          : '1.4.3',
         compose_activity : '1.7.2',
         compose_lifecycle: '2.6.1',
+        coroutines       : '1.7.1',
         dagger           : '2.46.1',
         glide            : '4.15.1',
         retrofit         : '2.9.0',
@@ -36,7 +37,7 @@ ext.deps = [
                 glide   : "com.github.bumptech.glide:glide:${versions.glide}"
         ],
         kotlinx : [
-                coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1",
+                coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
                 serialization_json: "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
         ],
         retrofit: [
@@ -51,10 +52,15 @@ ext.deps = [
                 timber: "com.jakewharton.timber:timber:$versions.timber"
         ],
         tests   : [
-                coroutines   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1",
+                coroutines   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}",
                 espresso_core: "androidx.test.espresso:espresso-core:3.5.1",
                 junit        : "junit:junit:4.13.2",
                 junit_ex     : "androidx.test.ext:junit:1.1.5",
                 turbine      : "app.cash.turbine:turbine:0.13.0"
+        ],
+        rx_java  : [
+                retrofit_adapter  : "com.squareup.retrofit2:adapter-rxjava2:2.9.0",
+                android  : "io.reactivex.rxjava2:rxandroid:2.1.1",
+                kotlin   : "io.reactivex.rxjava2:rxkotlin:2.4.0"
         ]
 ]

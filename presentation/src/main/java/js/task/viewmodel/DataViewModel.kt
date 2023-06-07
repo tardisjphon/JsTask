@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.CreationExtras
+import io.reactivex.disposables.CompositeDisposable
 import js.task.data.di.DataProviderModule
 import js.task.di.*
 import js.task.domain.usecase.IGetLocalDataUseCase
@@ -43,6 +44,8 @@ class DataViewModel @Inject constructor(
 
     companion object
     {
+        private val compositeDisposable by lazy { CompositeDisposable() }
+
         val Factory : ViewModelProvider.Factory = object : ViewModelProvider.Factory
         {
             @Suppress("UNCHECKED_CAST")
@@ -55,7 +58,7 @@ class DataViewModel @Inject constructor(
                 val applicationGraph = DaggerApplicationGraph.builder()
                     .dataProviderModule(DataProviderModule(applicationContext))
                     .getDataUseCaseModule(GetDataUseCaseModule())
-                    .dataViewModelModule(DataViewModelModule())
+                    .dataViewModelModule(DataViewModelModule(compositeDisposable))
                     .build()
                 val getLocalDataUseCase = applicationGraph.getLocalDataUseCase()
                 val getRemoteDataUseCase = applicationGraph.getRemoteDataUseCase()
@@ -66,5 +69,13 @@ class DataViewModel @Inject constructor(
                 ) as T
             }
         }
+    }
+
+    override fun onCleared()
+    {
+        if (!compositeDisposable.isDisposed) {
+            compositeDisposable.dispose()
+        }
+        super.onCleared()
     }
 }
