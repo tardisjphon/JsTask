@@ -54,6 +54,5 @@ dependencies {
     testImplementation deps.tests.junit
     androidTestImplementation deps.tests.junit_ex
     androidTestImplementation deps.tests.espresso_core
-    androidTestImplementation deps.tests.coroutines
     androidTestImplementation deps.tests.turbine
 }

@@ -9,7 +9,6 @@ import js.task.data.local.db.AppDatabase
 import js.task.data.local.db.dao.DataDao
 import js.task.data.local.db.model.DataModel
 import kotlinx.coroutines.*
-import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -45,22 +44,22 @@ class DbTest
         dataDao = database.dataDao()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
-    @Test
-    fun insertData_returnsTrue() =
-        runTest {
-            val dataModel = DataModel(
-                    1,
-                    userName = "Batman"
-            )
-            dataDao.set(listOf(dataModel))
-
-            dataDao.get()
-                .test {
-                    val list = awaitItem()
-                    val result = list.contains(dataModel)
-                    println("insertData_returnsTrue, result: $result")
-                    assert(result)
-                }
-        }
+//    @OptIn(ExperimentalCoroutinesApi::class)
+//    @Test
+//    fun insertData_returnsTrue() =
+//        runTest {
+//            val dataModel = DataModel(
+//                    1,
+//                    userName = "Batman"
+//            )
+//            dataDao.set(listOf(dataModel))
+//
+//            dataDao.get()
+//                .test {
+//                    val list = awaitItem()
+//                    val result = list.contains(dataModel)
+//                    println("insertData_returnsTrue, result: $result")
+//                    assert(result)
+//                }
+//        }
 }

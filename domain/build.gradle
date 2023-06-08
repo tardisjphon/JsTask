@@ -36,8 +36,6 @@ dependencies {
     implementation deps.dagger.dagger
     kapt deps.dagger.compiler
 
-    implementation deps.kotlinx.coroutines_core
-
     implementation deps.rx_java.kotlin
 
     testImplementation deps.tests.junit

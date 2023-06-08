@@ -53,7 +53,7 @@ class DataViewModel @Inject constructor(
                 val applicationContext = checkNotNull(extras[APPLICATION_KEY]).applicationContext
 
                 val applicationGraph = DaggerApplicationGraph.builder()
-                    .dataProviderModule(DataProviderModule(applicationContext))
+                    .dataProviderModule(DataProviderModule(applicationContext, compositeDisposable))
                     .getDataUseCaseModule(GetDataUseCaseModule())
                     .dataViewModelModule(DataViewModelModule(compositeDisposable))
                     .build()
