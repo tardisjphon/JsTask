@@ -50,6 +50,7 @@ dependencies {
     implementation deps.androidx.navigation_fragment_ktx
 
     implementation deps.rx_java.kotlin
+    implementation deps.rx_java.android
 
     implementation deps.glide.glide
     kapt deps.glide.compiler

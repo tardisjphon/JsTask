@@ -1,8 +1,9 @@
 package js.task.data.local.db.dao
 
 import androidx.room.*
+import io.reactivex.Observable
 import js.task.data.local.db.model.DataModel
-import kotlinx.coroutines.flow.Flow
+
 
 @Dao
 interface DataDao
@@ -13,7 +14,7 @@ interface DataDao
     }
 
     @Query(selectQuery)
-    fun get() : Flow<List<DataModel>>
+    fun get() : Observable<List<DataModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun set(data : List<DataModel>)

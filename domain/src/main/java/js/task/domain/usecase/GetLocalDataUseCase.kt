@@ -1,7 +1,7 @@
 package js.task.domain.usecase
 
+import io.reactivex.Observable
 import js.task.domain.usecase.model.DomainModel
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
@@ -9,7 +9,7 @@ class GetLocalDataUseCase @Inject constructor(
     private val dataProvider : IDomainDataProvider
 ) : IGetLocalDataUseCase
 {
-    override fun invokeLocal() : Flow<List<DomainModel>>
+    override fun invokeLocal() : Observable<List<DomainModel>>
     {
         return dataProvider.getData()
     }

@@ -1,10 +1,10 @@
 package js.task.data
 
+import io.reactivex.Observable
 import io.reactivex.disposables.CompositeDisposable
 import js.task.data.local.DbRepository
 import js.task.data.local.db.model.DataModel
 import js.task.data.remote.RetrofitRepository
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 
@@ -23,7 +23,7 @@ class DataProvider @Inject constructor(
             })
     }
 
-    fun getData() : Flow<List<DataModel>>
+    fun getData() : Observable<List<DataModel>>
     {
         return localRepository.getData()
     }

@@ -35,6 +35,7 @@ dependencies {
 
     kapt deps.room.compiler
     implementation deps.room.room_ktx
+    implementation deps.room.rx_java
 
     implementation deps.dagger.dagger
     kapt deps.dagger.compiler
@@ -45,7 +46,6 @@ dependencies {
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.converter_gson
 
-    implementation deps.rx_java.android
     implementation deps.rx_java.kotlin
     implementation deps.rx_java.retrofit_adapter
 

@@ -1,10 +1,9 @@
 package js.task.di.adapters
 
+import io.reactivex.Observable
 import js.task.domain.usecase.IDomainDataProvider
 import js.task.domain.usecase.model.DomainModel
 import js.task.data.DataProvider
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 
@@ -16,7 +15,7 @@ class PresentationDataProvider @Inject constructor(private val dataProvider : Da
         dataProvider.download()
     }
 
-    override fun getData() : Flow<List<DomainModel>>
+    override fun getData() : Observable<List<DomainModel>>
     {
         return dataProvider.getData().map {
             it.map {

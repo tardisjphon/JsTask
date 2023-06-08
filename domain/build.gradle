@@ -38,6 +38,8 @@ dependencies {
 
     implementation deps.kotlinx.coroutines_core
 
+    implementation deps.rx_java.kotlin
+
     testImplementation deps.tests.junit
     androidTestImplementation deps.tests.junit_ex
 }

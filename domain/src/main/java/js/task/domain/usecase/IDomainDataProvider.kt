@@ -1,11 +1,11 @@
 package js.task.domain.usecase
 
 import js.task.domain.usecase.model.DomainModel
-import kotlinx.coroutines.flow.Flow
+import io.reactivex.Observable
 
 
 interface IDomainDataProvider
 {
     fun download()
-    fun getData() : Flow<List<DomainModel>>
+    fun getData() : Observable<List<DomainModel>>
 }

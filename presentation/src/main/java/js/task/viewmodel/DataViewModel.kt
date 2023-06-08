@@ -5,15 +5,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
 import androidx.lifecycle.viewmodel.CreationExtras
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import js.task.data.di.DataProviderModule
 import js.task.di.*
 import js.task.domain.usecase.IGetLocalDataUseCase
 import js.task.domain.usecase.IGetRemoteDataUseCase
 import js.task.domain.usecase.model.DomainModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
@@ -27,9 +25,9 @@ class DataViewModel @Inject constructor(
 
     fun getData()
     {
-        CoroutineScope(Dispatchers.Main).launch {
-            getLocalDataUseCase.invokeLocal()
-                .collect {
+        compositeDisposable.addAll(getLocalDataUseCase.invokeLocal()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
                     if (it.isEmpty())
                     {
                         getRemoteDataUseCase.invokeRemote()
@@ -38,8 +36,7 @@ class DataViewModel @Inject constructor(
                     {
                         dataList.postValue(it)
                     }
-                }
-        }
+                })
     }
 
     companion object
