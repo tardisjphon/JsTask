@@ -26,7 +26,7 @@ public class DataProviderModule
 
     private AppDatabase getDb()
     {
-        return AppDatabase.Companion.getInstance(context);
+        return new AppDatabase.AppDatabaseCompanion().getInstance(context);
     }
 
     @Provides
