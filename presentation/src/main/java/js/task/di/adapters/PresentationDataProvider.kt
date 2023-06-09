@@ -18,15 +18,16 @@ class PresentationDataProvider @Inject constructor(private val dataProvider : Da
 
     override fun getData() : Flow<List<DomainModel>>
     {
-        return dataProvider.getData().map {
-            it.map {
-                DomainModel(
-                        it.id ?: -1,
-                        it.userName ?: "",
-                        it.imageUrl ?: "",
-                        it.apiName?.name ?: ""
-                )
+        return dataProvider.getData()
+            .map {
+                it.map { data ->
+                    DomainModel(
+                            id = data.id ?: -1,
+                            userName = data.userName ?: "",
+                            imageUrl = data.imageUrl ?: "",
+                            apiName = data.apiName?.name ?: ""
+                    )
+                }
             }
-        }
     }
 }
