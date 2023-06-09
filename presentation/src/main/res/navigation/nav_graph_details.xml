@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/DetailsFragment"
         android:name="js.task.screens.details.DetailsFragment"
-        android:label="@string/details_fragment_label"
+        android:label="@string/details"
         tools:layout="@layout/fragment_details"/>
 
 </navigation>

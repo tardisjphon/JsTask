@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_first"
+    app:startDestination="@id/usersList">
+
+    <fragment
+        android:id="@+id/usersList"
+        android:name="js.task.screens.main.list.ListFragment"
+        android:label="@string/list"
+        tools:layout="@layout/fragment_list">
+
+        <action
+            android:id="@+id/navigate_to_product_users_details"
+            app:destination="@id/users_details_activity" />
+
+    </fragment>
+
+    <activity
+        android:id="@+id/users_details_activity"
+        android:name="js.task.screens.details.DetailsActivity"
+        android:label="@string/details"
+        tools:layout="@layout/activity_details">
+        <argument
+            android:name="detail_items"
+            app:argType="js.task.screens.main.list.model.PlaceholderItem" />
+    </activity>
+
+</navigation>

@@ -1,5 +1,9 @@
 buildscript {
     apply from: "versions.gradle"
+
+    dependencies {
+        classpath deps.navigation.safe_args
+    }
 }
 
 plugins {

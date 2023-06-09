@@ -4,6 +4,7 @@ ext.versions = [
         compose_lifecycle: '2.6.1',
         dagger           : '2.46.1',
         glide            : '4.15.1',
+        navigation       : '2.5.3',
         retrofit         : '2.9.0',
         room             : '2.5.1',
         timber           : '5.0.1']
@@ -13,8 +14,7 @@ ext.deps = [
                 core_ktx               : "androidx.core:core-ktx:1.10.1",
                 appcompat              : "androidx.appcompat:appcompat:1.6.1",
                 material               : "com.google.android.material:material:1.9.0",
-                constraintlayout       : "androidx.constraintlayout:constraintlayout:2.1.4",
-                navigation_fragment_ktx: "androidx.navigation:navigation-fragment-ktx:2.5.3"
+                constraintlayout       : "androidx.constraintlayout:constraintlayout:2.1.4"
         ],
         compose : [
                 activity           : "androidx.activity:activity-compose:${versions.compose_activity}",
@@ -38,6 +38,12 @@ ext.deps = [
         kotlinx : [
                 coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1",
                 serialization_json: "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
+        ],
+        navigation : [
+                dynamic_features_fragment: "androidx.navigation:navigation-dynamic-features-fragment:$versions.navigation",
+                fragment_ktx: "androidx.navigation:navigation-fragment-ktx:$versions.navigation",
+                safe_args: "androidx.navigation:navigation-safe-args-gradle-plugin:$versions.navigation",
+                ui_ktx:       "androidx.navigation:navigation-ui-ktx:$versions.navigation"
         ],
         retrofit: [
                 converter_gson: "com.squareup.retrofit2:converter-gson:$versions.retrofit",

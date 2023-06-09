@@ -17,7 +17,7 @@ class DetailsActivity : AppCompatActivity()
         val navController = navHostFragment.navController
 
         navController.setGraph(
-                R.navigation.nav_graph_second,
+                R.navigation.nav_graph_details,
                 intent.extras
         )
     }
