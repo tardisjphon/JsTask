@@ -12,8 +12,5 @@ Tech Stack:
 - Android Room
 - Glide
 
-TODO:
-- use Compose & Ktor
-
 
 To see the kotlin version of the application, change branch to kotlin
