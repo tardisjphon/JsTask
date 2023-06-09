@@ -48,15 +48,8 @@ class ListFragment : Fragment()
     {
         viewModel.dataList.observe(viewLifecycleOwner) { data ->
 
-            if (placeHolderItems == null)
-            {
-                placeHolderItems = getPlaceholderItems(data)
-            }
-
-            if (recyclerView?.adapter == null)
-            {
-                setRecyclerView(recyclerView, placeHolderItems)
-            }
+            placeHolderItems = getPlaceholderItems(data)
+            setRecyclerView(recyclerView, placeHolderItems)
 
             placeHolderItems?.let {
                 setDetailsFragment(placeHolderItems)
