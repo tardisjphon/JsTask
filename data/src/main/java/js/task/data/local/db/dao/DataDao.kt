@@ -7,12 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DataDao
 {
-    companion object
-    {
-        private const val selectQuery = "SELECT * FROM data ORDER BY id ASC"
-    }
-
-    @Query(selectQuery)
+    @Query("SELECT * FROM data ORDER BY id ASC")
     fun get() : Flow<List<DataModel>>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
