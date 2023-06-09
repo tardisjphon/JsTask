@@ -9,12 +9,6 @@
         android:id="@+id/FirstFragment"
         android:name="js.task.screens.main.list.ListFragment"
         android:label="@string/list_fragment"
-        tools:layout="@layout/fragment_list">
-
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/nav_graph_second" />
-
-    </fragment>
+        tools:layout="@layout/fragment_list" />
 
 </navigation>

@@ -12,6 +12,7 @@ import js.task.application.databinding.FragmentDetailsBinding
 import js.task.screens.details.model.ParcelableNames
 import js.task.screens.main.list.model.PlaceholderItem
 
+
 class DetailsFragment : Fragment()
 {
     private var imageViewUrl : ImageView? = null
