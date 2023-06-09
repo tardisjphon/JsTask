@@ -23,7 +23,8 @@ import org.junit.runner.RunWith
 @RunWith(AndroidJUnit4::class)
 @SmallTest
 class DbTest
-{ //    @Test
+{
+    //    @Test
     //    fun useAppContext() {
     //        // Context of the app under test.
     //        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
