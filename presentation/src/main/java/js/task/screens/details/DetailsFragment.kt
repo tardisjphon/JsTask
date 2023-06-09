@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import js.task.application.databinding.FragmentDetailsBinding
+import js.task.extensions.parcelable
 import js.task.screens.details.model.ParcelableNames
 import js.task.screens.main.list.model.PlaceholderItem
 
@@ -38,8 +39,8 @@ class DetailsFragment : Fragment()
 
             if (it.containsKey(ParcelableNames.PARCELABLE_NAME_DETAILS))
             {
-                (it.getParcelable(ParcelableNames.PARCELABLE_NAME_DETAILS) as? PlaceholderItem)?.let {
-                    bindingData(it)
+                it.parcelable<PlaceholderItem>(ParcelableNames.PARCELABLE_NAME_DETAILS)?.let { item ->
+                    bindingData(item)
                 }
             }
         }
