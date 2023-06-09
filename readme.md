@@ -4,6 +4,7 @@ Tech Stack:
 - Clean Architecture
 - MVVM
 - Kotlin
+- Kotlin Flows
 - Dagger
 - GSON
 - Retrofit
