@@ -2,9 +2,12 @@ package js.task.screens.main
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation.findNavController
 import js.task.application.R
+import js.task.screens.main.list.ListFragmentDirections
+import js.task.screens.main.list.model.PlaceholderItem
+
+
 
 class MainActivity : AppCompatActivity()
 {
@@ -14,8 +17,9 @@ class MainActivity : AppCompatActivity()
         setContentView(R.layout.activity_main)
     }
 
-    fun getNavControllerDetails() : NavController
+    fun goToDetails(item: PlaceholderItem)
     {
-        return findNavController(R.id.nav_host_fragment_content_details)
+        val directions = ListFragmentDirections.navigateToProductUsersDetails(item)
+        findNavController(this, R.id.nav_host_fragment_content_main).navigate(directions)
     }
 }
