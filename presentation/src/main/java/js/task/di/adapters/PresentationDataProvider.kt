@@ -1,8 +1,8 @@
 package js.task.di.adapters
 
+import js.task.data.DataProvider
 import js.task.domain.usecase.IDomainDataProvider
 import js.task.domain.usecase.model.DomainModel
-import js.task.data.DataProvider
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
