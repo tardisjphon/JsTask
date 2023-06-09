@@ -14,7 +14,7 @@ import javax.inject.Inject
 
 
 /**
- * TODO - zastąpić Ktor'em
+ * TODO - Ktor
  * https://medium.com/backyard-programmers/replacing-retrofit-with-ktor-client-and-kotlin-serialization-for-android-5ca6bfc60648
  */
 class RetrofitRepository @Inject constructor()
