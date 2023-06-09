@@ -25,7 +25,6 @@ class DbRepository @Inject constructor(
     {
         coroutinesScope.launch {
             db.runInTransaction {
-
                 db.dataDao()
                     .apply {
 

@@ -14,7 +14,7 @@ class RemoteDataConverter @Inject constructor()
         return data.list?.mapIndexed { index, dailyMotion ->
             DataModel(
                     id = index,
-                    userName = dailyMotion?.screenname ?: "",
+                    userName = dailyMotion?.screenName ?: "",
                     imageUrl = "",
                     apiName = ApiName.DAILY_MOTION
             )
@@ -28,7 +28,7 @@ class RemoteDataConverter @Inject constructor()
             DataModel(
                     id = it.id,
                     userName = it.login,
-                    imageUrl = it.avatar_url,
+                    imageUrl = it.avatarUrl,
                     apiName = ApiName.GITHUB
             )
         }

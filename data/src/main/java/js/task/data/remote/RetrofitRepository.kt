@@ -37,8 +37,8 @@ class RetrofitRepository @Inject constructor()
 
     fun get() : Flow<List<DataModel>>
     {
-        val dailyFlow = requestDailyMotion.getDailyMotionPage()
-        val githubFlow = requestGithub.getGithubPage();
+        val dailyFlow = flow { emit(requestDailyMotion.getDailyMotionPage()) }
+        val githubFlow = flow { emit(requestGithub.getGithubPage()) }
 
         return combineIt(dailyFlow.map { dataConverter.getDataModel(it) },
                          githubFlow.map { dataConverter.getDataModel(it) })
