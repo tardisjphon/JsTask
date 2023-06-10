@@ -37,6 +37,19 @@ android {
         viewBinding true
         dataBinding true
     }
+
+    buildFeatures {
+        compose true
+        viewBinding true
+        dataBinding true
+    }
+
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.7"
+    }
 }
 
 dependencies {
@@ -48,6 +61,12 @@ dependencies {
     implementation deps.androidx.appcompat
     implementation deps.androidx.material
     implementation deps.androidx.constraintlayout
+
+    implementation deps.compose.material
+    debugImplementation deps.compose.ui_tooling
+    implementation deps.compose.ui_tooling_preview
+    implementation deps.compose.activity
+    implementation deps.compose.lifecycle_runtime
 
     implementation deps.navigation.fragment_ktx
 

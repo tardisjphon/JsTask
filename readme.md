@@ -1,4 +1,4 @@
-# JsTask - Kotlin version - branch
+# JsTask - Compose version - branch
 
 Tech Stack:
 - Clean Architecture
@@ -8,12 +8,9 @@ Tech Stack:
 - Dagger
 - GSON
 - Retrofit
-- Android Navigation Component
+- Compose
 - Android Room
 - Glide
 
-TODO:
-- use Compose & Ktor
-
-
+To see the kotlin + Android Navigation Component version of the application, change branch to kotlin
 To see the java version of the application, change branch to java
