@@ -46,7 +46,6 @@ dependencies {
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.converter_gson
 
-    implementation deps.rx_java.kotlin
     implementation deps.rx_java.retrofit_adapter
 
     implementation deps.timber.timber
