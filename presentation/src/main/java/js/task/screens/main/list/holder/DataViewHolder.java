@@ -7,12 +7,12 @@ import js.task.application.databinding.ListItemBinding;
 import js.task.screens.main.list.model.PlaceholderItem;
 
 
-public class DataViewHolderJava
+public class DataViewHolder
         extends RecyclerView.ViewHolder
 {
     private final ListItemBinding binding;
 
-    public DataViewHolderJava(@NonNull ListItemBinding binding)
+    public DataViewHolder(@NonNull ListItemBinding binding)
     {
         super(binding.getRoot());
         this.binding = binding;

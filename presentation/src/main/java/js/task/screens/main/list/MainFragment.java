@@ -13,11 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import js.task.application.databinding.FragmentListBinding;
 import js.task.domain.usecase.model.DomainModel;
 import js.task.screens.main.MainScreen;
+import js.task.screens.main.list.adapter.ItemsListViewAdapter;
 import js.task.screens.main.list.model.PlaceholderItem;
 import js.task.viewmodel.DataViewModel;
 import timber.log.Timber;
@@ -26,9 +28,9 @@ import timber.log.Timber;
 public class MainFragment
         extends Fragment
 {
-    private RecyclerView recyclerView = null;
-    private List<PlaceholderItem> placeHolderItems = null;
-    private final ViewModelProvider viewModel = new ViewModelProvider(this, DataViewModel.Factory);
+    private RecyclerView recyclerView;
+    private List<PlaceholderItem> placeHolderItems;
+    private ViewModelProvider viewModel;
 
     @Nullable
     @Override
@@ -64,9 +66,7 @@ public class MainFragment
                 .observe(getViewLifecycleOwner(), data ->
                 {
                     placeHolderItems = getPlaceholderItems(data);
-
                     setRecyclerView(recyclerView, placeHolderItems);
-
                     setDetailsFragment(placeHolderItems);
                 });
     }
@@ -83,15 +83,18 @@ public class MainFragment
             List<PlaceholderItem> placeHolderItems
     )
     {
-       // ItemsListViewAdapterJava adapter = new ItemsListViewAdapterJava(placeHolderItems, );
+        Consumer<PlaceholderItem> callBack = placeholderItem ->
+        {
+            Optional<PlaceholderItem> optional = placeHolderItems.stream()
+                    .filter(it -> it.getId() == placeholderItem.getId() && it.getApiName()
+                            .equals(placeholderItem.getApiName()))
+                    .findFirst();
 
-      //  recyclerView.setAdapter(adapter);
+            optional.ifPresent(this::goToDetails);
+        };
+
+        recyclerView.setAdapter(new ItemsListViewAdapter(placeHolderItems, callBack));
     }
-
-//    private PlaceholderItem testFunction()
-//    {
-//        return new PlaceholderItem();
-//    }
 
     private void setDetailsFragment(List<PlaceholderItem> placeHolderItems)
     {
@@ -117,6 +120,10 @@ public class MainFragment
 
     private DataViewModel getDataViewModel()
     {
+        if (viewModel == null)
+        {
+            viewModel = new ViewModelProvider(this, DataViewModel.Factory);
+        }
         return viewModel.get(DataViewModel.class);
     }
 }

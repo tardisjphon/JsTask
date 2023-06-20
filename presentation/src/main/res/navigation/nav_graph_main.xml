@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/usersList"
-        android:name="js.task.screens.main.list.ListFragment"
+        android:name="js.task.screens.main.list.MainFragment"
         android:label="@string/list"
         tools:layout="@layout/fragment_list">
 
