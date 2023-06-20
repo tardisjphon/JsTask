@@ -1,0 +1,122 @@
+package js.task.screens.main.list;
+
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import js.task.application.databinding.FragmentListBinding;
+import js.task.domain.usecase.model.DomainModel;
+import js.task.screens.main.MainScreen;
+import js.task.screens.main.list.model.PlaceholderItem;
+import js.task.viewmodel.DataViewModel;
+import timber.log.Timber;
+
+
+public class MainFragment
+        extends Fragment
+{
+    private RecyclerView recyclerView = null;
+    private List<PlaceholderItem> placeHolderItems = null;
+    private final ViewModelProvider viewModel = new ViewModelProvider(this, DataViewModel.Factory);
+
+    @Nullable
+    @Override
+    public View onCreateView(
+            @NonNull LayoutInflater inflater,
+            @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState
+    )
+    {
+        FragmentListBinding binding = FragmentListBinding.inflate(inflater, container, false);
+
+        recyclerView = binding.itemList;
+
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(
+            @NonNull View view,
+            @Nullable Bundle savedInstanceState
+    )
+    {
+        super.onViewCreated(view, savedInstanceState);
+
+        setObservers();
+
+        getDataViewModel().getData();
+    }
+
+    private void setObservers()
+    {
+        getDataViewModel().getDataList()
+                .observe(getViewLifecycleOwner(), data ->
+                {
+                    placeHolderItems = getPlaceholderItems(data);
+
+                    setRecyclerView(recyclerView, placeHolderItems);
+
+                    setDetailsFragment(placeHolderItems);
+                });
+    }
+
+    private List<PlaceholderItem> getPlaceholderItems(List<DomainModel> dataList)
+    {
+        return dataList.stream()
+                .map(mapping -> new PlaceholderItem(mapping.getId(), mapping.getUserName(), mapping.getImageUrl(), mapping.getApiName(), false))
+                .collect(Collectors.toList());
+    }
+
+    private void setRecyclerView(
+            RecyclerView recyclerView,
+            List<PlaceholderItem> placeHolderItems
+    )
+    {
+       // ItemsListViewAdapterJava adapter = new ItemsListViewAdapterJava(placeHolderItems, );
+
+      //  recyclerView.setAdapter(adapter);
+    }
+
+//    private PlaceholderItem testFunction()
+//    {
+//        return new PlaceholderItem();
+//    }
+
+    private void setDetailsFragment(List<PlaceholderItem> placeHolderItems)
+    {
+        Optional<PlaceholderItem> item = placeHolderItems.stream()
+                .filter(PlaceholderItem::isSelected)
+                .findFirst();
+
+        item.ifPresent(this::goToDetails);
+
+        if (!item.isPresent())
+        {
+            Timber.w("setDetailsFragment not set");
+        }
+    }
+
+    private void goToDetails(PlaceholderItem item)
+    {
+        if (getActivity() != null)
+        {
+            ((MainScreen) getActivity()).goToDetails(item);
+        }
+    }
+
+    private DataViewModel getDataViewModel()
+    {
+        return viewModel.get(DataViewModel.class);
+    }
+}

@@ -43,6 +43,7 @@ class DataViewModel @Inject constructor(
     {
         private val compositeDisposable by lazy { CompositeDisposable() }
 
+        @JvmField
         val Factory : ViewModelProvider.Factory = object : ViewModelProvider.Factory
         {
             @Suppress("UNCHECKED_CAST")

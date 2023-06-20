@@ -7,7 +7,8 @@ import js.task.application.databinding.ListItemBinding
 import js.task.screens.main.list.holder.DataViewHolder
 import js.task.screens.main.list.model.PlaceholderItem
 
-class ItemsListViewAdapter(
+
+open class ItemsListViewAdapter(
     private val data : List<PlaceholderItem>, private val callBack : (PlaceholderItem) -> Unit
 ) : RecyclerView.Adapter<DataViewHolder>()
 {
