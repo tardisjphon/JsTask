@@ -9,7 +9,6 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.RecyclerView
 import js.task.application.databinding.FragmentListBinding
 import js.task.domain.usecase.model.DomainModel
-import js.task.screens.main.MainActivity
 import js.task.screens.main.list.adapter.ItemsListViewAdapter
 import js.task.screens.main.list.model.PlaceholderItem
 import js.task.viewmodel.DataViewModel
@@ -104,6 +103,6 @@ class ListFragment : Fragment()
 
     private fun goToDetails(item : PlaceholderItem)
     {
-        (activity as? MainActivity)?.goToDetails(item)
+     //   (activity as? MainScreen)?.goToDetails(item)
     }
 }

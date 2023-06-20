@@ -1,5 +1,7 @@
 # JsTask - Compose version - branch
 
+/ IN PROGRESS /
+
 Tech Stack:
 - Clean Architecture
 - MVVM

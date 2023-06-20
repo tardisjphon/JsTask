@@ -1,11 +1,11 @@
 package js.task.screens.main
 
 import android.os.Bundle
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.Navigation.findNavController
-import js.task.application.R
-import js.task.screens.main.list.ListFragmentDirections
-import js.task.screens.main.list.model.PlaceholderItem
+import androidx.compose.material.MaterialTheme
+import js.task.viewmodel.DataViewModel
 
 
 /**
@@ -13,15 +13,24 @@ import js.task.screens.main.list.model.PlaceholderItem
  */
 class MainActivity : AppCompatActivity()
 {
+
+    private val viewModel : DataViewModel by viewModels { DataViewModel.Factory }
+
     override fun onCreate(savedInstanceState : Bundle?)
     {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setObservers()
+        viewModel.getData()
     }
 
-    fun goToDetails(item: PlaceholderItem)
+    private fun setObservers()
     {
-        val directions = ListFragmentDirections.navigateToProductUsersDetails(item)
-        findNavController(this, R.id.nav_host_fragment_content_main).navigate(directions)
+        viewModel.dataList.observe(this) { data ->
+            setContent {
+                MaterialTheme {
+                    MainScreen().SetRecyclerView(data)
+                }
+            }
+        }
     }
 }
