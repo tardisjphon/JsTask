@@ -67,6 +67,7 @@ dependencies {
     implementation deps.compose.ui_tooling_preview
     implementation deps.compose.activity
     implementation deps.compose.lifecycle_runtime
+    implementation deps.compose.navigation
 
     implementation deps.navigation.fragment_ktx
 

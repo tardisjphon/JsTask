@@ -2,6 +2,7 @@ ext.versions = [
         compose          : '1.4.3',
         compose_activity : '1.7.2',
         compose_lifecycle: '2.6.1',
+        compose_navigation: '2.5.3',
         dagger           : '2.46.1',
         glide            : '4.15.1',
         navigation       : '2.5.3',
@@ -20,9 +21,10 @@ ext.deps = [
                 activity           : "androidx.activity:activity-compose:${versions.compose_activity}",
                 lifecycle_runtime  : "androidx.lifecycle:lifecycle-runtime-compose:${versions.compose_lifecycle}",
                 lifecycle_viewmodel: "androidx.lifecycle:lifecycle-viewmodel-compose:${versions.compose_lifecycle}",
+                material           : "androidx.compose.material:material:${versions.compose}",
+                navigation         : "androidx.navigation:navigation-compose:${versions.compose_navigation}",
                 ui_tooling         : "androidx.compose.ui:ui-tooling:${versions.compose}",
                 ui_tooling_preview : "androidx.compose.ui:ui-tooling-preview:${versions.compose}",
-                material           : "androidx.compose.material:material:${versions.compose}"
         ],
         dagger  : [
                 android          : "com.google.dagger:dagger-android:${versions.dagger}",
