@@ -22,6 +22,7 @@ import js.task.screens.main.MainScreen;
 import js.task.screens.main.list.adapter.ItemsListViewAdapter;
 import js.task.screens.main.list.model.PlaceholderItem;
 import js.task.viewmodel.DataViewModel;
+import kotlin.Lazy;
 import timber.log.Timber;
 
 
@@ -30,7 +31,10 @@ public class MainFragment
 {
     private RecyclerView recyclerView;
     private List<PlaceholderItem> placeHolderItems;
-    private ViewModelProvider viewModel;
+
+    private final Lazy<ViewModelProvider> viewModel = kotlin.LazyKt.lazy(() ->
+            new ViewModelProvider(this, DataViewModel.Factory)
+    );
 
     @Nullable
     @Override
@@ -120,10 +124,6 @@ public class MainFragment
 
     private DataViewModel getDataViewModel()
     {
-        if (viewModel == null)
-        {
-            viewModel = new ViewModelProvider(this, DataViewModel.Factory);
-        }
-        return viewModel.get(DataViewModel.class);
+        return viewModel.getValue().get(DataViewModel.class);
     }
 }
