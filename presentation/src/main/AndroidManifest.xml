@@ -21,7 +21,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="js.task.screens.details.DetailsActivity"
+            android:name="js.task.screens.details.DetailsScreen"
             android:exported="true">
         </activity>
     </application>

@@ -20,7 +20,7 @@
 
     <activity
         android:id="@+id/users_details_activity"
-        android:name="js.task.screens.details.DetailsActivity"
+        android:name="js.task.screens.details.DetailsScreen"
         android:label="@string/details"
         tools:layout="@layout/activity_details">
         <argument
