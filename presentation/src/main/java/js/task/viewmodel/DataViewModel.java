@@ -98,6 +98,7 @@ public class DataViewModel
 
         public final static ViewModelProvider.Factory Factory = new ViewModelProvider.Factory()
         {
+            @SuppressWarnings("unchecked")
             @NonNull
             @Override
             public <T extends ViewModel> T create(
