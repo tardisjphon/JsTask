@@ -33,7 +33,7 @@ public class MainFragment
     private List<PlaceholderItem> placeHolderItems;
 
     private final Lazy<ViewModelProvider> viewModel = kotlin.LazyKt.lazy(() ->
-            new ViewModelProvider(this, DataViewModel.Factory)
+            new ViewModelProvider(this, DataViewModel.DataViewModelCompanion.Factory)
     );
 
     @Nullable
