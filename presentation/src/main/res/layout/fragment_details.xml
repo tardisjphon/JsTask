@@ -16,7 +16,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context="js.task.screens.details.DetailsFragment">
+            tools:context="js.task.screens.details.DetailsScreenFragment">
 
             <TextView
                 android:id="@+id/textview_title"

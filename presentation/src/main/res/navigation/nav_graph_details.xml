@@ -3,11 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph_second"
-    app:startDestination="@id/DetailsFragment">
+    app:startDestination="@id/DetailsScreenFragment">
 
     <fragment
-        android:id="@+id/DetailsFragment"
-        android:name="js.task.screens.details.DetailsFragment"
+        android:id="@+id/DetailsScreenFragment"
+        android:name="js.task.screens.details.DetailsScreenFragment"
         android:label="@string/details"
         tools:layout="@layout/fragment_details"/>
 

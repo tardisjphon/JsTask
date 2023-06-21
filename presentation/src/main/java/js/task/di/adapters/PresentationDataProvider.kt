@@ -17,7 +17,7 @@ class PresentationDataProvider @Inject constructor(private val dataProvider : Da
 
     override fun getData() : Observable<List<DomainModel>>
     {
-        return dataProvider.getData().map {
+        return dataProvider.data.map {
             it.map {
                 DomainModel(
                         it.id ?: -1,
