@@ -1,12 +1,13 @@
-# JsTask - Compose version - branch
+# JsTask - Kotlin version - branch
 
 To see the other version of the application:
 
-- kotlin, change branch to kotlin
+- compose, change branch to kotlin_compose
 - java, change branch to java
+ 
 
+Kotlin branch Tech Stack:
 
-Compose version Tech Stack:
 - Clean Architecture
 - MVVM
 - Kotlin
@@ -14,6 +15,6 @@ Compose version Tech Stack:
 - Dagger
 - GSON
 - Retrofit
+- Android Navigation Component
 - Android Room
-- Compose
-- Coil
+- Glide
