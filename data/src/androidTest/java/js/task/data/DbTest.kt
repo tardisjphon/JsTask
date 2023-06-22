@@ -46,7 +46,6 @@ class DbTest
         dataDao = database.dataDao()
     }
 
-    @OptIn(ExperimentalCoroutinesApi::class)
     @Test
     fun insertData_returnsTrue() =
         runTest {
