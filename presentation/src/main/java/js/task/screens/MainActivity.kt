@@ -59,17 +59,23 @@ class MainActivity : AppCompatActivity()
                                 navController
                         )
                     }
-                    composable(
-                            ScreenName.DETAILS.title + "?${ScreenArgument.ID.title}={${ScreenArgument.ID.title}}",
-                            listOf(navArgument(ScreenArgument.ID.title) {
-                                type = NavType.IntType
-                                defaultValue = 0
-                            })
+                    composable(ScreenName.DETAILS.title +
+                               "?${ScreenArgument.ID.title}={${ScreenArgument.ID.title}}" +
+                               "&${ScreenArgument.API.title}={${ScreenArgument.API.title}}",
+                                listOf(navArgument(ScreenArgument.ID.title) {
+                                    type = NavType.IntType
+                                },
+                                navArgument(ScreenArgument.API.title) {
+                                    type = NavType.StringType
+                                }
+                            )
                     ) { backStackEntry ->
+
                         val id = backStackEntry.arguments?.getInt(ScreenArgument.ID.title)
-                        if (id != null)
+                        val api = backStackEntry.arguments?.getString(ScreenArgument.API.title)
+                        if (id != null && api != null)
                         {
-                            val selectedData = data.firstOrNull { it.id == id }
+                            val selectedData = data.firstOrNull { it.id == id && it.apiName == api }
                             if (selectedData != null)
                             {
                                 detailsScreen.Details(selectedData)
