@@ -1,6 +1,10 @@
 # JsTask - Compose version - branch
 
-/ IN PROGRESS /
+To see the other version of the application:
+
+- kotlin, change branch to kotlin
+- java, change branch to java
+
 
 Tech Stack:
 - Clean Architecture
@@ -13,6 +17,3 @@ Tech Stack:
 - Android Room
 - Compose
 - Coil
-
-To see the kotlin + Android Navigation Component version of the application, change branch to kotlin
-To see the java version of the application, change branch to java
