@@ -6,7 +6,7 @@ To see the other version of the application:
 - java, change branch to java
 
 
-Tech Stack:
+Compose version Tech Stack:
 - Clean Architecture
 - MVVM
 - Kotlin
