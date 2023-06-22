@@ -21,6 +21,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import js.task.domain.usecase.model.DomainModel
+import js.task.screens.model.ScreenArgument
 import js.task.screens.model.ScreenName
 
 
@@ -30,7 +31,7 @@ class MainScreen
     private fun getClickable(item : DomainModel, navigation : NavHostController) : Modifier
     {
         return Modifier.combinedClickable(onClick = {
-            val route = ScreenName.DETAILS.title + "?id=${item.id}"
+            val route = ScreenName.DETAILS.title + "?${ScreenArgument.ID.title}=${item.id}&${ScreenArgument.API.title}=${item.apiName}"
             navigation.navigate(route)
         })
     }
