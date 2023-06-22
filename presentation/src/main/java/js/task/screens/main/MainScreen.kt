@@ -4,17 +4,20 @@ import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
 import js.task.domain.usecase.model.DomainModel
 import js.task.screens.model.ScreenName
 
@@ -25,8 +28,7 @@ class MainScreen
     private fun getClickable(item : DomainModel, navigation : NavHostController) : Modifier
     {
         return Modifier.combinedClickable(onClick = {
-            val route = ScreenName.DETAILS.title +"?id=${item.id}"
-            println("clicked ! $route")
+            val route = ScreenName.DETAILS.title + "?id=${item.id}"
             navigation.navigate(route)
         })
     }
@@ -46,8 +48,16 @@ class MainScreen
                 Row {
                     Text(text = item.userName)
                 }
-                Row {
-                    Text(text = item.imageUrl)
+                if (item.imageUrl.isNotBlank())
+                {
+                    Row {
+                        AsyncImage(
+                                model = item.imageUrl,
+                                alignment = Alignment.Center,
+                                contentDescription = null,
+                                modifier = Modifier.size(300.dp),
+                        )
+                    }
                 }
                 Row {
                     Text(text = item.apiName)
