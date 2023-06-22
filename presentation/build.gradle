@@ -34,17 +34,6 @@ android {
     }
 
     buildFeatures {
-        viewBinding true
-        dataBinding true
-    }
-
-    buildFeatures {
-        compose true
-        viewBinding true
-        dataBinding true
-    }
-
-    buildFeatures {
         compose true
     }
     composeOptions {
@@ -57,24 +46,17 @@ dependencies {
     implementation project(path: ':data')
     implementation project(path: ':domain')
 
-    implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
     implementation deps.androidx.material
-    implementation deps.androidx.constraintlayout
 
-    implementation deps.compose.material
     debugImplementation deps.compose.ui_tooling
-    implementation deps.compose.ui_tooling_preview
     implementation deps.compose.activity
-    implementation deps.compose.lifecycle_runtime
-    implementation deps.compose.navigation
     implementation deps.compose.coil
-
-    implementation deps.navigation.fragment_ktx
-
-    implementation deps.glide.glide
-    kapt deps.glide.compiler
-    annotationProcessor deps.glide.compiler
+    implementation deps.compose.lifecycle_runtime
+    implementation deps.compose.lifecycle_viewmodel
+    implementation deps.compose.material
+    implementation deps.compose.navigation
+    implementation deps.compose.ui_tooling_preview
 
     implementation deps.dagger.dagger
     kapt deps.dagger.compiler
