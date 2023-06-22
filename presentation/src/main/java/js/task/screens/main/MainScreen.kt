@@ -16,26 +16,32 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import js.task.domain.usecase.model.DomainModel
+import js.task.screens.model.ScreenName
 
 
 class MainScreen
 {
     @OptIn(ExperimentalFoundationApi::class)
-    private fun getClickable(item : DomainModel, navigation: NavHostController) : Modifier
+    private fun getClickable(item : DomainModel, navigation : NavHostController) : Modifier
     {
         return Modifier.combinedClickable(onClick = {
-            println("clicked !")
-            //navigation.navigate("")
+            val route = ScreenName.DETAILS.title +"?id=${item.id}"
+            println("clicked ! $route")
+            navigation.navigate(route)
         })
     }
 
     @Composable
     fun ItemHolder(
-        item : DomainModel,
-        navigation: NavHostController
+        item : DomainModel, navigation : NavHostController
     )
     {
-        Row(modifier = getClickable(item, navigation)) {
+        Row(
+                modifier = getClickable(
+                        item,
+                        navigation
+                )
+        ) {
             Column {
                 Row {
                     Text(text = item.userName)
@@ -46,7 +52,10 @@ class MainScreen
                 Row {
                     Text(text = item.apiName)
                 }
-                Divider(color = Color.LightGray, thickness = 1.dp)
+                Divider(
+                        color = Color.LightGray,
+                        thickness = 1.dp
+                )
             }
         }
     }
@@ -54,21 +63,25 @@ class MainScreen
 
     @Preview
     @Composable
-    fun SetRecyclerView(list : List<DomainModel> = arrayListOf(
+    fun SetRecyclerView(
+        list : List<DomainModel> = arrayListOf(
                 DomainModel(
                         0,
                         "userName",
                         "imageUrl",
                         "apiName"
-                ))
+                )
+        ), navigation : NavHostController = rememberNavController()
     )
     {
-        val navController = rememberNavController()
 
         list.let { domainData ->
             LazyColumn {
                 items(domainData) { item ->
-                    ItemHolder(item, navController)
+                    ItemHolder(
+                            item,
+                            navigation
+                    )
                 }
             }
         }
