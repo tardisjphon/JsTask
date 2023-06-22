@@ -1,6 +1,5 @@
 package js.task.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -9,7 +8,6 @@ import js.task.data.di.DataProviderModule
 import js.task.di.*
 import js.task.domain.usecase.IGetLocalDataUseCase
 import js.task.domain.usecase.IGetRemoteDataUseCase
-import js.task.domain.usecase.model.DomainModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -22,7 +20,6 @@ class DataViewModel @Inject constructor(
 ) : ViewModel(), IGetLocalDataUseCase by getLocalDataUseCase,
     IGetRemoteDataUseCase by getRemoteDataUseCase
 {
-    val dataList by lazy { MutableLiveData<List<DomainModel>>() }
 
     fun getData()
     {
@@ -32,10 +29,6 @@ class DataViewModel @Inject constructor(
                     if (it.isEmpty())
                     {
                         getRemoteDataUseCase.invokeRemote()
-                    }
-                    else
-                    {
-                        dataList.postValue(it)
                     }
                 }
         }

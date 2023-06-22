@@ -5,6 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material.MaterialTheme
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -29,20 +30,22 @@ class MainActivity : AppCompatActivity()
     {
         super.onCreate(savedInstanceState)
 
-        setObservers()
+        setScreens()
+
         viewModel.getData()
     }
 
-    private fun setObservers()
-    {
-        viewModel.dataList.observe(this) { data ->
-            setScreens(data)
-        }
-    }
-
-    private fun setScreens(data : List<DomainModel>)
+    private fun setScreens()
     {
         setContent {
+
+            val data = viewModel.invokeLocal()
+                .collectAsStateWithLifecycle(
+                        initialValue = arrayListOf(
+                                DomainModel()
+                        )
+                ).value
+
             MaterialTheme {
 
                 val navController = rememberNavController()
