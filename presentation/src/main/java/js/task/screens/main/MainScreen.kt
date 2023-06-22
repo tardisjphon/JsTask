@@ -2,8 +2,10 @@ package js.task.screens.main
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -44,7 +46,11 @@ class MainScreen
                         navigation
                 )
         ) {
-            Column {
+            Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally,
+                    verticalArrangement = Arrangement.Center
+            ) {
                 Row {
                     Text(text = item.userName)
                 }
@@ -74,17 +80,10 @@ class MainScreen
     @Preview
     @Composable
     fun SetRecyclerView(
-        list : List<DomainModel> = arrayListOf(
-                DomainModel(
-                        0,
-                        "userName",
-                        "imageUrl",
-                        "apiName"
-                )
-        ), navigation : NavHostController = rememberNavController()
+        list : List<DomainModel> = arrayListOf(DomainModel()),
+        navigation : NavHostController = rememberNavController()
     )
     {
-
         list.let { domainData ->
             LazyColumn {
                 items(domainData) { item ->
