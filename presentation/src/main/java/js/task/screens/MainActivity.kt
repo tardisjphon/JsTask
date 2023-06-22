@@ -63,7 +63,15 @@ class MainActivity : AppCompatActivity()
                                 defaultValue = 0
                             })
                     ) { backStackEntry ->
-                        detailsScreen.Details(backStackEntry.arguments?.getInt(ScreenArgument.ID.title))
+                        val id = backStackEntry.arguments?.getInt(ScreenArgument.ID.title)
+                        if (id != null)
+                        {
+                            val selectedData = data.firstOrNull { it.id == id }
+                            if (selectedData != null)
+                            {
+                                detailsScreen.Details(selectedData)
+                            }
+                        }
                     }
                 }
             }
