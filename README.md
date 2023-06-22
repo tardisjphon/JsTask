@@ -1,6 +1,13 @@
 # JsTask - Kotlin version - branch
 
-Tech Stack:
+To see the other version of the application:
+
+- compose, change branch to kotlin_compose
+- java, change branch to java
+ 
+
+Kotlin branch Tech Stack:
+
 - Clean Architecture
 - MVVM
 - Kotlin
@@ -11,9 +18,3 @@ Tech Stack:
 - Android Navigation Component
 - Android Room
 - Glide
-
-TODO:
-- use Compose & Ktor
-
-
-To see the java version of the application, change branch to java
