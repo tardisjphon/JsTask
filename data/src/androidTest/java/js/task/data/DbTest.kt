@@ -14,6 +14,7 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 
+
 /**
  * Instrumented test, which will execute on an Android device.
  *
@@ -23,13 +24,6 @@ import org.junit.runner.RunWith
 @SmallTest
 class DbTest
 {
-    //    @Test
-    //    fun useAppContext() {
-    //        // Context of the app under test.
-    //        val appContext = InstrumentationRegistry.getInstrumentation().targetContext
-    //        assertEquals("js.task.data.test", appContext.packageName)
-    //    }
-
     private lateinit var database : AppDatabase
     private lateinit var dataDao : DataDao
 
