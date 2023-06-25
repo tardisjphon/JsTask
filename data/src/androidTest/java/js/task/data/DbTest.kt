@@ -9,7 +9,6 @@ import js.task.data.local.db.AppDatabase
 import js.task.data.local.db.dao.DataDao
 import js.task.data.local.db.model.DataModel
 import kotlinx.coroutines.*
-import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
 import org.junit.Test
@@ -48,7 +47,7 @@ class DbTest
 
     @Test
     fun insertData_returnsTrue() =
-        runTest {
+        runBlocking {
             val dataModel = DataModel(
                     1,
                     userName = "Batman"
