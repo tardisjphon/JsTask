@@ -39,6 +39,19 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.7"
     }
+
+    packagingOptions {
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE-notice.md")
+    }
+
+    testOptions {
+        packagingOptions {
+            jniLibs {
+                useLegacyPackaging = true
+            }
+        }
+    }
 }
 
 dependencies {
@@ -67,6 +80,7 @@ dependencies {
     implementation deps.timber.timber
 
     testImplementation deps.tests.junit
+    androidTestImplementation deps.tests.coroutines
     androidTestImplementation deps.tests.junit_ex
     androidTestImplementation deps.tests.espresso_core
 }
