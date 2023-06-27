@@ -8,9 +8,6 @@ import js.task.screens.main.list.ListFragmentDirections
 import js.task.screens.main.list.model.PlaceholderItem
 
 
-/**
- * TODO: Compose
- */
 class MainActivity : AppCompatActivity()
 {
     override fun onCreate(savedInstanceState : Bundle?)

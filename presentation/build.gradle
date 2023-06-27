@@ -37,6 +37,10 @@ android {
         viewBinding true
         dataBinding true
     }
+
+    testOptions {
+        unitTests.includeAndroidResources true
+    }
 }
 
 dependencies {
@@ -64,6 +68,8 @@ dependencies {
     implementation deps.timber.timber
 
     testImplementation deps.tests.junit
-    androidTestImplementation deps.tests.junit_ex
+    testImplementation deps.tests.robolectric
+    androidTestImplementation deps.tests.coroutines
     androidTestImplementation deps.tests.espresso_core
+    androidTestImplementation deps.tests.junit_ex
 }
