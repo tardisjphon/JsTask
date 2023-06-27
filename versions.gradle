@@ -68,6 +68,7 @@ ext.deps = [
                 mockito      : "org.mockito.kotlin:mockito-kotlin:5.0.0",
                 mockk        : "io.mockk:mockk:${versions.mockk}",
                 mockk_android: "io.mockk:mockk-android:${versions.mockk}",
-                turbine      : "app.cash.turbine:turbine:1.0.0"
+                robolectric  : "org.robolectric:robolectric:4.10.3",
+                turbine      : "app.cash.turbine:turbine:0.13.0"
         ]
 ]

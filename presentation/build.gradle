@@ -51,6 +51,9 @@ android {
                 useLegacyPackaging = true
             }
         }
+        unitTests {
+            includeAndroidResources true
+        }
     }
 }
 
@@ -80,7 +83,8 @@ dependencies {
     implementation deps.timber.timber
 
     testImplementation deps.tests.junit
+    testImplementation deps.tests.robolectric
     androidTestImplementation deps.tests.coroutines
-    androidTestImplementation deps.tests.junit_ex
     androidTestImplementation deps.tests.espresso_core
+    androidTestImplementation deps.tests.junit_ex
 }
