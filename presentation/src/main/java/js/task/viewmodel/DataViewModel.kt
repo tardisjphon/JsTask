@@ -1,6 +1,5 @@
 package js.task.viewmodel
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.APPLICATION_KEY
@@ -9,6 +8,7 @@ import js.task.data.di.DataProviderModule
 import js.task.di.*
 import js.task.domain.usecase.interfaces.IGetDataUseCase
 import js.task.domain.usecase.model.DomainModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 import javax.inject.Inject
 
 
@@ -16,7 +16,7 @@ class DataViewModel @Inject constructor(
     private val getDataUseCase : IGetDataUseCase
 ) : ViewModel()
 {
-    val dataList by lazy { MutableLiveData<List<DomainModel>>() }
+    val dataList by lazy { MutableSharedFlow<List<DomainModel>>() }
 
     fun getData()
     {

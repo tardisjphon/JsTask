@@ -1,10 +1,10 @@
 package js.task.domain.usecase.interfaces
 
-import androidx.lifecycle.MutableLiveData
 import js.task.domain.usecase.model.DomainModel
+import kotlinx.coroutines.flow.MutableSharedFlow
 
 
 interface IGetDataUseCase
 {
-    fun invoke(data: MutableLiveData<List<DomainModel>>) {}
+    fun invoke(data: MutableSharedFlow<List<DomainModel>>) {}
 }

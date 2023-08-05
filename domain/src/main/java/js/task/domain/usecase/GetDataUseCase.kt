@@ -1,11 +1,11 @@
 package js.task.domain.usecase
 
-import androidx.lifecycle.MutableLiveData
 import js.task.domain.interfaces.IDataProvider
 import js.task.domain.usecase.interfaces.IGetDataUseCase
 import js.task.domain.usecase.model.DomainModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -15,7 +15,7 @@ class GetDataUseCase @Inject constructor(
     private val dataProvider : IDataProvider
 ) : IGetDataUseCase
 {
-    override fun invoke(data : MutableLiveData<List<DomainModel>>)
+    override fun invoke(data : MutableSharedFlow<List<DomainModel>>)
     {
         coroutineScope.launch {
             dataProvider.getData()
@@ -26,7 +26,7 @@ class GetDataUseCase @Inject constructor(
                     }
                     else
                     {
-                        data.postValue(it)
+                        data.emit(it)
                     }
                 }
         }

@@ -2,6 +2,7 @@ ext.versions = [
         compose          : '1.4.3',
         compose_activity : '1.7.2',
         compose_lifecycle: '2.6.1',
+        coroutines       : '1.7.3',
         dagger           : '2.47',
         glide            : '4.15.1',
         navigation       : '2.6.0',
@@ -14,7 +15,8 @@ ext.deps = [
                 core_ktx               : "androidx.core:core-ktx:1.10.1",
                 appcompat              : "androidx.appcompat:appcompat:1.6.1",
                 material               : "com.google.android.material:material:1.9.0",
-                constraintlayout       : "androidx.constraintlayout:constraintlayout:2.1.4"
+                constraintlayout       : "androidx.constraintlayout:constraintlayout:2.1.4",
+                lifecycle              : "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
         ],
         compose : [
                 activity           : "androidx.activity:activity-compose:${versions.compose_activity}",
@@ -36,7 +38,7 @@ ext.deps = [
                 glide   : "com.github.bumptech.glide:glide:${versions.glide}"
         ],
         kotlinx : [
-                coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1",
+                coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
                 serialization_json: "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
         ],
         navigation : [
@@ -58,7 +60,7 @@ ext.deps = [
                 timber: "com.jakewharton.timber:timber:$versions.timber"
         ],
         tests   : [
-                coroutines   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3",
+                coroutines   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:${versions.coroutines}",
                 espresso_core: "androidx.test.espresso:espresso-core:3.5.1",
                 junit        : "junit:junit:4.13.2",
                 junit_ex     : "androidx.test.ext:junit:1.1.5",

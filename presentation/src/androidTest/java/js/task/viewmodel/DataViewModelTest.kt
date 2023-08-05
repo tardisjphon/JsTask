@@ -7,7 +7,7 @@ import js.task.di.DataViewModelModule
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.firstOrNull
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.withContext
 import org.junit.Before
@@ -27,20 +27,13 @@ class DataViewModelTest
             .dataProviderModule(DataProviderModule(applicationContext))
             .dataViewModelModule(DataViewModelModule())
             .build()
-        val getLocalDataUseCase = applicationGraph.getLocalDataUseCase()
-        val getRemoteDataUseCase = applicationGraph.getRemoteDataUseCase()
-        viewModel = DataViewModel(
-                getLocalDataUseCase,
-                getRemoteDataUseCase
-        )
+        val getDataUseCase = applicationGraph.dataUseCase()
+
+        viewModel = DataViewModel(getDataUseCase)
     }
 
-    private suspend fun getLocalData() =
-        viewModel.invokeLocal()
-            .firstOrNull()
-
-    private suspend fun isLocalDataEmpty() =
-        getLocalData()?.isEmpty() == true
+    private suspend fun isLocalDataEmpty() = viewModel.dataList.first().isEmpty()
+    private suspend fun getSize() = viewModel.dataList.first().size
 
     @Test
     fun getData() =
@@ -48,18 +41,20 @@ class DataViewModelTest
 
             if (isLocalDataEmpty())
             {
-                viewModel.invokeRemote()
+                viewModel.getData()
 
                 withContext(Dispatchers.IO) {
                     delay(3.seconds)
                     assertTrue(!isLocalDataEmpty())
-                    println("data retrieved from remote")
+                    val size = getSize()
+                    println("data retrieved from remote. size: $size")
                 }
             }
             else
             {
                 assertTrue(true)
-                println("data loaded from local")
+                val size = getSize()
+                println("data loaded from local. size: $size")
             }
         }
 }
