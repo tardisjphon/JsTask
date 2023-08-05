@@ -4,7 +4,6 @@ import androidx.test.platform.app.InstrumentationRegistry
 import js.task.data.di.DataProviderModule
 import js.task.di.DaggerApplicationGraph
 import js.task.di.DataViewModelModule
-import js.task.di.GetDataUseCaseModule
 import junit.framework.TestCase.assertTrue
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -26,7 +25,6 @@ class DataViewModelTest
         val applicationContext = InstrumentationRegistry.getInstrumentation().targetContext
         val applicationGraph = DaggerApplicationGraph.builder()
             .dataProviderModule(DataProviderModule(applicationContext))
-            .getDataUseCaseModule(GetDataUseCaseModule())
             .dataViewModelModule(DataViewModelModule())
             .build()
         val getLocalDataUseCase = applicationGraph.getLocalDataUseCase()

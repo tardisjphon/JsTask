@@ -4,6 +4,7 @@ import js.task.data.Repository
 import js.task.data.local.db.AppDatabase
 import js.task.data.local.db.model.DataModel
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 class DbRepository @Inject constructor(
     private val db : AppDatabase,
-    private val coroutinesScope : CoroutineScope
+    private val coroutinesScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 ) : Repository
 {
     override fun getData() : Flow<List<DataModel>>

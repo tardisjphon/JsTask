@@ -94,10 +94,10 @@ class ListFragment : Fragment()
         return dataList.map {
 
             PlaceholderItem(
-                    it.id,
-                    it.userName,
-                    it.imageUrl,
-                    it.apiName
+                    it.id ?: 0,
+                    it.userName ?: "",
+                    it.imageUrl ?: "",
+                    it.apiName?.name ?: ""
             )
         }
     }

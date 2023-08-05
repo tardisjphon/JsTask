@@ -33,7 +33,10 @@ android {
 
 dependencies {
 
+    implementation project(path: ':domain')
+
     kapt deps.room.compiler
+    api deps.room.runtime
     implementation deps.room.room_ktx
 
     implementation deps.dagger.dagger

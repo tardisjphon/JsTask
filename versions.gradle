@@ -2,11 +2,11 @@ ext.versions = [
         compose          : '1.4.3',
         compose_activity : '1.7.2',
         compose_lifecycle: '2.6.1',
-        dagger           : '2.46.1',
+        dagger           : '2.47',
         glide            : '4.15.1',
-        navigation       : '2.5.3',
+        navigation       : '2.6.0',
         retrofit         : '2.9.0',
-        room             : '2.5.1',
+        room             : '2.5.2',
         timber           : '5.0.1']
 
 ext.deps = [
@@ -50,6 +50,7 @@ ext.deps = [
                 retrofit      : "com.squareup.retrofit2:retrofit:$versions.retrofit"
         ],
         room    : [
+                runtime : "androidx.room:room-runtime:${versions.room}",
                 compiler: "androidx.room:room-compiler:${versions.room}",
                 room_ktx: "androidx.room:room-ktx:${versions.room}"
         ],
@@ -57,11 +58,11 @@ ext.deps = [
                 timber: "com.jakewharton.timber:timber:$versions.timber"
         ],
         tests   : [
-                coroutines   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.1",
+                coroutines   : "org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3",
                 espresso_core: "androidx.test.espresso:espresso-core:3.5.1",
                 junit        : "junit:junit:4.13.2",
                 junit_ex     : "androidx.test.ext:junit:1.1.5",
                 robolectric  : "org.robolectric:robolectric:4.10.3",
-                turbine      : "app.cash.turbine:turbine:0.13.0"
+                turbine      : "app.cash.turbine:turbine:1.0.0"
         ]
 ]

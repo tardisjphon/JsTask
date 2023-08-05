@@ -7,38 +7,24 @@ import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory.Companion.AP
 import androidx.lifecycle.viewmodel.CreationExtras
 import js.task.data.di.DataProviderModule
 import js.task.di.*
-import js.task.domain.usecase.IGetLocalDataUseCase
-import js.task.domain.usecase.IGetRemoteDataUseCase
+import js.task.domain.usecase.interfaces.IGetDataUseCase
 import js.task.domain.usecase.model.DomainModel
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 
 class DataViewModel @Inject constructor(
-    private val getLocalDataUseCase : IGetLocalDataUseCase,
-    private val getRemoteDataUseCase : IGetRemoteDataUseCase
-) : ViewModel(), IGetLocalDataUseCase by getLocalDataUseCase,
-    IGetRemoteDataUseCase by getRemoteDataUseCase
+    private val getDataUseCase : IGetDataUseCase
+) : ViewModel()
+    //, IGetLocalDataUseCase by getLocalDataUseCase,
+
 {
     val dataList by lazy { MutableLiveData<List<DomainModel>>() }
 
     fun getData()
     {
-        CoroutineScope(Dispatchers.Main).launch {
-            getLocalDataUseCase.invokeLocal()
-                .collect {
-                    if (it.isEmpty())
-                    {
-                        getRemoteDataUseCase.invokeRemote()
-                    }
-                    else
-                    {
-                        dataList.postValue(it)
-                    }
-                }
-        }
+        getDataUseCase.getData()
+
+        //dataList.postValue(it)
     }
 
     companion object
@@ -54,16 +40,11 @@ class DataViewModel @Inject constructor(
 
                 val applicationGraph = DaggerApplicationGraph.builder()
                     .dataProviderModule(DataProviderModule(applicationContext))
-                    .getDataUseCaseModule(GetDataUseCaseModule())
                     .dataViewModelModule(DataViewModelModule())
                     .build()
-                val getLocalDataUseCase = applicationGraph.getLocalDataUseCase()
-                val getRemoteDataUseCase = applicationGraph.getRemoteDataUseCase()
+                val getDataUseCase = applicationGraph.dataUseCase()
 
-                return DataViewModel(
-                        getLocalDataUseCase,
-                        getRemoteDataUseCase
-                ) as T
+                return DataViewModel(getDataUseCase) as T
             }
         }
     }
