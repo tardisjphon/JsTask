@@ -1,7 +1,10 @@
 package js.task.domain.usecase.interfaces
 
+import androidx.lifecycle.MutableLiveData
+import js.task.domain.usecase.model.DomainModel
 
-open class IGetDataUseCase
+
+interface IGetDataUseCase
 {
-    open fun getData() {}
+    fun invoke(data: MutableLiveData<List<DomainModel>>) {}
 }

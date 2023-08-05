@@ -15,16 +15,12 @@ import javax.inject.Inject
 class DataViewModel @Inject constructor(
     private val getDataUseCase : IGetDataUseCase
 ) : ViewModel()
-    //, IGetLocalDataUseCase by getLocalDataUseCase,
-
 {
     val dataList by lazy { MutableLiveData<List<DomainModel>>() }
 
     fun getData()
     {
-        getDataUseCase.getData()
-
-        //dataList.postValue(it)
+        getDataUseCase.invoke(dataList)
     }
 
     companion object
