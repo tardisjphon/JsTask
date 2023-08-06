@@ -13,12 +13,16 @@
         android:theme="@style/Theme.JsTask"
         tools:targetApi="31">
         <activity
-            android:name="js.task.screens.MainActivity"
+            android:name="js.task.screens.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name="js.task.screens.details.DetailsActivity"
+            android:exported="true">
         </activity>
     </application>
 

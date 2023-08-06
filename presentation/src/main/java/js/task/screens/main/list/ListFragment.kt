@@ -6,6 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
 import js.task.application.databinding.FragmentListBinding
 import js.task.domain.usecase.model.DomainModel
@@ -13,6 +16,7 @@ import js.task.screens.main.MainActivity
 import js.task.screens.main.list.adapter.ItemsListViewAdapter
 import js.task.screens.main.list.model.PlaceholderItem
 import js.task.viewmodel.DataViewModel
+import kotlinx.coroutines.launch
 import timber.log.Timber
 
 
@@ -51,16 +55,21 @@ class ListFragment : Fragment()
 
     private fun setObservers()
     {
-        viewModel.dataList.observe(viewLifecycleOwner) { data ->
+        lifecycleScope.launch {
 
-            placeHolderItems = getPlaceholderItems(data)
-            setRecyclerView(
-                    recyclerView,
-                    placeHolderItems
-            )
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.dataList.collect { data ->
 
-            placeHolderItems?.let {
-                setDetailsFragment(placeHolderItems)
+                    placeHolderItems = getPlaceholderItems(data)
+                    setRecyclerView(
+                            recyclerView,
+                            placeHolderItems
+                    )
+
+                    placeHolderItems?.let {
+                        setDetailsFragment(placeHolderItems)
+                    }
+                }
             }
         }
     }
