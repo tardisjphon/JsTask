@@ -7,9 +7,8 @@ import js.task.data.remote.retrofit.data.DailyMotion
 import js.task.data.remote.retrofit.data.Github
 import js.task.data.remote.retrofit.endpoints.DailyMotionEndpoints
 import js.task.data.remote.retrofit.endpoints.GithubEndpoints
-import kotlinx.coroutines.FlowPreview
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
-import java.util.*
 import javax.inject.Inject
 
 
@@ -56,7 +55,7 @@ class RetrofitRepository @Inject constructor()
         }
     }
 
-    @OptIn(FlowPreview::class)
+    @OptIn(ExperimentalCoroutinesApi::class)
     private fun flattenMerge(
         flow1 : Flow<List<DataModel>>, flow2 : Flow<List<DataModel>>
     ) : Flow<List<DataModel>>
