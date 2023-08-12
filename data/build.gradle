@@ -40,6 +40,7 @@ dependencies {
     implementation deps.room.rx_java
 
     implementation deps.koin.android
+    implementation deps.koin.compat
 
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.converter_gson

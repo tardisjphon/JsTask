@@ -1,5 +1,7 @@
 package js.task.screens.main.list;
 
+import static org.koin.java.KoinJavaComponent.inject;
+
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ import js.task.screens.main.MainScreen;
 import js.task.screens.main.list.adapter.ItemsListViewAdapter;
 import js.task.screens.main.list.model.PlaceholderItem;
 import js.task.viewmodel.DataViewModel;
+import kotlin.Lazy;
 import timber.log.Timber;
 
 
@@ -29,10 +32,7 @@ public class MainFragment
 {
     private RecyclerView recyclerView;
     private List<PlaceholderItem> placeHolderItems;
-
-    //    private final Lazy<ViewModelProvider> viewModel = kotlin.LazyKt.lazy(() ->
-    //            new ViewModelProvider(this, DataViewModel.DataViewModelCompanion.Factory)
-    //    );
+    private final Lazy<DataViewModel> viewModel = inject(DataViewModel.class);
 
     @Nullable
     @Override
@@ -76,7 +76,7 @@ public class MainFragment
     private List<PlaceholderItem> getPlaceholderItems(List<DomainModel> dataList)
     {
         return dataList.stream()
-                .map(mapping -> new PlaceholderItem(mapping.id(), mapping.userName(), mapping.imageUrl(), mapping.apiName(), false))
+                .map(mapping -> new PlaceholderItem(mapping.getId(), mapping.getUserName(), mapping.getImageUrl(), mapping.getApiName(), false))
                 .collect(Collectors.toList());
     }
 
@@ -122,7 +122,6 @@ public class MainFragment
 
     private DataViewModel getDataViewModel()
     {
-        return viewModel.getValue()
-                .get(DataViewModel.class);
+        return viewModel.getValue(); //.get(DataViewModel.class);
     }
 }

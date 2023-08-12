@@ -59,6 +59,7 @@ dependencies {
     annotationProcessor deps.glide.compiler
 
     implementation deps.koin.android
+    implementation deps.koin.compat
 
     implementation deps.timber.timber
 
