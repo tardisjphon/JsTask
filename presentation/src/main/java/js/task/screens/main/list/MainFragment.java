@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -22,7 +21,6 @@ import js.task.screens.main.MainScreen;
 import js.task.screens.main.list.adapter.ItemsListViewAdapter;
 import js.task.screens.main.list.model.PlaceholderItem;
 import js.task.viewmodel.DataViewModel;
-import kotlin.Lazy;
 import timber.log.Timber;
 
 
@@ -32,9 +30,9 @@ public class MainFragment
     private RecyclerView recyclerView;
     private List<PlaceholderItem> placeHolderItems;
 
-    private final Lazy<ViewModelProvider> viewModel = kotlin.LazyKt.lazy(() ->
-            new ViewModelProvider(this, DataViewModel.DataViewModelCompanion.Factory)
-    );
+    //    private final Lazy<ViewModelProvider> viewModel = kotlin.LazyKt.lazy(() ->
+    //            new ViewModelProvider(this, DataViewModel.DataViewModelCompanion.Factory)
+    //    );
 
     @Nullable
     @Override
@@ -78,7 +76,7 @@ public class MainFragment
     private List<PlaceholderItem> getPlaceholderItems(List<DomainModel> dataList)
     {
         return dataList.stream()
-                .map(mapping -> new PlaceholderItem(mapping.getId(), mapping.getUserName(), mapping.getImageUrl(), mapping.getApiName(), false))
+                .map(mapping -> new PlaceholderItem(mapping.id(), mapping.userName(), mapping.imageUrl(), mapping.apiName(), false))
                 .collect(Collectors.toList());
     }
 
@@ -124,6 +122,7 @@ public class MainFragment
 
     private DataViewModel getDataViewModel()
     {
-        return viewModel.getValue().get(DataViewModel.class);
+        return viewModel.getValue()
+                .get(DataViewModel.class);
     }
 }

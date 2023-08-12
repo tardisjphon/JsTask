@@ -2,12 +2,13 @@ ext.versions = [
         compose          : '1.4.3',
         compose_activity : '1.7.2',
         compose_lifecycle: '2.6.1',
-        coroutines       : '1.7.1',
-        dagger           : '2.46.1',
+        coroutines       : '1.7.3',
+        dagger           : '2.47',
         glide            : '4.15.1',
-        navigation       : '2.5.3',
+        koin             : '3.4.3',
+        navigation       : '2.6.0',
         retrofit         : '2.9.0',
-        room             : '2.5.1',
+        room             : '2.5.2',
         timber           : '5.0.1']
 
 ext.deps = [
@@ -15,7 +16,8 @@ ext.deps = [
                 core_ktx               : "androidx.core:core-ktx:1.10.1",
                 appcompat              : "androidx.appcompat:appcompat:1.6.1",
                 material               : "com.google.android.material:material:1.9.0",
-                constraintlayout       : "androidx.constraintlayout:constraintlayout:2.1.4"
+                constraintlayout       : "androidx.constraintlayout:constraintlayout:2.1.4",
+                lifecycle              : "androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
         ],
         compose : [
                 activity           : "androidx.activity:activity-compose:${versions.compose_activity}",
@@ -36,8 +38,20 @@ ext.deps = [
                 compiler: "com.github.bumptech.glide:compiler:${versions.glide}",
                 glide   : "com.github.bumptech.glide:glide:${versions.glide}"
         ],
+        koin : [
+                android                : "io.insert-koin:koin-android:${versions.koin}",
+                android_test           : "io.insert-koin:koin-android-test:${versions.koin}",
+                annotations            : "io.insert-koin:koin-annotations:1.2.2",
+                compat                 : "io.insert-koin:koin-android-compat:${versions.koin}",
+                compose                : "io.insert-koin:koin-compose:1.0.4",
+                compose_androidx       : "io.insert-koin:koin-androidx-compose:3.4.6",
+                core                   : "io.insert-koin:koin-core:${versions.koin}",
+                coroutines             : "io.insert-koin:koin-core-coroutines:${versions.koin}",
+                logger                 : "io.insert-koin:koin-logger-slf4j:${versions.koin}",
+                test_unit_4            : "io.insert-koin:koin-test-junit4:${versions.koin}"
+        ],
         kotlinx : [
-                coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1",
+                coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",
                 serialization_json: "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1"
         ],
         navigation : [
@@ -53,6 +67,7 @@ ext.deps = [
         room    : [
                 compiler: "androidx.room:room-compiler:${versions.room}",
                 room_ktx: "androidx.room:room-ktx:${versions.room}",
+                runtime : "androidx.room:room-runtime:${versions.room}",
                 rx_java : "androidx.room:room-rxjava2:${versions.room}"
         ],
         timber  : [
@@ -63,7 +78,8 @@ ext.deps = [
                 espresso_core: "androidx.test.espresso:espresso-core:3.5.1",
                 junit        : "junit:junit:4.13.2",
                 junit_ex     : "androidx.test.ext:junit:1.1.5",
-                turbine      : "app.cash.turbine:turbine:0.13.0"
+                robolectric  : "org.robolectric:robolectric:4.10.3",
+                turbine      : "app.cash.turbine:turbine:1.0.0"
         ],
         rx_java : [
                 android         : "io.reactivex.rxjava2:rxandroid:2.1.1",

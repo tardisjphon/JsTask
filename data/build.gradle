@@ -33,15 +33,13 @@ android {
 
 dependencies {
 
+    implementation project(path: ':domain')
+
     kapt deps.room.compiler
     implementation deps.room.room_ktx
     implementation deps.room.rx_java
 
-    implementation deps.dagger.dagger
-    kapt deps.dagger.compiler
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
-    kapt deps.dagger.android_processor
+    implementation deps.koin.android
 
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.converter_gson

@@ -7,8 +7,6 @@ import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import javax.inject.Inject;
-
 import js.task.data.local.db.model.DailyMotionPage;
 import js.task.data.local.db.model.DataModel;
 import js.task.data.local.db.model.GithubPage;
@@ -16,7 +14,7 @@ import js.task.data.remote.retrofit.converter.model.ApiName;
 
 
 public class RemoteDataConverter {
-    @Inject
+
     public RemoteDataConverter() {
     }
 
