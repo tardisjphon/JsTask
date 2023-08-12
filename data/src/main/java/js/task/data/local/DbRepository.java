@@ -2,10 +2,10 @@ package js.task.data.local;
 
 import java.util.List;
 
-import io.reactivex.Observable;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import js.task.data.Repository;
 import js.task.data.local.db.AppDatabase;
 import js.task.data.local.db.model.DataModel;

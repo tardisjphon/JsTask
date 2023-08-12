@@ -4,9 +4,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import io.reactivex.Observable;
-import io.reactivex.functions.BiFunction;
-import io.reactivex.schedulers.Schedulers;
+
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.functions.BiFunction;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import js.task.data.local.db.model.DailyMotionPage;
 import js.task.data.local.db.model.DataModel;
 import js.task.data.local.db.model.GithubPage;

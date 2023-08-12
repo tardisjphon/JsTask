@@ -68,7 +68,7 @@ ext.deps = [
                 compiler: "androidx.room:room-compiler:${versions.room}",
                 room_ktx: "androidx.room:room-ktx:${versions.room}",
                 runtime : "androidx.room:room-runtime:${versions.room}",
-                rx_java : "androidx.room:room-rxjava2:${versions.room}"
+                rx_java : "androidx.room:room-rxjava3:${versions.room}"
         ],
         timber  : [
                 timber: "com.jakewharton.timber:timber:$versions.timber"
@@ -82,8 +82,9 @@ ext.deps = [
                 turbine      : "app.cash.turbine:turbine:1.0.0"
         ],
         rx_java : [
-                android         : "io.reactivex.rxjava2:rxandroid:2.1.1",
-                kotlin          : "io.reactivex.rxjava2:rxkotlin:2.4.0",
-                retrofit_adapter: "com.squareup.retrofit2:adapter-rxjava2:2.9.0"
+                android         : "io.reactivex.rxjava3:rxandroid:3.0.2",
+                kotlin          : "io.reactivex.rxjava3:rxkotlin:3.1.5",
+                java            : "io.reactivex.rxjava3:rxjava:3.1.6",
+                retrofit_adapter: "com.squareup.retrofit2:adapter-rxjava3:2.9.0"
         ]
 ]

@@ -3,9 +3,9 @@ package js.task.data;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import io.reactivex.Observable;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import js.task.data.local.DbRepository;
 import js.task.data.local.db.model.DataModel;
 import js.task.data.remote.RetrofitRepository;

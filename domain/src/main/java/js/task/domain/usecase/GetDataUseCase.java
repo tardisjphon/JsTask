@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 import js.task.domain.interfaces.IDataProvider;
 import js.task.domain.usecase.interfaces.IGetDataUseCase;
 import js.task.domain.usecase.model.DomainModel;

@@ -1,7 +1,7 @@
 package js.task
 
 import android.app.Application
-import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.rxjava3.disposables.CompositeDisposable
 import js.task.data.DataProvider
 import js.task.data.local.DbRepository
 import js.task.data.local.db.AppDatabase

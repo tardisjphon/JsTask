@@ -51,8 +51,7 @@ dependencies {
 
     implementation deps.navigation.fragment_ktx
 
-    implementation deps.rx_java.kotlin
-    implementation deps.rx_java.android
+    implementation deps.rx_java.retrofit_adapter
 
     implementation deps.glide.glide
     kapt deps.glide.compiler

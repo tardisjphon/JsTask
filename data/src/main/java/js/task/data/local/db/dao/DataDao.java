@@ -7,7 +7,7 @@ import androidx.room.Query;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.rxjava3.core.Observable;
 import js.task.data.local.db.model.DataModel;
 
 
