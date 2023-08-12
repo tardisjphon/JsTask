@@ -65,6 +65,7 @@ dependencies {
     implementation deps.koin.compat
     implementation deps.koin.coroutines
     implementation deps.koin.logger
+    implementation deps.koin.test_unit_4
 
     implementation deps.timber.timber
 

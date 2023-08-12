@@ -7,10 +7,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
-class GetDataUseCase @Inject constructor(
+class GetDataUseCase constructor(
     private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO),
     private val dataProvider : IDataProvider
 ) : IGetDataUseCase

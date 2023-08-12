@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
@@ -17,6 +16,7 @@ import js.task.screens.main.list.adapter.ItemsListViewAdapter
 import js.task.screens.main.list.model.PlaceholderItem
 import js.task.viewmodel.DataViewModel
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 import timber.log.Timber
 
 
@@ -24,9 +24,7 @@ class ListFragment : Fragment()
 {
     private var recyclerView : RecyclerView? = null
     private var placeHolderItems : List<PlaceholderItem>? = null
-
-    private val viewModel : DataViewModel by viewModels { DataViewModel.Factory }
-
+    private val viewModel: DataViewModel by viewModel()
 
     override fun onCreateView(
         inflater : LayoutInflater, container : ViewGroup?, savedInstanceState : Bundle?

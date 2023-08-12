@@ -11,10 +11,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 
-class DataProvider @Inject constructor(
+class DataProvider constructor(
     private val coroutineScope : CoroutineScope = CoroutineScope(Dispatchers.IO),
     private val localRepository : DbRepository,
     private val remoteRepository : RetrofitRepository

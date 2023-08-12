@@ -9,14 +9,13 @@ import js.task.data.remote.retrofit.endpoints.DailyMotionEndpoints
 import js.task.data.remote.retrofit.endpoints.GithubEndpoints
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
-import javax.inject.Inject
 
 
 /**
  * TODO - Ktor
  * https://medium.com/backyard-programmers/replacing-retrofit-with-ktor-client-and-kotlin-serialization-for-android-5ca6bfc60648
  */
-class RetrofitRepository @Inject constructor()
+class RetrofitRepository
 {
     private val dataConverter by lazy { RemoteDataConverter() }
 

@@ -4,10 +4,9 @@ import js.task.data.local.db.model.DailyMotionPage
 import js.task.data.local.db.model.DataModel
 import js.task.data.local.db.model.GithubPage
 import js.task.data.remote.retrofit.converter.model.ApiName
-import javax.inject.Inject
 
 
-class RemoteDataConverter @Inject constructor()
+class RemoteDataConverter
 {
     fun getDataModel(data : DailyMotionPage) : List<DataModel>
     {

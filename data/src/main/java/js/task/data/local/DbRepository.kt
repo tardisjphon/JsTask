@@ -8,10 +8,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import javax.inject.Inject
 
 
-class DbRepository @Inject constructor(
+class DbRepository constructor(
     private val db : AppDatabase,
     private val coroutinesScope : CoroutineScope = CoroutineScope(Dispatchers.IO)
 ) : Repository
