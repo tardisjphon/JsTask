@@ -58,7 +58,7 @@ public class RetrofitRepository {
                         observable1,
                         observable2
                 )
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.io())
                 .doOnError(Timber::e);
     }
 
@@ -75,7 +75,7 @@ public class RetrofitRepository {
                         observable2,
                         zipper
                 )
-                .subscribeOn(Schedulers.computation())
+                .subscribeOn(Schedulers.io())
                 .doOnError(Timber::e);
     }
 }

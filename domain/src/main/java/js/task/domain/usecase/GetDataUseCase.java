@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import js.task.domain.interfaces.IDataProvider;
 import js.task.domain.usecase.interfaces.IGetDataUseCase;
 import js.task.domain.usecase.model.DomainModel;
@@ -29,6 +30,8 @@ public class GetDataUseCase
     public void invoke(MutableLiveData<List<DomainModel>> dataOut)
     {
         compositeDisposable.add(iDataProvider.getData()
+                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .subscribe(data ->
                 {
                     if (data.isEmpty())

@@ -35,6 +35,9 @@ dependencies {
 
     implementation deps.koin.android
     implementation deps.koin.compat
+    implementation deps.koin.core
+    implementation deps.koin.logger
+    implementation deps.koin.annotations
 
     implementation deps.rx_java.kotlin
 

@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import io.reactivex.Observable;
 import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.schedulers.Schedulers;
 import js.task.data.local.DbRepository;
 import js.task.data.local.db.model.DataModel;
 import js.task.data.remote.RetrofitRepository;
@@ -33,7 +34,10 @@ public class DataProvider
     @Override
     public void download()
     {
-        compositeDisposable.addAll(remoteRepository.get().subscribe(
+        compositeDisposable.addAll(remoteRepository.get()
+                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
+                .subscribe(
                 localRepository::updateData
         ));
     }

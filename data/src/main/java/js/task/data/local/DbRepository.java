@@ -38,7 +38,8 @@ public class DbRepository
     public void updateData(List<DataModel> data)
     {
         Disposable disposable = Observable.empty()
-                .observeOn(Schedulers.computation())
+                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .doOnComplete(() -> db.runInTransaction(() ->
                 {
                     Timber.i("DataModel: set");
@@ -53,7 +54,8 @@ public class DbRepository
     public void setData(List<DataModel> data)
     {
         Disposable disposable = Observable.empty()
-                .observeOn(Schedulers.computation())
+                .observeOn(Schedulers.io())
+                .subscribeOn(Schedulers.io())
                 .doOnComplete(() -> db.runInTransaction(() ->
                 {
                     Timber.i("DataModel: deleteAll");
