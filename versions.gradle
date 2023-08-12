@@ -5,6 +5,7 @@ ext.versions = [
         coroutines       : '1.7.3',
         dagger           : '2.47',
         glide            : '4.15.1',
+        koin             : '3.4.3',
         navigation       : '2.6.0',
         retrofit         : '2.9.0',
         room             : '2.5.2',
@@ -36,6 +37,18 @@ ext.deps = [
         glide   : [
                 compiler: "com.github.bumptech.glide:compiler:${versions.glide}",
                 glide   : "com.github.bumptech.glide:glide:${versions.glide}"
+        ],
+        koin : [
+                android                : "io.insert-koin:koin-android:${versions.koin}",
+                android_test           : "koin-android-test:${versions.koin}",
+                annotations            : "koin-annotations:1.2.2",
+                compat                 : "koin-android-compat:${versions.koin}",
+                compose                : "koin-compose:1.0.4",
+                compose_androidx       : "koin-androidx-compose:3.4.6",
+                core                   : "koin-core:${versions.koin}",
+                coroutines             : "koin-core-coroutines:${versions.koin}",
+                logger                 : "koin-logger-slf4j:${versions.koin}",
+                test                   : "io.insert-koin:koin-test-junit4:${versions.koin}"
         ],
         kotlinx : [
                 coroutines_core   : "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}",

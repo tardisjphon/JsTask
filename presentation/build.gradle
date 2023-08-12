@@ -60,11 +60,11 @@ dependencies {
     kapt deps.glide.compiler
     annotationProcessor deps.glide.compiler
 
-    implementation deps.dagger.dagger
-    kapt deps.dagger.compiler
-    implementation deps.dagger.android
-    implementation deps.dagger.android_support
-    kapt deps.dagger.android_processor
+    implementation deps.koin.android
+    implementation deps.koin.annotations
+    implementation deps.koin.compat
+    implementation deps.koin.coroutines
+    implementation deps.koin.logger
 
     implementation deps.timber.timber
 
