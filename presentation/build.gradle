@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace 'js.task.application'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "js.task.application"
         minSdk 28
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 

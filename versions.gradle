@@ -5,7 +5,7 @@ ext.versions = [
         coroutines       : '1.7.3',
         dagger           : '2.47',
         glide            : '4.15.1',
-        navigation       : '2.6.0',
+        navigation       : '2.7.0',
         retrofit         : '2.9.0',
         room             : '2.5.2',
         timber           : '5.0.1']
