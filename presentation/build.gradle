@@ -34,12 +34,26 @@ android {
     }
 
     buildFeatures {
-        viewBinding true
-        dataBinding true
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.7"
+    }
+
+    packagingOptions {
+        exclude("META-INF/LICENSE.md")
+        exclude("META-INF/LICENSE-notice.md")
     }
 
     testOptions {
-        unitTests.includeAndroidResources true
+        packagingOptions {
+            jniLibs {
+                useLegacyPackaging = true
+            }
+        }
+        unitTests {
+            includeAndroidResources true
+        }
     }
 }
 
@@ -48,17 +62,17 @@ dependencies {
     implementation project(path: ':data')
     implementation project(path: ':domain')
 
-    implementation deps.androidx.core_ktx
     implementation deps.androidx.appcompat
     implementation deps.androidx.material
-    implementation deps.androidx.constraintlayout
-    implementation deps.androidx.lifecycle
 
-    implementation deps.navigation.fragment_ktx
-
-    implementation deps.glide.glide
-    kapt deps.glide.compiler
-    annotationProcessor deps.glide.compiler
+    implementation deps.compose.activity
+    implementation deps.compose.coil
+    implementation deps.compose.lifecycle_runtime
+    implementation deps.compose.lifecycle_viewmodel
+    implementation deps.compose.material
+    implementation deps.compose.navigation
+    debugImplementation deps.compose.ui_tooling
+    implementation deps.compose.ui_tooling_preview
 
     implementation deps.koin.android
     implementation deps.koin.test_unit_4

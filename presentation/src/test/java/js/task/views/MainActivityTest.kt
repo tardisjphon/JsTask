@@ -1,6 +1,6 @@
 package js.task.views
 
-import js.task.screens.main.MainActivity
+import js.task.screens.MainActivity
 import junit.framework.TestCase.assertNotNull
 import org.junit.Before
 import org.junit.Test
@@ -13,7 +13,6 @@ import org.robolectric.RobolectricTestRunner
 class MainActivityTest
 {
     private var activity : MainActivity? = null
-
 
     @Before
     @Throws(Exception::class)

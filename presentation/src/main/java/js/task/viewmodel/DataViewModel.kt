@@ -6,7 +6,6 @@ import js.task.domain.usecase.model.DomainModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 
 
-
 class DataViewModel constructor(
     private val getDataUseCase : IGetDataUseCase
 ) : ViewModel()
