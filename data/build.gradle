@@ -35,20 +35,15 @@ dependencies {
 
     implementation project(path: ':domain')
 
-    implementation deps.room.runtime
-    annotationProcessor "androidx.room:room-compiler:2.5.2"
-
     kapt deps.room.compiler
-//    ksp "androidx.room:room-compiler:2.5.2"
-
     implementation deps.room.room_ktx
     implementation deps.room.rx_java
 
-    implementation deps.koin.android
-    implementation deps.koin.compat
-    implementation deps.koin.core
-    implementation deps.koin.logger
-    implementation deps.koin.annotations
+    implementation deps.dagger.dagger
+    kapt deps.dagger.compiler
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.android_processor
 
     implementation deps.retrofit.retrofit
     implementation deps.retrofit.converter_gson

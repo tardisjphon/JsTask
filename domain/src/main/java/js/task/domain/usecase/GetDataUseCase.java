@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import js.task.domain.interfaces.IDataProvider;
@@ -17,7 +19,7 @@ public class GetDataUseCase
     private final IDataProvider iDataProvider;
     private final CompositeDisposable compositeDisposable;
 
-    public GetDataUseCase(
+    public @Inject GetDataUseCase(
             IDataProvider iDataProvider,
             CompositeDisposable compositeDisposable
     )

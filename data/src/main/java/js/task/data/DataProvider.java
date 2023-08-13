@@ -3,6 +3,8 @@ package js.task.data;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.inject.Inject;
+
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
@@ -20,7 +22,7 @@ public class DataProvider
     private final DbRepository localRepository;
     private final RetrofitRepository remoteRepository;
 
-    public DataProvider(
+    public @Inject DataProvider (
             CompositeDisposable compositeDisposableInject,
             DbRepository localRepositoryInject,
             RetrofitRepository remoteRepositoryInject

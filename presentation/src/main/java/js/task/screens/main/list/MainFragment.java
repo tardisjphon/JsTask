@@ -1,7 +1,5 @@
 package js.task.screens.main.list;
 
-import static org.koin.java.KoinJavaComponent.inject;
-
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
@@ -32,7 +31,10 @@ public class MainFragment
 {
     private RecyclerView recyclerView;
     private List<PlaceholderItem> placeHolderItems;
-    private final Lazy<DataViewModel> viewModel = inject(DataViewModel.class);
+
+    private final Lazy<ViewModelProvider> viewModel = kotlin.LazyKt.lazy(() ->
+            new ViewModelProvider(this, DataViewModel.DataViewModelCompanion.Factory)
+    );
 
     @Nullable
     @Override
@@ -122,6 +124,6 @@ public class MainFragment
 
     private DataViewModel getDataViewModel()
     {
-        return viewModel.getValue(); //.get(DataViewModel.class);
+        return viewModel.getValue().get(DataViewModel.class);
     }
 }

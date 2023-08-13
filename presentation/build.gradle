@@ -48,6 +48,7 @@ dependencies {
     implementation deps.androidx.appcompat
     implementation deps.androidx.material
     implementation deps.androidx.constraintlayout
+    implementation deps.androidx.lifecycle
 
     implementation deps.navigation.fragment_ktx
 
@@ -57,11 +58,11 @@ dependencies {
     kapt deps.glide.compiler
     annotationProcessor deps.glide.compiler
 
-    implementation deps.koin.android
-    implementation deps.koin.compat
-    implementation deps.koin.core
-    implementation deps.koin.logger
-    implementation deps.koin.annotations
+    implementation deps.dagger.dagger
+    kapt deps.dagger.compiler
+    implementation deps.dagger.android
+    implementation deps.dagger.android_support
+    kapt deps.dagger.android_processor
 
     implementation deps.timber.timber
 
