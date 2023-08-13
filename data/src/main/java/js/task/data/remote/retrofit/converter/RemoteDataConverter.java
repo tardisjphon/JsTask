@@ -27,7 +27,6 @@ public class RemoteDataConverter {
         return data.getList().stream().map(
                 dailyMotion ->
                         new DataModel(
-                                null,
                                 index.getAndIncrement(),
                                 dailyMotion.getScreenname(),
                                 "",
@@ -38,7 +37,6 @@ public class RemoteDataConverter {
     public List<DataModel> getDataModel(List<GithubPage> data) {
         return data.stream().map(mapping ->
                 new DataModel(
-                        null,
                         mapping.getId(),
                         mapping.getLogin(),
                         mapping.getAvatar_url(),

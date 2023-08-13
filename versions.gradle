@@ -65,7 +65,7 @@ ext.deps = [
                 retrofit      : "com.squareup.retrofit2:retrofit:$versions.retrofit"
         ],
         room    : [
-                compiler: "androidx.room:room-compiler:${versions.room}",
+                compiler: "androidx.room:room-compiler:${versions.room}",  //annotationProcessor
                 room_ktx: "androidx.room:room-ktx:${versions.room}",
                 runtime : "androidx.room:room-runtime:${versions.room}",
                 rx_java : "androidx.room:room-rxjava3:${versions.room}"
