@@ -35,7 +35,12 @@ dependencies {
 
     implementation project(path: ':domain')
 
+    implementation deps.room.runtime
+    annotationProcessor "androidx.room:room-compiler:2.5.2"
+
     kapt deps.room.compiler
+//    ksp "androidx.room:room-compiler:2.5.2"
+
     implementation deps.room.room_ktx
     implementation deps.room.rx_java
 

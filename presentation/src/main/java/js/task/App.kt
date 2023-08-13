@@ -18,7 +18,7 @@ import org.koin.dsl.module
 
 class App : Application()
 {
-    private val compositeDisposable : CompositeDisposable = CompositeDisposable()
+    private val compositeDisposable = lazy { CompositeDisposable() }
 
     override fun onCreate()
     {
@@ -49,11 +49,11 @@ class App : Application()
     private fun getDataProvider() : IDataProvider
     {
         return DataProvider(
-                compositeDisposable,
+                compositeDisposable.value,
                 DbRepository(
                         AppDatabase.AppDatabaseCompanion()
                             .getInstance(applicationContext),
-                        compositeDisposable
+                        compositeDisposable.value
                 ),
                 RetrofitRepository()
         )
@@ -63,7 +63,7 @@ class App : Application()
     {
         return GetDataUseCase(
                 getDataProvider(),
-                compositeDisposable
+                compositeDisposable.value
         )
     }
 }
