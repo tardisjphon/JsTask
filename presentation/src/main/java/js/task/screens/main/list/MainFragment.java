@@ -122,6 +122,6 @@ public class MainFragment
 
     private DataViewModel getDataViewModel()
     {
-        return viewModel.getValue(); //.get(DataViewModel.class);
+        return viewModel.getValue();
     }
 }

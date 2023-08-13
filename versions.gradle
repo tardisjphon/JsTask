@@ -48,6 +48,8 @@ ext.deps = [
                 core                   : "io.insert-koin:koin-core:${versions.koin}",
                 coroutines             : "io.insert-koin:koin-core-coroutines:${versions.koin}",
                 logger                 : "io.insert-koin:koin-logger-slf4j:${versions.koin}",
+                navigation             : "io.insert-koin:koin-androidx-navigation:${versions.koin}",
+                test                   : "io.insert-koin:koin-test:${versions.koin}",
                 test_unit_4            : "io.insert-koin:koin-test-junit4:${versions.koin}"
         ],
         kotlinx : [
