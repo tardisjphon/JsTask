@@ -7,6 +7,3 @@ data class DomainModel
     val imageUrl : String?,
     val apiName : DomainApiName?
 )
-{
-    constructor() : this(null, null, null, null)
-}

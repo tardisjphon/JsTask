@@ -81,7 +81,7 @@ class MainScreen
     @Preview
     @Composable
     fun SetRecyclerView(
-        list : List<DomainModel> = arrayListOf(DomainModel()),
+        list : List<DomainModel> = emptyList(),
         navigation : NavHostController = rememberNavController()
     )
     {

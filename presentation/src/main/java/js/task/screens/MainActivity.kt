@@ -10,7 +10,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import js.task.domain.usecase.model.DomainModel
 import js.task.screens.details.DetailsScreen
 import js.task.screens.main.MainScreen
 import js.task.screens.model.ScreenArgument
@@ -38,11 +37,7 @@ class MainActivity : AppCompatActivity()
     {
         setContent {
 
-            val data = viewModel.dataList.collectAsStateWithLifecycle(
-                        initialValue = arrayListOf(
-                                DomainModel()
-                        )
-                ).value
+            val data = viewModel.dataList.collectAsStateWithLifecycle(emptyList()).value
 
             MaterialTheme {
 
@@ -57,13 +52,15 @@ class MainActivity : AppCompatActivity()
                                 navController
                         )
                     }
-                    composable(ScreenName.DETAILS.title + "?${ScreenArgument.ID.title}={${ScreenArgument.ID.title}}" + "&${ScreenArgument.API.title}={${ScreenArgument.API.title}}",
-                               listOf(navArgument(ScreenArgument.ID.title) {
-                                   type = NavType.IntType
-                               },
-                                      navArgument(ScreenArgument.API.title) {
-                                          type = NavType.StringType
-                                      })) { backStackEntry ->
+                    composable(
+                            ScreenName.DETAILS.title + "?${ScreenArgument.ID.title}={${ScreenArgument.ID.title}}" + "&${ScreenArgument.API.title}={${ScreenArgument.API.title}}",
+                            listOf(navArgument(ScreenArgument.ID.title) {
+                                type = NavType.IntType
+                            },
+                                   navArgument(ScreenArgument.API.title) {
+                                       type = NavType.StringType
+                                   })
+                    ) { backStackEntry ->
 
                         val id = backStackEntry.arguments?.getInt(ScreenArgument.ID.title)
                         val api = backStackEntry.arguments?.getString(ScreenArgument.API.title)

@@ -2,6 +2,7 @@ package js.task.data.local.db.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.Ignore
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.Expose
 import js.task.data.remote.retrofit.converter.model.ApiName
@@ -28,3 +29,7 @@ data class DataModel
     @ColumnInfo(name = "apiName")
     val apiName : ApiName? = null
 )
+{
+    @Ignore
+    constructor() : this(null)
+}
