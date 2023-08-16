@@ -5,6 +5,7 @@ import js.task.domain.usecase.interfaces.IGetDataUseCase
 import js.task.domain.usecase.model.DomainModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 
@@ -14,7 +15,7 @@ class GetDataUseCase constructor(
     private val dataProvider : IDataProvider
 ) : IGetDataUseCase
 {
-    override fun invoke(data : MutableSharedFlow<List<DomainModel>>)
+    override fun invoke(data : Flow<List<DomainModel>>)
     {
         coroutineScope.launch {
             dataProvider.getData()
@@ -25,7 +26,7 @@ class GetDataUseCase constructor(
                     }
                     else
                     {
-                        data.emit(it)
+                        (data as? MutableSharedFlow<List<DomainModel>>)?.emit(it)
                     }
                 }
         }

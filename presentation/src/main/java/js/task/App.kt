@@ -8,7 +8,7 @@ import js.task.data.remote.RetrofitRepository
 import js.task.domain.interfaces.IDataProvider
 import js.task.domain.usecase.GetDataUseCase
 import js.task.domain.usecase.interfaces.IGetDataUseCase
-import js.task.viewmodel.DataViewModel
+import js.task.viewmodel.MainViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
@@ -24,47 +24,39 @@ class App : Application()
 
     override fun onCreate()
     {
-        val moduleDataProvider = module {
-            single {
-                getDataProvider()
-            }
-        }
         val moduleDataUseCase = module {
             single {
                 getDataUseCase()
             }
-            viewModel { DataViewModel(get()) }
+            viewModel { MainViewModel(get()) }
         }
 
         startKoin {
             androidLogger()
             androidContext(this@App)
-            modules(
-                    moduleDataProvider,
-                    moduleDataUseCase
-            )
+            modules(moduleDataUseCase)
         }
 
         super.onCreate()
-    }
-
-    private fun getDataProvider() : IDataProvider
-    {
-        return DataProvider(
-                coroutineScope,
-                DbRepository(
-                        AppDatabase.getInstance(applicationContext),
-                        coroutineScope
-                ),
-                RetrofitRepository()
-        )
     }
 
     private fun getDataUseCase() : IGetDataUseCase
     {
         return GetDataUseCase(
                 coroutineScope,
-                getDataProvider()
+                dataProvider
+        )
+    }
+
+    private val dataProvider : IDataProvider by lazy {
+
+        DataProvider(
+                coroutineScope,
+                DbRepository(
+                        AppDatabase.getInstance(applicationContext),
+                        coroutineScope
+                ),
+                RetrofitRepository()
         )
     }
 }

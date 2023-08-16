@@ -12,7 +12,7 @@ import kotlin.time.Duration.Companion.seconds
 
 class DataViewModelTest
 {
-    private lateinit var viewModel : DataViewModel
+    private lateinit var viewModel : MainViewModel
 
     private suspend fun isLocalDataEmpty() = viewModel.dataList.first().isEmpty()
     private suspend fun getSize() = viewModel.dataList.first().size

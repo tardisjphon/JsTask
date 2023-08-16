@@ -7,12 +7,12 @@ plugins {
 
 android {
     namespace 'js.task.application'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "js.task.application"
         minSdk 28
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -62,19 +62,18 @@ dependencies {
     implementation project(path: ':data')
     implementation project(path: ':domain')
 
-    implementation deps.androidx.appcompat
     implementation deps.androidx.material
 
-    implementation deps.compose.activity
     implementation deps.compose.coil
     implementation deps.compose.lifecycle_runtime
-    implementation deps.compose.lifecycle_viewmodel
     implementation deps.compose.material
     implementation deps.compose.navigation
+
     debugImplementation deps.compose.ui_tooling
     implementation deps.compose.ui_tooling_preview
 
     implementation deps.koin.android
+    implementation deps.koin.compose
     implementation deps.koin.test_unit_4
 
     implementation deps.timber.timber

@@ -12,28 +12,56 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import js.task.domain.usecase.model.DomainModel
 import js.task.screens.model.ScreenArgument
 import js.task.screens.model.ScreenName
+import js.task.viewmodel.MainViewModel
+import org.koin.compose.koinInject
 
 
 class MainScreen
 {
-    @OptIn(ExperimentalFoundationApi::class)
-    private fun getClickable(item : DomainModel, navigation : NavHostController) : Modifier
+
+    @Composable
+    fun SetList(
+        viewModel : MainViewModel = koinInject(),
+        navigation : NavHostController = rememberNavController()
+    )
     {
-        return Modifier.combinedClickable(onClick = {
-            val route = ScreenName.DETAILS.title + "?${ScreenArgument.ID.title}=${item.id}&${ScreenArgument.API.title}=${item.apiName}"
-            navigation.navigate(route)
-        })
+        val list = getDomainModelList(viewModel)
+
+        if (list.isNotEmpty())
+        {
+            list.let { domainData ->
+                LazyColumn {
+                    items(domainData) { item ->
+                        ItemHolder(
+                                item,
+                                navigation
+                        )
+                    }
+                }
+            }
+        }
+    }
+
+    @Composable
+    private fun getDomainModelList(viewModel : MainViewModel) : List<DomainModel>
+    {
+        LaunchedEffect(Unit) {
+            viewModel.getData()
+        }
+
+        return viewModel.dataList.collectAsStateWithLifecycle(emptyList()).value
     }
 
     @Composable
@@ -77,23 +105,12 @@ class MainScreen
         }
     }
 
-
-    @Preview
-    @Composable
-    fun SetRecyclerView(
-        list : List<DomainModel> = emptyList(),
-        navigation : NavHostController = rememberNavController()
-    )
+    @OptIn(ExperimentalFoundationApi::class)
+    private fun getClickable(item : DomainModel, navigation : NavHostController) : Modifier
     {
-        list.let { domainData ->
-            LazyColumn {
-                items(domainData) { item ->
-                    ItemHolder(
-                            item,
-                            navigation
-                    )
-                }
-            }
-        }
+        return Modifier.combinedClickable(onClick = {
+            val route = ScreenName.DETAILS.title + "?${ScreenArgument.ID.title}=${item.id}&${ScreenArgument.API.title}=${item.apiName}"
+            navigation.navigate(route)
+        })
     }
 }
